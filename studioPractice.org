@@ -1,0 +1,893 @@
+:PROPERTIES:
+:ID:       BC06D78B-D9D5-4747-B751-C6CEC667EF32
+:END:
+#+STARTUP: overview
+#+title: StudioPractice
+#+SEQ_TODO: NEXT(n) TODO(t) WAITING(w) SOMEDAY(s) PROJ(p) | DONE(d) CANCELLED(c)
+
+
+
+
+
+* [[id:7258CAC0-3FA4-4589-B611-6F54D214A632][MFACompArts]]
+
+
+* tutorials/feedback sessions
+** NEXT Olivier 2025-10-20 
+
+- the question of reverb is theat you fill up the gaps
+
+- [ ] 
+
+- Mortonn feldman
+  - [[https://www.youtube.com/watch?v=4WZhvd9Wqp4&start_radio=1][morton feldman]]
+
+    - forget about the time and take the time we need
+
+- microscopic thought
+
+
+- the aesthetics is very strong??!!
+- it has to be a choice
+  
+- Richard Mosse Richard Mosse : photograph
+- [[https://www.youtube.com/watch?v=BTVkqwuLYHU]]
+- <-- Kodak Aerochrome
+
+
+
+- make a website
+  - therapy for all of my things
+  -
+
+
+- [[https://www.youtube.com/watch?v=SqLJox6UQwg]]
+- 
+  
+** Olivier 2025-10-28
+
+
+
+
+
+- know and explain what happened to the vga
+- [ ] explain some kind of serendipity of the broken machine
+- [ ] show the screens
+- [ ] narrative of
+  - [ ] one thing impies another which implies another ones
+  - [ ] a marble sequence
+- [ ] mirrors
+- [ ] as a spectator - to see soething more genuine
+  - [ ] a discovery by chance
+    - [ ] A part of it is missing
+    - [ ] Thougt
+      - somehting you wanto to do 'more'
+	- [ ] you have a process
+	- add an element that is in oppositin
+	- that is a suprise
+	- that is a mistake
+	- extended technique
+    - [[https://www.youtube.com/watch?v=RaBMzwaz1IY]]
+    - is it live?
+    - is it prerecorded?
+      - does it matter
+    - starts with a long term process??
+      - do I take an image of my daily routine?
+  - WE NEED TO GO FURTHER±!!
+  - WE NEED TO GO DEEPER
+  - is it part of my personal research?
+  - or
+  - just a one time piece
+- [[https://www.youtube.com/watch?v=Hgtr1qIK2KM&t=129s][tarek atoui]]
+- diffusion
+  - within the source
+  - consistency over time
+  - bring evolution over time
+  - somnethng that control your atttention
+    - solving the fact that this is a technical issue
+    - maybe this will help me find the step to the next piece
+  - the need to construct something over time
+  - add an external element to open up the possibilities of it
+    - give it an evolution over time
+    - sopething outside the system
+- [[https://everson.org/from-the-archives/experimental-television-center-at-the-everson/][Everson Museum of Art]]
+- [[https://www.experimentaltvcenter.org/][Experimental televison center]]
+- [[https://www.hallwalls.org/archive/#video][hallwalls digital archive]]
+- MISTAKES
+  - dont think in front of your screen
+  - think in other places
+  - 
+  
+
+
+
+* Readings
+- [[id:B9573052-0617-4994-8C32-8913030744E9][ExperimentalTelevisionCenter]]
+- [[id:3236C3EE-CE1D-4931-9CC1-523661BE4DFE][TheVideoHistoryProject]]
+- [[https://www.videohistoryproject.org/paikabe-synthesizer-not-still-art-festival-2000-catalog][The Paik/Abe Synthesizer - from Not Still Art Festival 2000 Catalog]]
+
+
+
+* WIP 1
+** [[id:2BA66606-128E-4B13-883E-6FCF438A86DB][VGASignalGenerator]]
+
+
+** [[id:C7A722D2-02D6-402D-A84A-1486A09F3547][commandLine]]
+*** [[https://learnpythonthehardway.org/book/appendix-a-cli/introduction.html][command line crash course]]
+
+
+
+** [[id:93368CEE-5223-4696-A4C2-6F066F3EB23E][diyVisuals]]
+
+---
+** Where the hell Am I ??
+*** soo. I have a bunch of things.
+- VGA signal generator in a kindof working state
+- VGA Arduinoi in a kindo of working state
+- Wanna make the VGA feedback LOFIFUTURE but I need things
+- I picked up mini vga to av
+- "  ""    ""   ""  AV to VGA
+  - these 2 are not what I thouught I could use for the above FB feedback
+  - but I can
+    - use the VGA 2 av to go from 1 of the VGA signal generators to a soon to be built DIY dirty mixer - Just need one more
+    - AND
+    - the AV 2 VGA to go from the mixer to the Monitor
+- I have also just ordered a camcorder/no brand
+  - see what happens when it arrives
+
+
+*** SHOPPING LIST
+- [ ] mini vga2av
+- [ ] composite to VGA
+- [ ] VGA to Composite
+- [ ] 4xvga cables
+- [ ]
+
+
+
+- 
+
+      
+
+
+
+* Video Synthesis
+- [[https://soundand.design/basic-concepts-in-video-synthesis-83b76f726856][medium site on video synths]]
+- [[https://crackedraytube.com/textstutorials.html][Cracked Ray Tune tutoroials]]
+- [[https://videocircuits.blogspot.com/search/label/DIY][Video Circuits DIY]]
+  - [[https://www.facebook.com/groups/VIDEOCIRCUITS/files/files][Vidie Circuits facebook group - FILES]]
+- [[https://jonasbers.com/chav30buildguide/][CHA/V 3.0 build guide]]
+- [[https://www.theresistornetwork.com/2013/03/avr-vga-generation.html][The risitr=or network diy vga]]
+  - [[https://github.com/aarossig/avr-vga][git for avr-based VGA generator]]
+- [[https://www.youtube.com/watch?v=Ea_KIhRqLkQ][VGA Sync Generator and Color Bars in Verilog]]
+- [[https://www.youtube.com/watch?v=ltHYEazpNrs][VGA Arduino]]
+  - [[https://github.com/smaffer/vgax][Smaffer/vgax]]
+    - [[https://www.sandromaffiodo.com/index.php?id=0009][SmafferWWW]]
+    - [[https://forum.arduino.cc/t/vga-library-for-arduino-uno-and-atmega328/308936/2][form post for lib]]
+  - [[https://www.gammon.com.au/forum/?id=11608][a forum for vga signals]]
+- I got the ebay purchase through so I can continue with the Gammon thing
+- [[https://www.youtube.com/watch?v=mp7QVMx2zBY&list=PLTAAQQpCNd6Ri-dYis3s7TAjSxWEetB9o][video feedback techniques playlist]]
+
+
+
+- Look at the [[id:10210F81-C61D-4B4D-BE01-D5005977E0AE][greenRoadStudios]] file for more info on this
+- I do have a VGA signal generator coming from chine?? i guess
+- I found a youtube for an arduino clone
+  - [[https://www.youtube.com/watch?v=ltHYEazpNrs][VGA arduino]]
+- just waiting for some more parts
+  - ebay -
+  - VGA Cable
+  - B15 port
+- Working on an arduuino based VGA using code from
+  - [[https://www.gammon.com.au/forum/?id=11608][Nick Gammon]]
+  - and more now by
+  - [[https://github.com/smaffer/vgax][Smaffer/VGAX Code]]
+  - added the [[id:4B1409B7-D788-4B27-9515-E19A40F8E000][fastLED]] Library
+    - for noise functions
+  - how can I make it fit my screen?
+  - [ ] add some  tangable controller for it???
+  - [ ] 
+  - 
+  - 
+
+
+- still using used/second hand from ebay
+  - why?
+    - to have some minimal effect on the consumption of electronics and the quest for faster and more powerful computers
+    - cobalt mining for batteries
+      - [[https://www.npr.org/sections/goatsandsoda/2023/02/01/1152893248/red-cobalt-congo-drc-mining-siddharth-kara][NPR How 'modern-day slavery' in the Congo powers the rechargeable battery economy]]
+	- child slavery
+	- modern day slavery
+	- we are happy exploiting others as long as we are getting cool stuff
+	- nothing has changed in centuries
+	- no need for companies to have regulations
+	- human traffiking
+	- paramilitary
+	- large number of women and childeren sexually assaulted/ exploited/raped
+    - How do I make sekf powered things?
+      - how do you step up power from a small voltage?
+      - 
+
+* Arduino based
+
+- I have an arduuino with the Gammon vga which just runs colors
+- I also have the same arduino with the smaffer VGAX code running
+  - this is the code I have refactored att he moment
+  - an idea is to make a bunch of switchable functions where each function is a different effect
+    - I should start on this for now
+    - using the smaffer code.
+    - there's different 2 pin options for colours.
+      - this could be a switchable option that switches through the pin/color variations
+*** Things to do
+- [ ] add 1 function that does a variation
+- [-] add a button that switches through functions
+  - [X] get a button to work
+  - [ ] get the button to mo ve through a series of things
+- 
+- [ ] connect the function to the switch
+- [ ] move from the arduino uno over to the elagoo mega 2560 due to space
+- [ ] on arduino it used 97%
+- [ ] on the MEGA 2560 it uses only 22% of the memory
+- 
+- 
+- 
+  
+
+
+* VGA Signal Generator - ebay
+- [[https://jonasbers.com/crap-video-synth-for-10/]]
+- I have the signal generator working
+- I need to look at the CHAV thing
+- Also the 3rd gen [[id:F0BD84BE-4D26-44F7-81B4-6C611AB00527][NicolasCollins]] [[id:632EE99C-4116-4821-8F84-C9C5A78CBABE][HandmadeElectronicMusic]] is on its way
+- hack into it
+-
+
+  
+
+
+
+
+
+* do something with GANZ...../........pix2pix????? maybe... why????????
+- copy out the ganz stuff hopefully into your own virtual envoironment
+  - create a virtual env
+    - python -m venv name_of_virtual_env
+    - source bin/activate
+  - [ ]create a bash script
+    - [X] create scrip
+    - [X] enable it
+    - [X] test it
+    - [ ] start to add in a new file that has all of the dmlap stuff in it
+- Go through the entore machine learning class again
+  - eugh
+  - 
+
+
+* hacking jpegs
+- chapter 35 Nicolas Collins book
+- Data hacking
+  
+
+
+
+* What even is this work in progress project?
+ - I dont know.
+ - it;s some extension of my trying to find a way to source and process my own images/visuals mainly for the piano project.
+ - in sourcing my visuals what have I come across that I do?
+   - taking long static videos of not much and then processing them in ffmpeg
+     - I made three videos like this
+       1. [[https://www.youtube.com/watch?v=PZmBNIbW0sU&t=896s][video 1]]
+       2. [[https://www.youtube.com/watch?v=7x_ybiOTRrg&t=3s][video 2]]
+       3. [[https://www.youtube.com/watch?v=gJFIOpJRWKQ&t=1707s][video 3]]
+   - the fourth video in the series was doing using video feedback in ffmpeg and a webcam
+     1. [[https://www.youtube.com/watch?v=hqP0mY-HEuU&t=760s][video feedback]]
+ - Cool. Where would you like to go from here?
+   - I want to start finding a way to build my own things that can create visuals
+   - I would like to hack cameras
+   - I would like to make experimental video art
+   - find novel ways to create my own visuals
+ - this sounds great
+   - thanks
+ - i made a cpuple of rescanned recordings of the  vga signal generator
+ - I extracted the frames and then made a noe mp4 from the frames
+ - I then did a minterpolate in ffmpeg taken from [[https://www.hellocatfood.com/motion-interpolation-for-glitch-aesthetics-using-ffmpeg-part-0/][Hellocatfood]] tutorial
+   - I have some interesting results
+     - the format took around 4 hrs on a 12 second image
+     - which turned the mp4 into a 7 min one
+   - things to look at
+     - why is it interesting?
+       - i think the interesting ones are the images that are quite close together
+       - 
+	  
+     - what could I further do?
+       - take just 2 frames.
+       - concat them together
+       - then run a bunch of minterpolate filters on them
+       - then stitch them together
+       - started process at 13.47
+	 - with a super short, 2 images this process took about 1 min
+	 - ffmpeg -i hpMerged.mp4  -filter:v "setpts=40*PTS,minterpolate='fps=25:scd=none:me_mode=bidir:vsbmc=1:search_param=400'" -y hpHalfTimev4.mp4
+       - base process for testing
+	 - ffmpeg -i cat_rainbow_original.mp4 -filter:v "setpts=62.5*PTS,minterpolate='fps=25:mb_size=16:search_param=400:vsbmc=0:scd=none:
+       - testing with
+	 - ffmpeg -i cat_rainbow_original.mp4 -filter:v "setpts=62.5*PTS,minterpolate='fps=25:mb_size=16:search_param=400:vsbmc=0:scd=none:mc_mode=obmc:me_mode=bidir:me=esa'" 001_mc_mode=obmc_me_mode=bidir_me=esa.mp4
+	   - started process at 13.52
+	   - process killed
+	   - process started aain at 14.17
+	   - came back at 22:00 process complete
+	   - last I looked it was 5.5 hrs
+	   - outputB
+
+
+** 2025_11_04
+- hi
+  - today i did some stuff.
+    - what did you do?
+  - I lifed up the desk
+  - I ordered some scart to composite connectors for the vivanco
+  - The vivanco vido mixer got delivered
+  - I got a little composite to usb dongle delivered
+    - this works nice
+      - run the vga generator to the mini VGA2AV
+      - then from  VGA2AV to the cam input of the vivanco
+      - the vivanco out to the usb dongle
+      - then record it in OBS
+	- need to figure out OBS
+      - nice feel
+      - looses a lot of that aging that the webcams give
+	- maybe theres a way to get that onto another screen to then record that???
+      - Also, this seems to fix that lower enc drop out from the Hsync
+    - lookingf at the [[https://amiaopensource.github.io/ffmpeg-artschool/activities.html][ffmpeg art school]] page and activities
+      - running the echo script on todays film is nice
+      - 
+
+
+
+** 2025_11_11 - Tuesday
+
+- the irony of using technology to highlight the exploitation of the people who are made to work to get the materials so we can  make the work to show the exploitation of the people who are being exploited.
+- [[https://unu.edu/article/digital-shadows-unveiling-crisis-forced-labour-tech-age]]
+
+- cobalt is used for making lithium-ion batteries
+- what other minerals are used for making things go faster?
+- what are the things I require for my computer?
+  - cpu
+  - gpu
+  - memory
+  - hard drive
+  - plastics
+  - aluminium
+  - 
+
+
+
+
+* where am I right now with 2 days to go before the WIP1 exhibition?
+
+- the date is Sunday 30th November.
+- I'm on the coach to London. I have no work. Well, that's not totally true. I do have work. but the mainn machine is broken. for some reason it will not work. The board that the 40106 chips are on is very brittle.  I can't seem to get it to be stable. it's quite possible that I'm trying to do too much on one board and that my abilities arent all that.
+- I fortunatly got a bit of video recording from the device so at least I do have something to do/work from. Whilst I'm on the coach I have started to process the videos. I'm going to put them in multiple files from each day they were recorded and start to split the videos down into frames and remake them again as shirted animated videos of their formenr self.
+- this is the first step to do. I need to look into more processing tools with ffmpeg and that ffmpeg art school git that I have. Also the Artificial Images ffmpeg art  tutorials.
+- try to write down some things I can do for processes???
+  - do the ffmpeg artschool
+  - do the artificial images
+  - try to layer
+  - try to split and layer back
+    - vertical strips
+    - horizontal strips
+  - make the videos into longer ones
+  - maybe trigger the videos in openFrameworks? to sound? or maybe movement
+    - openCV
+  - slow down
+  - speed up
+  - stretch (somehow)?
+  - interpolate between frames??
+    - ganz????
+  - 
+- Right now???
+  - [ ] make directories for each day of takes
+  - [ ] move videos into directories
+  - [ ] make new frames dir for each take
+  - [ ] split the videos into frames
+    - [ ] split into different amounts
+      - [ ] 1
+      - [ ] 0.9
+      - [ ] 0.8
+    - [ ] etc
+  - I made a script that does this for each take
+    - I need to comment outwhat isnt needed in each take
+      - (folder amounts)
+    - the scrip bulds the directories, then splits the images into frames
+  - start a script that builds them back up into animations
+  - start applying filters to each one
+  - really look at how those ffmpeg artschool scripts were made
+  - 
+
+
+
+
+* Thought???
+- reading [[id:76F39767-968F-424F-8E7D-83E822425A71][Mark Fell]] structure and Synthesis
+  - first chapter
+    - regarding tool making
+      - Fell makes four points regarding the making of tools
+	1) toolmaking is a good test of skill
+	2) having high quality tools is important because their quality impacts everything that is made with them
+	3) toolmaking offers an increased understanding of the function of a particular tool, its means of construction, and the materials and processes that went into its making
+	4) the toolmaker gains a unique awareness of the tool's idiosyncracies, which enhances their use of it
+    - Regarding
+      1) tool making IS a good test of skill. it combines the makers efforts into building things that allow them to make works, gradually epxanding skills and works g hand in hand. I think a problem is also how to depart from what came before.
+      2) High quality tools are important. you need robustness. YOu need to know that your machine is going to work time after time, but as an aside to this, poorer quality also can intruduce unexpected results, not only aesthetically, but also conceptually. Having to repeatedly rebuild and make tools pushes skills and knowledge further. The over-relience on the same tool can breed comfort and consistency. I know there is a whole "stick to your thing and become known for that" - maybe Phillip Glass???? - but for people like me, this can be the death knell of wrk. To get so caught up making a name is not to push yourself further - Louis CK sad of George Carlin that his work changed when he heard George Carlin say that he threw his work out after a tour/special and then used the end of that as a starting point for something new.
+  -
+
+
+- I think I am a toolmaker of sorts
+  - following in my fathers footsteps, or more accuratly, my grandfathers footsteps. My father first trained as a sheet metal worker, no doubt going through this apprenteship of crafting his own tools, but his career took a different path. My grandfather on my mothers side was a plumber. I still own some of his tools. A couple of planes and some steel measuring devices. My tools are very different. My tools are also tangible things, but a little more 'modern'. I intend to build my tools for performance and work, but also as a way to expand my skils and knowledge. The hard thing is realising that I cannot have all this knowlege at once. A huge problem is the grind culture and the 2000's work culture of produce produce produce. We as humans are fully expected to be able to take in, process and know huge topics in a matter of hours. This is only capable inside of the fictional realm of the matrix. At least for me, a recovering alcholic and drug user with a 35 year career in using and not much.
+
+
+
+
+* Things to make
+
+** a mixer with a noise function that blends between 2 video signals
+- mybe its digital???
+- perlin noise?
+- 
+
+
+
+* Classroom Sessions
+** Monday 2nd Feb 2026
+
+- the first class of whatever the fuck this is
+- Advice for planing a major work
+- Looking at funding (proposals beyond uni)
+- Writing for proposals
+- Looking at show proposals
+- pre-arting
+
+
+- 16th march or 23rd march - Presentations
+- final show proposal
+- WIP2 8 - 13 june
+- 
+
+- Advice for planing a major work
+  - Stage 1. Ideation and experimentation
+    - Ideation – making space for
+experimentation and false starts
+    - Working with constraint
+    - Timed writing – 30 seconds, 60
+seconds, 1 minute, 2 minutes, 5
+minutes
+   - Remake an old work
+   - Oblique strategies
+     
+  - What to do if you struggle to self
+motivate:
+  - Manufacture deadlines (with consequences) 
+  - Break it into sections
+  - See a show
+  - Making through the pain
+  - Make something else/rest
+  - Collaboration/help
+  - Be open to criticism and seek it out
+  - Diary/sketch book your process
+  - Ask for critique – better to know early than realise
+    1. its been done
+    2. b. your missing a trick
+
+   
+  - Stage 2. Planning
+
+    
+  - Stage 3. Making
+
+    - 
+  - Stage 4. Installation/showing
+  - Stage 5. Afterlife
+
+  - Looking at [[id:1F4E773E-3A07-4A09-832B-9343F4DEAD67][funding]] (proposals beyond uni)
+
+    
+  - Writing for proposals
+  - Looking at show proposals
+  - PRE-ARTING
+    - frame your work
+      - Think about an element of your own practice. It could be large (the whole work), or small (a specific element of the work), or preparatory work (references)
+	* an element of my own practice.....
+	  * an element of my own practice involves using bash scripts and ffmpeg in conjuction to create short alorithmic films
+	  * I also explore diy video synthesis techniques to come up with starter images
+	  * I want to get these things on small, affordable and open source technologies
+	  
+	
+    - Write only questions relating to that element – focus on things you don’t know the answer to
+      - Questions only — no answers, no statements
+	* why these things?
+	* what for?
+	* what are you trying to question?
+	
+
+
+    
+      - Consider what you don’t know i.e. I don’t know an artist who uses x, I don’t know how to Y, I don’t know where to find z
+      
+    - Mark your priorities
+    - Share with your group and discuss strategies to answer these questions
+
+  
+
+
+
+
+
+
+
+
+
+    
+** 2026_02_23 Monday
+
+*** is it a tool
+
+*** constrain!!!!!!!!!!!!!!
+
+*** set some rules
+
+*** permaclub
+
+*** Economy of means
+
+*** 
+
+
+** 2026_03_09 Monday
+- presentation
+- Monday 16th 17:10
+  
+
+** 
+
+** 
+
+* Artist presentation
+
+1. You will be expected to talk about work, process, and influences
+
+
+ - work
+     - my work is mainly in the realm of live, improvised audio.
+       I am currently in the process of bulding my own toolkit for live audio performances. The tools are built in the Open Source software platform SuperCollider.
+   The MARRS (Meanwood Audio Research and Recording Services) tools, are a onging, work in progress, suite of tools, that
+     - a selection of built tools with the aim of me using them for performance
+
+   - grs_chav (cheap hacky audio visual) - Jonas Bers       
+     - making hardware based visuals. 
+
+       
+     - for visuals, I've been working on and off with for the last 10 years or so (mainly off), so I'm finding that I'm still fairly new at this, so it is something I'm still coming to terms with as an artist. I'm still attempting to find my own way in this regarding tools and outcomes. Currently my visual work is erring on the side of the glitch aesthetic, but this is not really an avenue I want to persue, it just happens that this is the outcome of the tools I'm making.
+
+     - process
+     - I feel strongly that my process is dependent on the tool. Coming from a long  line of working class families, I feel that my tools are a strong part of my history. My Father was many things, starting out as a sheet metal worker before becoming a cook in the merchant Navy he then finally became a panel beater before passing unexpectedly from Cancer at the age of 46, but all the time his work was dependent on his tools. My Grandfather on my mothers side was a plumber, during and after wartime. He would have needed to fabricate his own tools. I still have a selection of their hand tools to this day (I was going to take some photos, but the toolbox is under a nightmare of other things in the cupboard under the stairs).
+
+       .. Mark fell.
+       - ➀ toolmaking is a goodtest of skill; ➁ having high quality tools is important because theirquality impacts everything that is made with them; ➂ toolmakingoffers an increased understanding of the function of a particular tool,its means of construction, and the materials and processes thatwent into its making; and ➃ the toolmaker gains a unique awarenessof the tool’s idiosyncrasies, which enhances their use of it.
+	 - Mark Fell - structure and Synthesis -
+
+
+     - My tools are primarily software based, it is also important to me that they are Open Source. People shouln't be left outside the walled garden due to lack of access.
+
+   
+3. What type of practice you see yourself as having i.e. artist,
+creative technologist, designer, a combination of things
+  -  I see myself as a combination of things, but I don't really know what. 
+  
+4. What you are currently working on/what you have achieved over
+the term in regards practice and contextual research
+
+   - and algorhymic filmaking/ long form generative piano compositions
+     - 
+
+
+- influences.
+
+       - mainly my mates
+	 - Viewer, [[https://youtu.be/rECZ1Hc869U?si=5QYpkYvu4SA-GMmM&t=56][youtube]]
+	 - Mico Rex, [[https://www.youtube.com/watch?v=QC_ebU1kBtg][youtube]] video Alex Mclean
+	 - Alo Alik, [[https://tehis.net/?mnu=sur][www]]
+	 - John Tuffen, [[https://www.youtube.com/live/i_GFYJp_o20?si=ugmnZMmeTg7YtBud&t=2284][orlandoFerguson]] video chapelFM
+	 - 
+     
+
+
+
+
+* Final Project MFA Computational Arts
+* Final project points
+** dates to hit
+
+*** 2026_06_01 - Proposal Deadline 12.00 noon
+
+*** 2026_06_29 - Tech Deadline
+
+*** 2026_06_08 - wip2 install start
+
+*** 2026_06_11 - Thursday - wip 2 VIVA
+
+*** 
+** Reading
+- [[https://www.soundonsound.com/techniques/chris-watson-art-location-recording][chris watson SOS]]
+
+
+
+* WIP 2
+
+- What am i Doing here?
+  - I think for this wip i need to spend zero money and use what I have going forward
+  - I'm unemployed. so costs have to be low/zero
+  - What do I have/ what was I working on?
+  - what is my idea tho??
+    - I think some kind of recursive feedback loop between my found images and a wavetable synth
+      - I think maybe use Klank. I can at least have an array of ints I can manipulate.
+      - Wavetable doen't seem the way I think from working throough a bit of this
+	- [[https://www.youtube.com/watch?v=8EK9sq_9gFI][SuperCollider Tutorial: 23. Wavetable Synthesis, Part I]]
+      - DynKlank 
+	
+    - the rgb values are connected with the values in a wavetable and are modulatableble parameters with a device, as well as just moving around alone with modulatable synthesis
+  - what software?
+    - ffmpeg 0- to gather images
+    - openFraeworks for the processing of pngs
+    - Ssupercollider for the synthesis
+    - arduino for the device
+  - Hardware?
+    - rasberry pi
+    - old maccbook pro? running linux
+  - What theory/ what am I trying to say??
+    - old and small usable hardwares and software/ open source
+      - sticking the finger up to big tech.
+      - artificial intelligence
+      - 
+- How to start???
+- I dont know
+- i need to have a openframeworks things?
+- I need a synth in SuperColldir
+- I need images
+  - keep writing one bash sript a week to get images
+  - keep using the ffmpeg artschool stuff for further processn
+  - keep an eye out for cameras to try and hack.....
+  - 
+  -
+
+** IDEAS
+- [[https://www.ecosia.org/search?q=zane+lowe+eno&addon=firefox&addonversion=6.3.0&method=topbar][zane lowe brian eno]]
+- have a bucket of images
+  - let each machine get images and create their own videos
+
+- MANIFESTO!!!
+- These are the values you have??
+- these are the walls you want to kick down
+- openness
+- `improvise
+- listen - respond
+- inprov partner
+- i should write doonw my stream of comnsiuss and try to figure out things from that
+- Whats the why???
+
+
+** Uni Tutorials
+
+*** Eleaonora 25_03_19 Thursday
+  - The One thing I really really want to do.........
+    - homework
+    - take a hammer
+    - hammer down all the self judjments
+    - the reason i came here
+    - phase 1
+      - destroy
+    - phase 2
+      - contemplation
+    - phase 3 plan
+    - 
+    - introspection
+    - have a phase of researchx
+    - limiting things are the things that people tell us/ we tell
+    - whta brought me to the mfa
+    - that will inform me
+    -
+
+
+*** write between 100-500 / short/long version 2026_05_06
+ a reflection upon my aesthetics
+ the poetics of my work
+
+ - look at the work
+ - how to describe to the granny
+ - more abstract
+ - what connects the stuff
+ - artist statment
+   - polotics
+   - aethetics
+     - why i resonate????????
+   - how artists produce statments
+   - 
+
+
+*** thinking so far???
+-  i'm starting to realsie that my thought is impacted by my working class chip on my shoulder. I need t find a way through this. I
+  dont really know where to start, so  I implimented a ollama gpt chat in mistral to help with breaking the process down.
+  
+  
+- I started to use a gpt
+- copy from gpt in mistral
+  
+-  To use the Socratic method for self-reflection, we can approach your questions in a series of steps:
+
+1. Identify the problem: Your primary concern seems to be addressing your class consciousness, chip on
+your shoulder, and its potential impact on your judgment. It's essential to recognize that understanding
+these issues is an ongoing process and may require introspection and patience.
+
+2. Ask clarifying questions: To better understand your situation, it might be helpful to ask yourself
+some questions:
+   - What do you mean by "class consciousness"?
+   - When did you first start feeling this chip on your shoulder?
+   - How has it affected your relationships with others or your performance at work?
+   - Are there specific instances where you've noticed its impact?
+
+3. Hypothesize causes: Based on your answers, try to identify the potential reasons behind your feelings
+of class consciousness and why you might have a chip on your shoulder. These could include experiences
+from your past, societal expectations, or personal beliefs.
+
+4. Examine supporting evidence: Look for instances in your life that support these hypotheses. For
+example, you may recall certain events or interactions where you felt judged based on your social class
+or felt a sense of resentment towards others due to perceived advantages they have over you.
+
+5. Analyze counter-arguments: Consider alternative perspectives that might challenge your hypotheses. For
+instance, perhaps there are other factors at play in those instances that led to your feelings, such as
+personal insecurities or misunderstandings.
+
+6. Draw conclusions: Based on your analysis, attempt to reach a conclusion about the roots of your class
+consciousness and chip on your shoulder. This will help you better understand why these feelings exist
+and how they may be impacting your life.
+
+7. Formulate action steps: With a clearer understanding of the issue, identify specific actions you can
+take to address it. This could include seeking out new experiences or perspectives, working on
+self-awareness, practicing empathy towards others, or addressing any underlying insecurities that
+contribute to your feelings.
+
+8. Monitor progress: Reflect regularly on your progress and adjust your action steps as needed. Be
+patient with yourself and remember that change takes time.
+
+By following the Socratic method, you can gain insight into your thoughts and emotions, helping you
+develop a more nuanced understanding of your class consciousness and chip on your shoulder. This
+self-awareness will enable you to minimize its influence on your judgment and make more informed
+decisions in your personal and professional life.
+
+
+** Things to do
+
+
+
+
+** Tutorials/Links/help
+- [[https://www.youtube.com/watch?v=UXjMk5ti6wk][packt OSC openFrameworks]]
+- [[https://www.youtube.com/@OfficialPackt/search?query=openFrameworks][packt youtube oF vides????]]
+
+
+** 2026_02_12 - Thursday
+- Started today in earnest with trying to figure out what I'm going to do for this wip 2
+- I have made some restrictions and got myself some tools
+  - no more purchases because I'm unemployed
+  - I have to use things I own
+  - open source softwares/frameworks
+    - ffmpeg
+    - bash
+    - SuperCollider
+    - openFrameworks
+    - arduino
+  - Whats the plan??
+  - The plan is to make a recursive machine that sends image rgb data via osc to supercollider and back again.
+  - why?
+    - I dont really know.
+    - I have all these images I made for wip1. And I need to do something with them.
+    - Why the tools?
+      - I want to use open source as its something close to my heart
+      - I don't want to pay for software if I can help it
+      - down the line you end up not owning anything
+      - maybe even funding thing you dont want to fund......
+    - make a controller that controls both rgb data and the synth
+    - make it a 2 person playable machine
+    - teamwork
+    - think about powering it??
+  - I made a star on SC with searching the correct UGEn for use - DynKlank.ar
+    - a modulatable flter bank of sin oscillators
+  - I also made a start on a oF patch
+    - loaded up an image. Thats it
+    - you are working from [[https://openframeworks.cc/ofBook/chapters/image_processing_computer_vision.html][here]] in the ofBook
+      - Three-Channel (RGB) images
+- 
+
+
+** 2026_02_13 - Friday
+
+*** TODO lists?????????
+*** TODO  
+
+** 2026_02_16 - Monday
+
+*** TODO do some tutorials
+- [ ] ofBook
+- [X] redFrik
+  - [X] udk 12 back to basics
+  - running hrough sin functions in
+    - python
+    - processing
+    - supercollider
+    - arduino
+  - 
+  - 
+- [X] SuperCollider
+  - continueng with the david cottle book
+    - onto synthdefs
+
+*** TODO work on klank onstr
+
+*** TODO how do I get rgb from a of into sc via osc?????
+
+*** TODO 
+
+
+** 2026_03_19 - Thursday
+- continuing with oFtutorials
+- have a deepseek chat regarding the osc.
+- not sure its great -
+  - src codes
+    - of = 071wip
+    - sc - ???
+
+
+-  Oblique Stratagies
+   - You don't have to be ashamed of using your own ideas
+
+
+
+
+
+
+
+** 2026_05_12 - Tuesday
+
+*** made/making a hydrophone
+- so far, I have the made hydrophone.
+- waiting for silicone filling to dry. maybe be a couple of days.
+- then time for plastidip
+- 
+*** working from [[https://zachpoff.com/resources/building-contact-mics/][diy contact mic - Zach Poff]] & [[https://voicesofthefen.co.uk/take-part/make-a-hydrophone/][diy hydrophone - voices of the fen]]
+
+
+*** looking at audio use withing Supercollider
+
+- chapter 4 - Fieldsteel book
+- [[https://www.youtube.com/watch?v=aAPngikKkRo]['sampling' Fieldsteel YT]]
+- opying out Bruno Ruviaro's Granular synth gui demo #1
+- things of note
+  - TGrains
+  - EZSlider
+  - EZRangger
+  - Dialog
+  - 
+
+
+
+** 2026_05_14 - Thursday
+
+*** What doI wnt to make today???
+
+*** I think I need to go through the ixi and make another app in the buffers tutoria;
+
+
+  
+//////////////////////////////////////////////////////////////
+
+** 2026_05_18 - Monday
+*** continued working on the granular workstation
+*** set up a git repo for the project backup/documentation
