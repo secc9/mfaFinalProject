@@ -51,7 +51,9 @@ s.waitForBoot({
 
 
 	// containers for the composite loop/grain views
-	var stackA, grainControlViewA, loopControlViewA;
+	var controlStackA, grainControlViewA, loopControlViewA, controlAreaA;
+
+
 
 	var selectSwitchA;
 
@@ -154,20 +156,28 @@ s.waitForBoot({
 
 	// --------- SynthA  Gui window ---------------------
 
-	subwinA = CompositeView.new(win, Rect(sfViewWidth+(20), 50, sfViewWidth/1.15, sfViewHeight+45))
+	subwinA = CompositeView(win, Rect(sfViewWidth+(20), 50, sfViewWidth/1.15, sfViewHeight+45))
 	.background=Color.yellow(0.3);
 
 
-	// container for the loop control gui window
+	// container for the loop and grain control gui window
 
-	/*loopControlViewA = CompositeView.new(subwinA, Rect(sfViewWidth+(40), 50, sfViewWidth/1.15, sfViewHeight+45))
-	.background = Color.clear;*/
+	loopControlViewA = CompositeView(subwinA, Rect(0, 0, sfViewWidth/1.15, sfViewHeight+45));
+	loopControlViewA.background = Color.clear;
+	loopControlViewA.visible_(false);
 
+	grainControlViewA = CompositeView(subwinA, Rect(0, 0, sfViewWidth/1.15, sfViewHeight+45));
+	grainControlViewA.background=Color.clear;
+	grainControlViewA.visible_(true);
 
-	// grainControlViewA = CompositeView(subwinA, Rect(sfViewWidth+(40), 50, sfViewWidth/1.15, sfViewHeight+45))
-	// .background=Color.clear;
-	// .visible_(false);
+	// create stackLayout
+	// controlStackA = StackLayout(loopControlViewA, grainControlViewA);
 
+	// create container with fixed position
+	controlAreaA = CompositeView(subwinA, Rect(sfViewWidth+(20), 50, sfViewWidth/1.15, sfViewHeight+45))
+	.background=Color.grey(0.2);
+
+	controlAreaA.layout = controlStackA;
 
 	//------------------- soundFileViewA window----------------------------
 	soundFileViewA = SoundFileView(win, Rect(10, 50, sfViewWidth, sfViewHeight))
@@ -246,24 +256,25 @@ s.waitForBoot({
 
 	//------------- synth select button ------------------
 
-	/*selectSwitchA = Button(subwinA, Rect(5, 10, 60, 30))
-	.states_([["LOOP", Color.black, Color.cyan], ["GRAIN", Color.black, Color.blue]])
+	selectSwitchA = Button(subwinA, Rect(5, 10, 60, 30))
+	.states_([["GRAIN", Color.black, Color.cyan], ["LOOP", Color.black, Color.blue]])
 	.action_({|button|
-		var newMode = button.value;  // 0 = LOOP, 1 = GRAIN
-		// loopControlViewA.visible = (newMode == 0);
-		// grainControlViewA.visible = (newMode == 1);
-		if(startButtonA.value==0,{
-			synthAStart.set(\playmode, newMode)
-		});
-	});*/
 
+		    // Show/hide the appropriate panel
+    loopControlViewA.visible = (button.value == 1);
+    grainControlViewA.visible = (button.value == 0);
+
+		if(startButtonA.value==1,{
+			synthAStart.set(\playmode, button.value)
+		});
+	});
 
 
 	//-----------------------------------------------------------------------
 
 	//---------------------LOOP CONTROLS -----------------------------------
 
-	/*loopTrigSliderA = EZRanger(
+	loopTrigSliderA = EZRanger(
 		parent: loopControlViewA,
 		bounds: Rect(rangerXpos, 10, rangerWidth, 20),
 		label: "trigger",
@@ -281,14 +292,14 @@ s.waitForBoot({
 		initVal: [0.1,1],
 		labelWidth: 50,
 		unitWidth: 30
-	);*/
+	);
 
 
 
 	//---------------------GRAIN CONTROLS------------------------------------
 	// trigger range slider
 	grainTrigSliderA = EZRanger(
-		parent: subwinA,
+		parent: grainControlViewA,
 		bounds: Rect(rangerXpos, 10, rangerWidth, 20),
 		label: "trigger",
 		controlSpec: ControlSpec(
@@ -312,7 +323,7 @@ s.waitForBoot({
 
 	// rate slider
 	rateSliderA = EZRanger(
-		parent: subwinA,
+		parent: grainControlViewA,
 		bounds: Rect(rangerXpos, 30, rangerWidth, 20),
 		label: "rate",
 		controlSpec: ControlSpec(
@@ -336,7 +347,7 @@ s.waitForBoot({
 
 	// grain duration slider
 	durSliderA = EZRanger(
-		parent: subwinA,
+		parent: grainControlViewA,
 		bounds: Rect(rangerXpos, 50, rangerWidth, 20),
 		label: "grain",
 		controlSpec: ControlSpec(
@@ -356,7 +367,7 @@ s.waitForBoot({
 //-----------------------------------------------------------------------
 	// pan position slider
 	panSliderA = EZRanger(
-		parent: subwinA,
+		parent: grainControlViewA,
 		bounds: Rect(rangerXpos, 70, rangerWidth, 20),
 		label: "pan",
 		controlSpec: ControlSpec(
@@ -442,7 +453,7 @@ s.waitForBoot({
 
 
 
-	/*tackA = StackLayout(
+	/*stackA = StackLayout(
 
 	);*/
 
@@ -497,8 +508,8 @@ s.waitForBoot({
 
 
 
-		// sig = Select.ar(playMode, [loopSig, grainSig]);
-		Out.ar(out, grainSig*env);
+		sig = Select.ar(playMode, [loopSig, grainSig]);
+		Out.ar(out, sig*env);
 	}).add;
 
 

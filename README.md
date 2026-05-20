@@ -1,3 +1,17 @@
 
+ 
 
-This is a readme file 
+The Ghosts of my life. 
+
+This project is a sonic exploration into my past. in an attempt to come to terms with my past I am sonically documenting the places I was geographically when things started to turn sour. 
+
+I'm wanting to travel back into my past to hopefully find a point in my past where it started to go wron, where I started to slip through the cracks. 
+
+I need to travel far enough back.
+
+I want to sonically and pictorally document the places where I have signifiant memories that are making me stuck. 
+
+
+The computational side of this is a way for me to present, remix and change the sounds of my past to try and make sense of it and to push me out into the future.
+
+To do this I will be making a granular synthesizer/ loop playing  workstation which will act as a tool for me to do this
