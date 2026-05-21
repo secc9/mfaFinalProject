@@ -765,6 +765,48 @@ decisions in your personal and professional life.
 
 ** Things to do
 
+*** Organise a trip to Filey
+ - buy a map of Filey
+
+*** Organise a trip to York
+
+*** A trip to guildford???
+
+*** A trip back to London - this can coincide with the wip2
+
+*** look at fixing the portable cassette player
+- things that are wrong
+  - [ ] fix the jack output
+    - its only working in the right channe,l unless its half out
+    - 
+  - I think it seems fine. the belt is slack, nothig I can do about that unless I get a new belt
+  - stereo seems fine in the cheaper headphones
+- The thing seems ripe for bending
+  - the speed/slow
+  - there's the L!4570 IC chip that gives off some high pitches screaming
+  - go back and look at some other bits
+  - maybe rehouse it???????
+
+
+*** got some rechargable batteries
+- 4 x 9 volt
+  - the 9Volt are to supply power to the preamps.
+  - 1 x 9V for 1 x 2 channel preamp
+- 8 x AA for keeping in the recording devices as a backup for the battery bank
+
+
+*** design a casing for the preamp
+- what does the pre amp need???
+  - 2 x jack input
+  - 2 x jack output
+  - 2 x 100k potentiometers
+  - somewhere to hold the board
+  - somewhere for a 9 volt battery
+- at some point, you should put this down to a PCB
+- The unit has to be big enough to house all the materials
+- but small enough to carry around in a second carry bag
+  
+*** 
 
 
 
@@ -938,4 +980,8 @@ repeat for other 5 granular synths
 
 
 ** 2026_05_20 - Wednesday
+
+- ok. I'm having mental blocks on the granular synth. I want to be able to add in a playBuf and a Recording buffer to each slot along with the grain, buut my brain isnt' braining so well. so... I'm going to go back to version 01 and work with just a granular synth for now and extend to all slots.
+- What I probably need to do is make some smaller utilities with a lot less stuff going on and try to do switching in that
+- 
 

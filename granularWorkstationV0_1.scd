@@ -47,13 +47,12 @@ bus effects etc
 (
 s.waitForBoot({
 
-	var win, subwinA, masterWin, posSilderViewA,posSilderViewB,posSilderViewC,posSilderViewD,posSilderViewE,posSilderViewF;
+	var win, subwinA, subwinB,subwinC,subwinD,subwinE,subwinF, masterWin, posSilderViewA,posSilderViewB,posSilderViewC,posSilderViewD,posSilderViewE,posSilderViewF;
 
 
 	// containers for the composite loop/grain views
-	var stackA, grainControlViewA, loopControlViewA;
 
-	var selectSwitchA;
+
 
 	var soundFileViewA, soundFileViewB, soundFileViewC,soundFileViewD, soundFileViewE, soundFileViewF;
 
@@ -61,18 +60,18 @@ s.waitForBoot({
 
 	var openfileA,openfileB,openfileC,openfileD,openfileE,openfileF;
 
-	var startButtonA;
+	var startButtonA,startButtonB,startButtonC,startButtonD,startButtonE,startButtonF;
 
 	var soundFileA,soundFileB, soundFileC, soundFileD, soundFileE, soundFileF;
 
 	var bufferA, bufferB, bufferC, bufferD, bufferE, bufferF;
 
-	var synthAStart;
+	var synthAStart,synthBStart,synthCStart,synthDStart,synthEStart,synthFStart;
 
 	// converts rate value -- taken from Bruno Ruviaro Granular synth
 	var transpToRate = {arg transp; transp.linexp(-24,24,0.25, 4)};
 
-	var loopTrigSliderA,grainTrigSliderA, rateSliderA, durSliderA, panSliderA, ampSliderA;
+	var trigSliderA, rateSliderA, durSliderA, panSliderA, ampSliderA;
 
 	var rangerXpos = 70, rangerWidth=450;
 
@@ -101,7 +100,9 @@ s.waitForBoot({
 
 
 	// make a window
-	win = Window("Granular Workstation", Rect(0, 0, 1700,1100)).front;
+	win = Window("Granular Workstation",
+		Rect(0, 0, Window.screenBounds.width,Window.screenBounds.height)
+	).front;
 	win.background=Color.green(0.2);
 	win.onClose = {
 		masterMeter.remove; // kills server meter
@@ -158,16 +159,6 @@ s.waitForBoot({
 	.background=Color.yellow(0.3);
 
 
-	// container for the loop control gui window
-
-	/*loopControlViewA = CompositeView.new(subwinA, Rect(sfViewWidth+(40), 50, sfViewWidth/1.15, sfViewHeight+45))
-	.background = Color.clear;*/
-
-
-	// grainControlViewA = CompositeView(subwinA, Rect(sfViewWidth+(40), 50, sfViewWidth/1.15, sfViewHeight+45))
-	// .background=Color.clear;
-	// .visible_(false);
-
 
 	//------------------- soundFileViewA window----------------------------
 	soundFileViewA = SoundFileView(win, Rect(10, 50, sfViewWidth, sfViewHeight))
@@ -186,8 +177,6 @@ s.waitForBoot({
 		hiSlider = selectionSpec.unmap(hiFrames);
 		2.do{centerPosSliderA.setSpanActive(loSlider, hiSlider)}; // 2.do = hack...
 	};
-
-
 
 
 	// function for the grain view to live inside a stack view
@@ -244,50 +233,12 @@ s.waitForBoot({
 		)});
 	});
 
-	//------------- synth select button ------------------
-
-	/*selectSwitchA = Button(subwinA, Rect(5, 10, 60, 30))
-	.states_([["LOOP", Color.black, Color.cyan], ["GRAIN", Color.black, Color.blue]])
-	.action_({|button|
-		var newMode = button.value;  // 0 = LOOP, 1 = GRAIN
-		// loopControlViewA.visible = (newMode == 0);
-		// grainControlViewA.visible = (newMode == 1);
-		if(startButtonA.value==0,{
-			synthAStart.set(\playmode, newMode)
-		});
-	});*/
-
-
-
-	//-----------------------------------------------------------------------
-
-	//---------------------LOOP CONTROLS -----------------------------------
-
-	/*loopTrigSliderA = EZRanger(
-		parent: loopControlViewA,
-		bounds: Rect(rangerXpos, 10, rangerWidth, 20),
-		label: "trigger",
-		controlSpec: ControlSpec(
-			minval: 0.1,
-			maxval: 150,
-			warp: 'lin',
-			step: 0.1,
-			units: " t/s"
-		),
-	action: {|sl|
-			if(startButtonA.value==1,
-				{synthAStart.set(\triggerLo, sl.lo, \triggerHi, sl.hi)});
-		},
-		initVal: [0.1,1],
-		labelWidth: 50,
-		unitWidth: 30
-	);*/
 
 
 
 	//---------------------GRAIN CONTROLS------------------------------------
 	// trigger range slider
-	grainTrigSliderA = EZRanger(
+	trigSliderA = EZRanger(
 		parent: subwinA,
 		bounds: Rect(rangerXpos, 10, rangerWidth, 20),
 		label: "trigger",
@@ -341,7 +292,7 @@ s.waitForBoot({
 		label: "grain",
 		controlSpec: ControlSpec(
 			minval: 0.1,
-			maxval: 4,
+			maxval: 40,
 			warp: 'lin',
 			step: 0.1,
 			units: "sec"
@@ -414,9 +365,9 @@ s.waitForBoot({
 		if(button.value ==1,
 			{synthAStart = Synth(\grainA,
 				[
-					\playMode, selectSwitchA.value,
-					\triggerLo, grainTrigSliderA.lo,
-					\triggerHi, grainTrigSliderA.hi,
+
+					\triggerLo, trigSliderA.lo,
+					\triggerHi, trigSliderA.hi,
 					\rateLo, transpToRate.value(rateSliderA.lo),
 					\rateHi, transpToRate.value(rateSliderA.hi),
 					\centerPosLo, centerPosInSecondsA.value[0],
@@ -441,13 +392,21 @@ s.waitForBoot({
 
 
 
+      //----------------------------------------------------------------
+	//---------------------- Synth A view END ----------------------------
+	//----------------------------------------------------------------
+      //-----------------------------------------------------------------------
 
-	/*tackA = StackLayout(
-
-	);*/
 
 
-//-----------------------------------------------------------------------
+	//----------------------------------------------------------------
+	//---------------------- Synth B view ----------------------------
+	//----------------------------------------------------------------
+
+
+
+
+
 
 
 
@@ -458,7 +417,7 @@ s.waitForBoot({
 	// synth A
 
 	SynthDef(\grainA, {
-		arg out=0, gate =1, bufnum, triggerLo, triggerHi, rateLo,rateHi, centerPosLo, centerPosHi, durLo, durHi, panLo, panHi, ampLo, ampHi, playMode=0 ;
+		arg out=0, gate =1, bufnum, triggerLo, triggerHi, rateLo,rateHi, centerPosLo, centerPosHi, durLo, durHi, panLo, panHi, ampLo, ampHi;
 
 
 		var env,sig, grainSig,loopSig, trig, triggerAmount, rate, dur, pan, amp, centerPos;
@@ -487,13 +446,7 @@ s.waitForBoot({
 			amp: amp,
 		);
 
-		loopSig = PlayBuf.ar(
-			numChannels:2,
-			bufnum: bufnum,
-			rate: BufRateScale.kr(bufnum)+rate,
-			trigger: trig,
-			loop: 1,
-		);
+
 
 
 
