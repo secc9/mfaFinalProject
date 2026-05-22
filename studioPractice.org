@@ -985,10 +985,22 @@ repeat for other 5 granular synths
 - What I probably need to do is make some smaller utilities with a lot less stuff going on and try to do switching in that
 - 
 
-** 2026_05_20 - Thursday
+** 2026_05_21 - Thursday
 - attempted an enclosure for the preamp
   - its an 8 hr print. so lets see what happens.
     - stil need to make a fitted bottom for it, but my experience tells me to make the enclosure firsr and make the 'lid' after, where I can make more precice mesuremtnsfor what I need.
 - print failed. it seems as though extruding in blender doest go over to cura???
 - some more research needed
+
+
+** 2026_05_22 - Friday
+- made up another 2 'matched pair' contact mic/hydrophone. I'm waiting for the silicne to dry out before I plastic dip them
+- also made the 1/4" jacks along with the other one.
+- ok. tried to knock up a 2nd version of the preamp case. cant print now as I'll not be home when it ends
+
+- built the first  incarnation of the Granular workstation
+  - 6 slots for (currenty) 6 x granular synths-
+    - to add un other synths at a later date
+      - I first need to figure out the gui switching
+  
 - 

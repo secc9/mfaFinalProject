@@ -23,23 +23,29 @@ a new, multiple granular synth/ loop player/ record
 
  * TODO
 6 audio slots.
-  - make 1 granular synth first, then add in the 5 - This now (20/05/26)
+  -// make 1 granular synth first, then add in the 5 - This now (20/05/26) - DONE - 22/05/26
   - add a level meter on the Subwindows
-  - I have space at the bottom. maybe some effect dials>>>>?????
-  - add a type button >> switches the type of file player
+  - I have space at the bottom of each player control subwindow. maybe some effect dials>>>>?????
+
+
+
+
+- add a type button >> switches the type of file player
      - TGrains - GrainBuf - Warp1 - PlayBuf - RecBuf
 
 - master view window
 
   - maybe add in a scope
   - add in a level - Done
-  - add in the volume sliders for each loop player
+  - add in the volume sliders for each loop player - Done - 22/05/26
   - do I want Auxillary sends???? here?????
 
 
-with tools to effect each slot
-a master effect
-bus effects etc
+  -  with tools to effect each slot
+  -  a master effect
+  -  bus effects etc
+
+record to disk function
 
 */
 
@@ -168,9 +174,9 @@ s.waitForBoot({
 
 
 	// soundFileViewB = SoundFileView(win, Rect(10, sfvYPos+(sfvY), sfViewWidth, sfViewHeight)).gridOn_(true);
-	soundFileViewC = SoundFileView(win, Rect(10, sfvYPos+(sfvY*2), sfViewWidth, sfViewHeight)).gridOn_(true);
-	soundFileViewD = SoundFileView(win, Rect(10, sfvYPos+(sfvY*3), sfViewWidth, sfViewHeight)).gridOn_(true);
-	soundFileViewE = SoundFileView(win, Rect(10, sfvYPos+(sfvY*4), sfViewWidth, sfViewHeight)).gridOn_(true);
+	// soundFileViewC = SoundFileView(win, Rect(10, sfvYPos+(sfvY*2), sfViewWidth, sfViewHeight)).gridOn_(true);
+	// soundFileViewD = SoundFileView(win, Rect(10, sfvYPos+(sfvY*3), sfViewWidth, sfViewHeight)).gridOn_(true);
+	// soundFileViewE = SoundFileView(win, Rect(10, sfvYPos+(sfvY*4), sfViewWidth, sfViewHeight)).gridOn_(true);
 	soundFileViewF = SoundFileView(win, Rect(10, sfvYPos+(sfvY*5), sfViewWidth, sfViewHeight)).gridOn_(true);
 
 
@@ -236,7 +242,7 @@ s.waitForBoot({
 	openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 	.states_([["open file", Color.black, Color.gray]])
 	.action_({
-		"Hello, Why don't you go find yourself a sample or a soundfile to play".postln;
+		"Hello, Why don't you find yourself a sample or a soundfile to play in Player A".postln;
 		startButtonA.value = 0;
 		Dialog.openPanel(
 			okFunc:{|path|
@@ -429,14 +435,14 @@ s.waitForBoot({
 					\ampHi, ampSliderA.hi,
 					\bufnum, bufferA,
 
-		"Synth A is playing".postln;
+		"Player A is playing".postln;
 				]
 			)},
 			{
 				synthAStart.set(\gate, 0);
 				if(startButtonA==0,{
 					synthAStart.free});
-						"Synth A has stopped".postln;
+						"Player A has stopped".postln;
 			}
 		);
 
@@ -459,14 +465,14 @@ s.waitForBoot({
 	//----------------------------------------------------------------
 
 
-	// --------- SynthA  Gui window ---------------------
+	// --------- SynthB  Gui window ---------------------
 
 	subwinB = CompositeView.new(win, Rect(sfViewWidth+(20), 220, sfViewWidth/1.15, sfViewHeight+45))
 	.background=Color.yellow(0.3);
 
 
 
-	//------------------- soundFileViewA window----------------------------
+	//------------------- soundFileViewB window----------------------------
 	soundFileViewB = SoundFileView(win, Rect(10, sfvYPos+(sfvY), sfViewWidth, sfViewHeight))
 	.gridOn_(true)
 	.timeCursorOn_(true)
@@ -495,7 +501,7 @@ s.waitForBoot({
 	openfileB = Button(subwinB, Rect(5, 50, 60, 30))
 	.states_([["open file", Color.black, Color.gray]])
 	.action_({
-		"Hello, Why don't you go find yourself a sample or a soundfile to play".postln;
+		"Hello, Why don't you find yourself a sample or a soundfile to play in Player B".postln;
 		startButtonB.value = 0;
 		Dialog.openPanel(
 			okFunc:{|path|
@@ -687,11 +693,1053 @@ s.waitForBoot({
 					\ampHi, ampSliderB.hi,
 					\bufnum, bufferB,
 
-		"Synth B is playing".postln;
+		"Player B is playing".postln;
 				]
 			)},
-			{synthBStart.free;
-						"Synth B has stopped".postln;
+			{
+				synthBStart.set(\gate, 0);
+				if(startButtonB==0,{
+					synthBStart.free});
+						"Player B has stopped".postln;
+			}
+		);
+
+	});
+
+
+	//----------------------------------------------------------------
+	//---------------------- Synth B view END ----------------------------
+	//----------------------------------------------------------------
+      //-----------------------------------------------------------------------
+
+	//----------------------------------------------------------------
+	//----------------------------------------------------------------
+	//----------------------------------------------------------------
+	//----------------------------------------------------------------
+	//----------------------------------------------------------------
+
+
+	//----------------------------------------------------------------
+	//---------------------- Synth C view ----------------------------
+	//----------------------------------------------------------------
+
+
+	// --------- SynthC  Gui window ---------------------
+
+	subwinC = CompositeView.new(win, Rect(sfViewWidth+(20), 390, sfViewWidth/1.15, sfViewHeight+45))
+	.background=Color.yellow(0.3);
+
+
+
+	//------------------- soundFileViewC window----------------------------
+	soundFileViewC = SoundFileView(win, Rect(10, sfvYPos+(sfvY*2), sfViewWidth, sfViewHeight))
+	.gridOn_(true)
+	.timeCursorOn_(true)
+	.timeCursorColor_(Color.white)
+	.timeCursorPosition_(100);
+
+	// What to do when user selects portion of sound file directly
+	// (i.e., on waveform, not using slider)  .>> code from Bruno Ruviaro Granular synth
+	soundFileViewC.mouseUpAction = {arg view;
+		var loFrames, hiFrames, loSlider, hiSlider;
+		loFrames = view.selection(0)[0];
+		hiFrames = view.selection(0)[1] + loFrames;
+		loSlider = selectionSpecC.unmap(loFrames);
+		hiSlider = selectionSpecC.unmap(hiFrames);
+		2.do{centerPosSliderC.setSpanActive(loSlider, hiSlider)}; // 2.do = hack...
+	};
+
+
+	// function for the grain view to live inside a stack view
+
+	//------------------- gui controls -------------------------
+	// open buttons
+
+	// code block taken from Bruno Ruviaro Granular Sampling Patch 1 and adapted.
+	// https://sccode.org/1-4UF
+	openfileC = Button(subwinC, Rect(5, 50, 60, 30))
+	.states_([["open file", Color.black, Color.gray]])
+	.action_({
+		"Hello, Why don't you find yourself a sample or a soundfile to play in Player C".postln;
+		startButtonC.value = 0;
+		Dialog.openPanel(
+			okFunc:{|path|
+				soundFileC = SoundFile.new;
+				soundFileC.openRead(path);
+				// load soud into a buffer
+				bufferC = Buffer.readChannel(s, path, channels: [0]);
+				// display sound on view
+				soundFileViewC.soundfile_(soundFileC);
+				soundFileViewC.read(0, soundFileC.numFrames);
+
+				// ControlSpec (slider 0-1 <=> numFrames)
+				selectionSpecC = ControlSpec(0, soundFileC.numFrames);
+
+				// selectionSpec.postln;
+				// Set initial selection on View
+				soundFileViewC.setSelection(0, selectionSpecC.map([0.1, 0.2]));
+				// Update slider
+				soundFileViewC.mouseUpAction.value(soundFileViewC);
+
+			},
+			cancelFunc: {"cancelled"}
+		);
+	});
+
+
+	//-----------------------------------------------------------------------
+
+	// position slider
+	centerPosSliderC = RangeSlider(posSilderViewC, Rect(10, 5,sfViewWidth-20, 30 ))
+	.lo_(0.1)
+	.hi_(0.9)
+	.action_({|sl|
+		var lo, hi, size;
+		lo = selectionSpecC.map(sl.lo);
+		hi = selectionSpecC.map(sl.hi);
+		size = hi - lo;
+		soundFileViewC.setSelection(0, [lo, size]);
+		if(startButtonC.value==1, {synthCStart.set(
+			\centerPosLo, centerPosInSecondsC.value[0],
+			\centerPosHi, centerPosInSecondsC.value[1]
+		)});
+	});
+
+
+
+
+	//---------------------GRAIN CONTROLS------------------------------------
+	// trigger range slider
+	trigSliderC = EZRanger(
+		parent: subwinC,
+		bounds: Rect(rangerXpos, 10, rangerWidth, 20),
+		label: "trigger",
+		controlSpec: ControlSpec(
+			minval: 0.1,
+			maxval: 150,
+			warp: 'lin',
+			step: 0.1,
+			units: " t/s"
+		),
+	action: {|sl|
+			if(startButtonC.value==1,
+				{synthCStart.set(\triggerLo, sl.lo, \triggerHi, sl.hi)});
+		},
+		initVal: [0.1,1],
+		labelWidth: 50,
+		unitWidth: 30
+	);
+	// .setColors(Color.grey,Color.white, Color.grey(0.7),Color.grey, Color.white, Color.yellow);
+
+//-----------------------------------------------------------------------
+
+	// rate slider
+	rateSliderC = EZRanger(
+		parent: subwinC,
+		bounds: Rect(rangerXpos, 30, rangerWidth, 20),
+		label: "rate",
+		controlSpec: ControlSpec(
+			minval: -2,
+			maxval: 12,
+			warp: 'lin',
+			step: 0.1,
+			units: "ST"
+		),
+		action: {|sl|
+			if(startButtonC.value ==1, {synthCStart.set(
+				\rateLo, sl.lo,
+				\rateHi, sl.hi)})
+		},
+		initVal: [0.3,1.5],
+		labelWidth: 50,
+		unitWidth: 30
+
+	);
+//-----------------------------------------------------------------------
+
+	// grain duration slider
+	durSliderC = EZRanger(
+		parent: subwinC,
+		bounds: Rect(rangerXpos, 50, rangerWidth, 20),
+		label: "grain",
+		controlSpec: ControlSpec(
+			minval: 0.1,
+			maxval: 40,
+			warp: 'lin',
+			step: 0.1,
+			units: "sec"
+		),
+		action: {|sl|
+			if(startButtonC.value==1, {synthCStart.set(
+				\durLo, sl.lo, \durHi, sl.hi)})},
+		initVal: [0.01, 0.5],
+		labelWidth: 50,
+		unitWidth: 30);
+
+//-----------------------------------------------------------------------
+	// pan position slider
+	panSliderC= EZRanger(
+		parent: subwinC,
+		bounds: Rect(rangerXpos, 70, rangerWidth, 20),
+		label: "pan",
+		controlSpec: ControlSpec(
+			minval: -1,
+			maxval: 1,
+			warp: 'lin',
+			step: 0.1,
+			units: "L/R"
+		),
+		action: {|sl|
+			if(startButtonC.value==1, {synthCStart.set(\panLo, sl.lo, \panHi, sl.hi)})
+		},
+		initVal: [-0.1,0.1],
+		labelWidth: 50,
+		unitWidth: 30
+	);
+
+
+//-----------------------------------------------------------------------
+	// ampslider - positioned on the master subwindow
+	ampSliderC = EZRanger(
+		parent: masterWin,
+		bounds: Rect(90,10, 30, 300),
+		label: "amp",
+		controlSpec: ControlSpec(
+			minval:0.0,
+			maxval: 1,
+			warp: 'lin',
+			step: 0.01,
+			units: "dB"),
+		action: {|sl|
+			if(startButtonC.value==1, {synthCStart.set(\ampLo, sl.lo, \ampHi, sl.hi)})
+		},
+		initVal: [0.01,0.1],
+		labelWidth: 30,
+		unitWidth: 10,
+		layout:'vert'
+	);
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------
+	// start button
+	// code block taken from Bruno Ruviaro Granular Sampling Patch 1 and adapted.
+	// https://sccode.org/1-4UF
+	startButtonC = Button(subwinC, Rect(5, 90,60, 30))
+	.states_([["START",Color.black,Color.green], ["STOP", Color.black, Color.red]])
+	.action_({
+		arg button;
+		if(button.value ==1,
+			{synthCStart = Synth(\grainC,
+				[
+
+					\triggerLo, trigSliderC.lo,
+					\triggerHi, trigSliderC.hi,
+					\rateLo, transpToRate.value(rateSliderC.lo),
+					\rateHi, transpToRate.value(rateSliderC.hi),
+					\centerPosLo, centerPosInSecondsC.value[0],
+					\centerPosHi, centerPosInSecondsC.value[1],
+					\durLo, durSliderC.lo,
+					\durHi, durSliderC.hi,
+					\panLo, panSliderC.lo,
+					\panHi, panSliderC.hi,
+					\ampLo, ampSliderC.lo,
+					\ampHi, ampSliderC.hi,
+					\bufnum, bufferC,
+
+		"Player C is playing".postln;
+				]
+			)},
+			{
+				synthCStart.set(\gate, 0);
+				if(startButtonC==0,{
+					synthCStart.free});
+						"Player C has stopped".postln;
+			}
+		);
+
+	});
+
+
+
+	//----------------------------------------------------------------
+	//---------------------- Synth C view END ----------------------------
+	//----------------------------------------------------------------
+      //-----------------------------------------------------------------------
+
+	//----------------------------------------------------------------
+	//----------------------------------------------------------------
+	//----------------------------------------------------------------
+	//----------------------------------------------------------------
+	//----------------------------------------------------------------
+
+
+	//----------------------------------------------------------------
+	//---------------------- Synth D view ----------------------------
+	//----------------------------------------------------------------
+
+
+	// --------- Synth D  Gui window ---------------------
+
+	subwinD = CompositeView.new(win, Rect(sfViewWidth+(20), 560, sfViewWidth/1.15, sfViewHeight+45))
+	.background=Color.yellow(0.3);
+
+
+
+	//------------------- soundFileViewD window----------------------------
+	soundFileViewD = SoundFileView(win, Rect(10, sfvYPos+(sfvY*3), sfViewWidth, sfViewHeight))
+	.gridOn_(true)
+	.timeCursorOn_(true)
+	.timeCursorColor_(Color.white)
+	.timeCursorPosition_(100);
+
+	// What to do when user selects portion of sound file directly
+	// (i.e., on waveform, not using slider)  .>> code from Bruno Ruviaro Granular synth
+	soundFileViewD.mouseUpAction = {arg view;
+		var loFrames, hiFrames, loSlider, hiSlider;
+		loFrames = view.selection(0)[0];
+		hiFrames = view.selection(0)[1] + loFrames;
+		loSlider = selectionSpecD.unmap(loFrames);
+		hiSlider = selectionSpecD.unmap(hiFrames);
+		2.do{centerPosSliderD.setSpanActive(loSlider, hiSlider)}; // 2.do = hack...
+	};
+
+
+	// function for the grain view to live inside a stack view
+
+	//------------------- gui controls -------------------------
+	// open buttons
+
+	// code block taken from Bruno Ruviaro Granular Sampling Patch 1 and adapted.
+	// https://sccode.org/1-4UF
+	openfileD = Button(subwinD, Rect(5, 50, 60, 30))
+	.states_([["open file", Color.black, Color.gray]])
+	.action_({
+		"Hello, Why don't you find yourself a sample or a soundfile to play in Player D".postln;
+		startButtonD.value = 0;
+		Dialog.openPanel(
+			okFunc:{|path|
+				soundFileD = SoundFile.new;
+				soundFileD.openRead(path);
+				// load soud into a buffer
+				bufferD = Buffer.readChannel(s, path, channels: [0]);
+				// display sound on view
+				soundFileViewD.soundfile_(soundFileD);
+				soundFileViewD.read(0, soundFileD.numFrames);
+
+				// ControlSpec (slider 0-1 <=> numFrames)
+				selectionSpecD = ControlSpec(0, soundFileD.numFrames);
+
+				// selectionSpec.postln;
+				// Set initial selection on View
+				soundFileViewD.setSelection(0, selectionSpecD.map([0.1, 0.2]));
+				// Update slider
+				soundFileViewD.mouseUpAction.value(soundFileViewD);
+
+			},
+			cancelFunc: {"cancelled"}
+		);
+	});
+
+
+	//-----------------------------------------------------------------------
+
+	// position slider
+	centerPosSliderD = RangeSlider(posSilderViewD, Rect(10, 5,sfViewWidth-20, 30 ))
+	.lo_(0.1)
+	.hi_(0.9)
+	.action_({|sl|
+		var lo, hi, size;
+		lo = selectionSpecD.map(sl.lo);
+		hi = selectionSpecD.map(sl.hi);
+		size = hi - lo;
+		soundFileViewD.setSelection(0, [lo, size]);
+		if(startButtonD.value==1, {synthDStart.set(
+			\centerPosLo, centerPosInSecondsD.value[0],
+			\centerPosHi, centerPosInSecondsD.value[1]
+		)});
+	});
+
+
+
+
+	//---------------------GRAIN CONTROLS------------------------------------
+	// trigger range slider
+	trigSliderD = EZRanger(
+		parent: subwinD,
+		bounds: Rect(rangerXpos, 10, rangerWidth, 20),
+		label: "trigger",
+		controlSpec: ControlSpec(
+			minval: 0.1,
+			maxval: 150,
+			warp: 'lin',
+			step: 0.1,
+			units: " t/s"
+		),
+	action: {|sl|
+			if(startButtonD.value==1,
+				{synthDStart.set(\triggerLo, sl.lo, \triggerHi, sl.hi)});
+		},
+		initVal: [0.1,1],
+		labelWidth: 50,
+		unitWidth: 30
+	);
+	// .setColors(Color.grey,Color.white, Color.grey(0.7),Color.grey, Color.white, Color.yellow);
+
+//-----------------------------------------------------------------------
+
+	// rate slider
+	rateSliderD = EZRanger(
+		parent: subwinD,
+		bounds: Rect(rangerXpos, 30, rangerWidth, 20),
+		label: "rate",
+		controlSpec: ControlSpec(
+			minval: -2,
+			maxval: 12,
+			warp: 'lin',
+			step: 0.1,
+			units: "ST"
+		),
+		action: {|sl|
+			if(startButtonD.value ==1, {synthDStart.set(
+				\rateLo, sl.lo,
+				\rateHi, sl.hi)})
+		},
+		initVal: [0.3,1.5],
+		labelWidth: 50,
+		unitWidth: 30
+
+	);
+//-----------------------------------------------------------------------
+
+	// grain duration slider
+	durSliderD = EZRanger(
+		parent: subwinD,
+		bounds: Rect(rangerXpos, 50, rangerWidth, 20),
+		label: "grain",
+		controlSpec: ControlSpec(
+			minval: 0.1,
+			maxval: 40,
+			warp: 'lin',
+			step: 0.1,
+			units: "sec"
+		),
+		action: {|sl|
+			if(startButtonD.value==1, {synthDStart.set(
+				\durLo, sl.lo, \durHi, sl.hi)})},
+		initVal: [0.01, 0.5],
+		labelWidth: 50,
+		unitWidth: 30);
+
+//-----------------------------------------------------------------------
+	// pan position slider
+	panSliderD= EZRanger(
+		parent: subwinD,
+		bounds: Rect(rangerXpos, 70, rangerWidth, 20),
+		label: "pan",
+		controlSpec: ControlSpec(
+			minval: -1,
+			maxval: 1,
+			warp: 'lin',
+			step: 0.1,
+			units: "L/R"
+		),
+		action: {|sl|
+			if(startButtonD.value==1, {synthDStart.set(\panLo, sl.lo, \panHi, sl.hi)})
+		},
+		initVal: [-0.1,0.1],
+		labelWidth: 50,
+		unitWidth: 30
+	);
+
+
+//-----------------------------------------------------------------------
+	// ampslider - positioned on the master subwindow
+	ampSliderD = EZRanger(
+		parent: masterWin,
+		bounds: Rect(130,10, 30, 300),
+		label: "amp",
+		controlSpec: ControlSpec(
+			minval:0.0,
+			maxval: 1,
+			warp: 'lin',
+			step: 0.01,
+			units: "dB"),
+		action: {|sl|
+			if(startButtonD.value==1, {synthDStart.set(\ampLo, sl.lo, \ampHi, sl.hi)})
+		},
+		initVal: [0.01,0.1],
+		labelWidth: 30,
+		unitWidth: 10,
+		layout:'vert'
+	);
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------
+	// start button
+	// code block taken from Bruno Ruviaro Granular Sampling Patch 1 and adapted.
+	// https://sccode.org/1-4UF
+	startButtonD = Button(subwinD, Rect(5, 90,60, 30))
+	.states_([["START",Color.black,Color.green], ["STOP", Color.black, Color.red]])
+	.action_({
+		arg button;
+		if(button.value ==1,
+			{synthDStart = Synth(\grainD,
+				[
+
+					\triggerLo, trigSliderD.lo,
+					\triggerHi, trigSliderD.hi,
+					\rateLo, transpToRate.value(rateSliderD.lo),
+					\rateHi, transpToRate.value(rateSliderD.hi),
+					\centerPosLo, centerPosInSecondsD.value[0],
+					\centerPosHi, centerPosInSecondsD.value[1],
+					\durLo, durSliderD.lo,
+					\durHi, durSliderD.hi,
+					\panLo, panSliderD.lo,
+					\panHi, panSliderD.hi,
+					\ampLo, ampSliderD.lo,
+					\ampHi, ampSliderD.hi,
+					\bufnum, bufferD,
+
+		"Player D is playing".postln;
+				]
+			)},
+			{
+				synthDStart.set(\gate, 0);
+				if(startButtonD==0,{
+					synthDStart.free});
+						"Player D has stopped".postln;
+			}
+		);
+
+	});
+
+
+
+	//----------------------------------------------------------------
+	//---------------------- Synth E view END ----------------------------
+	//----------------------------------------------------------------
+      //-----------------------------------------------------------------------
+
+	//----------------------------------------------------------------
+	//----------------------------------------------------------------
+	//----------------------------------------------------------------
+	//----------------------------------------------------------------
+	//----------------------------------------------------------------
+
+
+	//----------------------------------------------------------------
+	//---------------------- Synth E view ----------------------------
+	//----------------------------------------------------------------
+
+
+	// --------- Synth E  Gui window ---------------------
+
+	subwinE = CompositeView.new(win, Rect(sfViewWidth+(20), 730, sfViewWidth/1.15, sfViewHeight+45))
+	.background=Color.yellow(0.3);
+
+
+
+	//------------------- soundFileViewD window----------------------------
+	soundFileViewE = SoundFileView(win, Rect(10, sfvYPos+(sfvY*4), sfViewWidth, sfViewHeight))
+	.gridOn_(true)
+	.timeCursorOn_(true)
+	.timeCursorColor_(Color.white)
+	.timeCursorPosition_(100);
+
+	// What to do when user selects portion of sound file directly
+	// (i.e., on waveform, not using slider)  .>> code from Bruno Ruviaro Granular synth
+	soundFileViewE.mouseUpAction = {arg view;
+		var loFrames, hiFrames, loSlider, hiSlider;
+		loFrames = view.selection(0)[0];
+		hiFrames = view.selection(0)[1] + loFrames;
+		loSlider = selectionSpecE.unmap(loFrames);
+		hiSlider = selectionSpecE.unmap(hiFrames);
+		2.do{centerPosSliderE.setSpanActive(loSlider, hiSlider)}; // 2.do = hack...
+	};
+
+
+	// function for the grain view to live inside a stack view
+
+	//------------------- gui controls -------------------------
+	// open buttons
+
+	// code block taken from Bruno Ruviaro Granular Sampling Patch 1 and adapted.
+	// https://sccode.org/1-4UF
+	openfileE = Button(subwinE, Rect(5, 50, 60, 30))
+	.states_([["open file", Color.black, Color.gray]])
+	.action_({
+		"Hello, Why don't you find yourself a sample or a soundfile to play in Player E".postln;
+		startButtonE.value = 0;
+		Dialog.openPanel(
+			okFunc:{|path|
+				soundFileE = SoundFile.new;
+				soundFileE.openRead(path);
+				// load soud into a buffer
+				bufferE = Buffer.readChannel(s, path, channels: [0]);
+				// display sound on view
+				soundFileViewE.soundfile_(soundFileE);
+				soundFileViewE.read(0, soundFileE.numFrames);
+
+				// ControlSpec (slider 0-1 <=> numFrames)
+				selectionSpecE = ControlSpec(0, soundFileE.numFrames);
+
+				// selectionSpec.postln;
+				// Set initial selection on View
+				soundFileViewE.setSelection(0, selectionSpecE.map([0.1, 0.2]));
+				// Update slider
+				soundFileViewE.mouseUpAction.value(soundFileViewE);
+
+			},
+			cancelFunc: {"cancelled"}
+		);
+	});
+
+
+	//-----------------------------------------------------------------------
+
+	// position slider
+	centerPosSliderE = RangeSlider(posSilderViewE, Rect(10, 5,sfViewWidth-20, 30 ))
+	.lo_(0.1)
+	.hi_(0.9)
+	.action_({|sl|
+		var lo, hi, size;
+		lo = selectionSpecE.map(sl.lo);
+		hi = selectionSpecE.map(sl.hi);
+		size = hi - lo;
+		soundFileViewE.setSelection(0, [lo, size]);
+		if(startButtonE.value==1, {synthEStart.set(
+			\centerPosLo, centerPosInSecondsE.value[0],
+			\centerPosHi, centerPosInSecondsE.value[1]
+		)});
+	});
+
+
+
+
+	//---------------------GRAIN CONTROLS------------------------------------
+	// trigger range slider
+	trigSliderE = EZRanger(
+		parent: subwinE,
+		bounds: Rect(rangerXpos, 10, rangerWidth, 20),
+		label: "trigger",
+		controlSpec: ControlSpec(
+			minval: 0.1,
+			maxval: 150,
+			warp: 'lin',
+			step: 0.1,
+			units: " t/s"
+		),
+	action: {|sl|
+			if(startButtonE.value==1,
+				{synthEStart.set(\triggerLo, sl.lo, \triggerHi, sl.hi)});
+		},
+		initVal: [0.1,1],
+		labelWidth: 50,
+		unitWidth: 30
+	);
+	// .setColors(Color.grey,Color.white, Color.grey(0.7),Color.grey, Color.white, Color.yellow);
+
+//-----------------------------------------------------------------------
+
+	// rate slider
+	rateSliderE = EZRanger(
+		parent: subwinE,
+		bounds: Rect(rangerXpos, 30, rangerWidth, 20),
+		label: "rate",
+		controlSpec: ControlSpec(
+			minval: -2,
+			maxval: 12,
+			warp: 'lin',
+			step: 0.1,
+			units: "ST"
+		),
+		action: {|sl|
+			if(startButtonE.value ==1, {synthEStart.set(
+				\rateLo, sl.lo,
+				\rateHi, sl.hi)})
+		},
+		initVal: [0.3,1.5],
+		labelWidth: 50,
+		unitWidth: 30
+
+	);
+//-----------------------------------------------------------------------
+
+	// grain duration slider
+	durSliderE = EZRanger(
+		parent: subwinE,
+		bounds: Rect(rangerXpos, 50, rangerWidth, 20),
+		label: "grain",
+		controlSpec: ControlSpec(
+			minval: 0.1,
+			maxval: 40,
+			warp: 'lin',
+			step: 0.1,
+			units: "sec"
+		),
+		action: {|sl|
+			if(startButtonE.value==1, {synthEStart.set(
+				\durLo, sl.lo, \durHi, sl.hi)})},
+		initVal: [0.01, 0.5],
+		labelWidth: 50,
+		unitWidth: 30);
+
+//-----------------------------------------------------------------------
+	// pan position slider
+	panSliderE= EZRanger(
+		parent: subwinE,
+		bounds: Rect(rangerXpos, 70, rangerWidth, 20),
+		label: "pan",
+		controlSpec: ControlSpec(
+			minval: -1,
+			maxval: 1,
+			warp: 'lin',
+			step: 0.1,
+			units: "L/R"
+		),
+		action: {|sl|
+			if(startButtonE.value==1, {synthEStart.set(\panLo, sl.lo, \panHi, sl.hi)})
+		},
+		initVal: [-0.1,0.1],
+		labelWidth: 50,
+		unitWidth: 30
+	);
+
+
+//-----------------------------------------------------------------------
+	// ampslider - positioned on the master subwindow
+	ampSliderE = EZRanger(
+		parent: masterWin,
+		bounds: Rect(170,10, 30, 300),
+		label: "amp",
+		controlSpec: ControlSpec(
+			minval:0.0,
+			maxval: 1,
+			warp: 'lin',
+			step: 0.01,
+			units: "dB"),
+		action: {|sl|
+			if(startButtonE.value==1, {synthEStart.set(\ampLo, sl.lo, \ampHi, sl.hi)})
+		},
+		initVal: [0.01,0.1],
+		labelWidth: 30,
+		unitWidth: 10,
+		layout:'vert'
+	);
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------
+	// start button
+	// code block taken from Bruno Ruviaro Granular Sampling Patch 1 and adapted.
+	// https://sccode.org/1-4UF
+	startButtonE = Button(subwinE, Rect(5, 90,60, 30))
+	.states_([["START",Color.black,Color.green], ["STOP", Color.black, Color.red]])
+	.action_({
+		arg button;
+		if(button.value ==1,
+			{synthEStart = Synth(\grainE,
+				[
+
+					\triggerLo, trigSliderE.lo,
+					\triggerHi, trigSliderE.hi,
+					\rateLo, transpToRate.value(rateSliderE.lo),
+					\rateHi, transpToRate.value(rateSliderE.hi),
+					\centerPosLo, centerPosInSecondsE.value[0],
+					\centerPosHi, centerPosInSecondsE.value[1],
+					\durLo, durSliderE.lo,
+					\durHi, durSliderE.hi,
+					\panLo, panSliderE.lo,
+					\panHi, panSliderE.hi,
+					\ampLo, ampSliderE.lo,
+					\ampHi, ampSliderE.hi,
+					\bufnum, bufferE,
+
+		"Player E is playing".postln;
+				]
+			)},
+			{
+				synthEStart.set(\gate, 0);
+				if(startButtonE==0,{
+					synthEStart.free});
+						"Player E has stopped".postln;
+			}
+		);
+
+	});
+
+
+
+	//----------------------------------------------------------------
+	//---------------------- Synth E view END ----------------------------
+	//----------------------------------------------------------------
+      //-----------------------------------------------------------------------
+
+	//----------------------------------------------------------------
+	//----------------------------------------------------------------
+	//----------------------------------------------------------------
+	//----------------------------------------------------------------
+	//----------------------------------------------------------------
+
+
+	//----------------------------------------------------------------
+	//---------------------- Synth F view ----------------------------
+	//----------------------------------------------------------------
+
+
+	// --------- Synth E  Gui window ---------------------
+
+	subwinF = CompositeView.new(win, Rect(sfViewWidth+(20), 900, sfViewWidth/1.15, sfViewHeight+45))
+	.background=Color.yellow(0.3);
+
+
+
+	//------------------- soundFileViewD window----------------------------
+	soundFileViewF = SoundFileView(win, Rect(10, sfvYPos+(sfvY*5), sfViewWidth, sfViewHeight))
+	.gridOn_(true)
+	.timeCursorOn_(true)
+	.timeCursorColor_(Color.white)
+	.timeCursorPosition_(100);
+
+	// What to do when user selects portion of sound file directly
+	// (i.e., on waveform, not using slider)  .>> code from Bruno Ruviaro Granular synth
+	soundFileViewF.mouseUpAction = {arg view;
+		var loFrames, hiFrames, loSlider, hiSlider;
+		loFrames = view.selection(0)[0];
+		hiFrames = view.selection(0)[1] + loFrames;
+		loSlider = selectionSpecF.unmap(loFrames);
+		hiSlider = selectionSpecF.unmap(hiFrames);
+		2.do{centerPosSliderF.setSpanActive(loSlider, hiSlider)}; // 2.do = hack...
+	};
+
+
+	// function for the grain view to live inside a stack view
+
+	//------------------- gui controls -------------------------
+	// open buttons
+
+	// code block taken from Bruno Ruviaro Granular Sampling Patch 1 and adapted.
+	// https://sccode.org/1-4UF
+	openfileF = Button(subwinF, Rect(5, 50, 60, 30))
+	.states_([["open file", Color.black, Color.gray]])
+	.action_({
+		"Hello, Why don't you find yourself a sample or a soundfile to play in Player F".postln;
+		startButtonF.value = 0;
+		Dialog.openPanel(
+			okFunc:{|path|
+				soundFileF = SoundFile.new;
+				soundFileF.openRead(path);
+				// load soud into a buffer
+				bufferF = Buffer.readChannel(s, path, channels: [0]);
+				// display sound on view
+				soundFileViewF.soundfile_(soundFileF);
+				soundFileViewF.read(0, soundFileF.numFrames);
+
+				// ControlSpec (slider 0-1 <=> numFrames)
+				selectionSpecF = ControlSpec(0, soundFileF.numFrames);
+
+				// selectionSpec.postln;
+				// Set initial selection on View
+				soundFileViewF.setSelection(0, selectionSpecF.map([0.1, 0.2]));
+				// Update slider
+				soundFileViewF.mouseUpAction.value(soundFileViewF);
+
+			},
+			cancelFunc: {"cancelled"}
+		);
+	});
+
+
+	//-----------------------------------------------------------------------
+
+	// position slider
+	centerPosSliderF = RangeSlider(posSilderViewF, Rect(10, 5,sfViewWidth-20, 30 ))
+	.lo_(0.1)
+	.hi_(0.9)
+	.action_({|sl|
+		var lo, hi, size;
+		lo = selectionSpecF.map(sl.lo);
+		hi = selectionSpecF.map(sl.hi);
+		size = hi - lo;
+		soundFileViewF.setSelection(0, [lo, size]);
+		if(startButtonF.value==1, {synthFStart.set(
+			\centerPosLo, centerPosInSecondsF.value[0],
+			\centerPosHi, centerPosInSecondsF.value[1]
+		)});
+	});
+
+
+
+
+	//---------------------GRAIN CONTROLS------------------------------------
+	// trigger range slider
+	trigSliderF = EZRanger(
+		parent: subwinF,
+		bounds: Rect(rangerXpos, 10, rangerWidth, 20),
+		label: "trigger",
+		controlSpec: ControlSpec(
+			minval: 0.1,
+			maxval: 150,
+			warp: 'lin',
+			step: 0.1,
+			units: " t/s"
+		),
+	action: {|sl|
+			if(startButtonF.value==1,
+				{synthFStart.set(\triggerLo, sl.lo, \triggerHi, sl.hi)});
+		},
+		initVal: [0.1,1],
+		labelWidth: 50,
+		unitWidth: 30
+	);
+	// .setColors(Color.grey,Color.white, Color.grey(0.7),Color.grey, Color.white, Color.yellow);
+
+//-----------------------------------------------------------------------
+
+	// rate slider
+	rateSliderF = EZRanger(
+		parent: subwinF,
+		bounds: Rect(rangerXpos, 30, rangerWidth, 20),
+		label: "rate",
+		controlSpec: ControlSpec(
+			minval: -2,
+			maxval: 12,
+			warp: 'lin',
+			step: 0.1,
+			units: "ST"
+		),
+		action: {|sl|
+			if(startButtonF.value ==1, {synthFStart.set(
+				\rateLo, sl.lo,
+				\rateHi, sl.hi)})
+		},
+		initVal: [0.3,1.5],
+		labelWidth: 50,
+		unitWidth: 30
+
+	);
+//-----------------------------------------------------------------------
+
+	// grain duration slider
+	durSliderF = EZRanger(
+		parent: subwinF,
+		bounds: Rect(rangerXpos, 50, rangerWidth, 20),
+		label: "grain",
+		controlSpec: ControlSpec(
+			minval: 0.1,
+			maxval: 40,
+			warp: 'lin',
+			step: 0.1,
+			units: "sec"
+		),
+		action: {|sl|
+			if(startButtonF.value==1, {synthFStart.set(
+				\durLo, sl.lo, \durHi, sl.hi)})},
+		initVal: [0.01, 0.5],
+		labelWidth: 50,
+		unitWidth: 30);
+
+//-----------------------------------------------------------------------
+	// pan position slider
+	panSliderF= EZRanger(
+		parent: subwinF,
+		bounds: Rect(rangerXpos, 70, rangerWidth, 20),
+		label: "pan",
+		controlSpec: ControlSpec(
+			minval: -1,
+			maxval: 1,
+			warp: 'lin',
+			step: 0.1,
+			units: "L/R"
+		),
+		action: {|sl|
+			if(startButtonF.value==1, {synthFStart.set(\panLo, sl.lo, \panHi, sl.hi)})
+		},
+		initVal: [-0.1,0.1],
+		labelWidth: 50,
+		unitWidth: 30
+	);
+
+
+//-----------------------------------------------------------------------
+	// ampslider - positioned on the master subwindow
+	ampSliderF = EZRanger(
+		parent: masterWin,
+		bounds: Rect(210,10, 30, 300),
+		label: "amp",
+		controlSpec: ControlSpec(
+			minval:0.0,
+			maxval: 1,
+			warp: 'lin',
+			step: 0.01,
+			units: "dB"),
+		action: {|sl|
+			if(startButtonF.value==1, {synthFStart.set(\ampLo, sl.lo, \ampHi, sl.hi)})
+		},
+		initVal: [0.01,0.1],
+		labelWidth: 30,
+		unitWidth: 10,
+		layout:'vert'
+	);
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------
+	// start button
+	// code block taken from Bruno Ruviaro Granular Sampling Patch 1 and adapted.
+	// https://sccode.org/1-4UF
+	startButtonF = Button(subwinF, Rect(5, 90,60, 30))
+	.states_([["START",Color.black,Color.green], ["STOP", Color.black, Color.red]])
+	.action_({
+		arg button;
+		if(button.value ==1,
+			{synthFStart = Synth(\grainF,
+				[
+
+					\triggerLo, trigSliderF.lo,
+					\triggerHi, trigSliderF.hi,
+					\rateLo, transpToRate.value(rateSliderF.lo),
+					\rateHi, transpToRate.value(rateSliderF.hi),
+					\centerPosLo, centerPosInSecondsF.value[0],
+					\centerPosHi, centerPosInSecondsF.value[1],
+					\durLo, durSliderF.lo,
+					\durHi, durSliderF.hi,
+					\panLo, panSliderF.lo,
+					\panHi, panSliderF.hi,
+					\ampLo, ampSliderF.lo,
+					\ampHi, ampSliderF.hi,
+					\bufnum, bufferF,
+
+		"Player F is playing".postln;
+				]
+			)},
+			{
+				synthEStart.set(\gate, 0);
+				if(startButtonF==0,{
+					synthFStart.free});
+						"Player F has stopped".postln;
 			}
 		);
 
@@ -704,8 +1752,20 @@ s.waitForBoot({
 
 
 
-	//-------------------------- SynthDefs ----------------------------------------
 
+
+
+
+
+
+
+
+
+	//------------------------------------------------------------------
+	//------------------------------------------------------------------
+	//------------------------SynthDefs --------------------------------
+	//------------------------------------------------------------------
+	//------------------------------------------------------------------
 	// synth A
 
 	SynthDef(\grainA, {
@@ -779,7 +1839,152 @@ s.waitForBoot({
 
 		//-------------------------------------------------------------------------------
 
+// synth C
 
+	SynthDef(\grainC, {
+		arg out=0, gate =1, bufnum, triggerLo, triggerHi, rateLo,rateHi, centerPosLo, centerPosHi, durLo, durHi, panLo, panHi, ampLo, ampHi;
+
+		var env,sig, grainSig,loopSig, trig, triggerAmount, rate, dur, pan, amp, centerPos;
+
+		triggerAmount = LFNoise2.kr(12).range(0.5,1);
+		trig = Impulse.kr(LFNoise0.kr(triggerAmount).range(triggerLo, triggerHi));
+		env = EnvGen.kr(Env.asr(1,1,4), gate, doneAction: 2);
+
+		rate = Dwhite(rateLo, rateHi);
+		centerPos = Dwhite(centerPosLo, centerPosHi);
+		dur = Dwhite(durLo, durHi);
+		pan = Dwhite(panLo, panHi);
+		amp = Dwhite(ampLo, ampHi);
+
+		// Demand.kr(trig, 0, [rate, centerPos, dur, pan, amp]);
+
+		grainSig = TGrains.ar(
+			numChannels: 2,
+			trigger: trig,
+			bufnum: bufnum,
+			rate: rate,
+			centerPos: centerPos,
+			dur: dur,
+			pan: pan,
+			amp: amp,
+		);
+		// sig = Select.ar(playMode, [loopSig, grainSig]);
+		Out.ar(out, grainSig*env);
+	}).add;
+
+
+		//-------------------------------------------------------------------------------
+
+
+	// synth D
+
+	SynthDef(\grainD, {
+		arg out=0, gate =1, bufnum, triggerLo, triggerHi, rateLo,rateHi, centerPosLo, centerPosHi, durLo, durHi, panLo, panHi, ampLo, ampHi;
+
+		var env,sig, grainSig,loopSig, trig, triggerAmount, rate, dur, pan, amp, centerPos;
+
+		triggerAmount = LFNoise2.kr(12).range(0.5,1);
+		trig = Impulse.kr(LFNoise0.kr(triggerAmount).range(triggerLo, triggerHi));
+		env = EnvGen.kr(Env.asr(1,1,4), gate, doneAction: 2);
+
+		rate = Dwhite(rateLo, rateHi);
+		centerPos = Dwhite(centerPosLo, centerPosHi);
+		dur = Dwhite(durLo, durHi);
+		pan = Dwhite(panLo, panHi);
+		amp = Dwhite(ampLo, ampHi);
+
+		// Demand.kr(trig, 0, [rate, centerPos, dur, pan, amp]);
+
+		grainSig = TGrains.ar(
+			numChannels: 2,
+			trigger: trig,
+			bufnum: bufnum,
+			rate: rate,
+			centerPos: centerPos,
+			dur: dur,
+			pan: pan,
+			amp: amp,
+		);
+		// sig = Select.ar(playMode, [loopSig, grainSig]);
+		Out.ar(out, grainSig*env);
+	}).add;
+
+
+		//-------------------------------------------------------------------------------
+
+
+
+	// synth E
+
+	SynthDef(\grainE, {
+		arg out=0, gate =1, bufnum, triggerLo, triggerHi, rateLo,rateHi, centerPosLo, centerPosHi, durLo, durHi, panLo, panHi, ampLo, ampHi;
+
+		var env,sig, grainSig,loopSig, trig, triggerAmount, rate, dur, pan, amp, centerPos;
+
+		triggerAmount = LFNoise2.kr(12).range(0.5,1);
+		trig = Impulse.kr(LFNoise0.kr(triggerAmount).range(triggerLo, triggerHi));
+		env = EnvGen.kr(Env.asr(1,1,4), gate, doneAction: 2);
+
+		rate = Dwhite(rateLo, rateHi);
+		centerPos = Dwhite(centerPosLo, centerPosHi);
+		dur = Dwhite(durLo, durHi);
+		pan = Dwhite(panLo, panHi);
+		amp = Dwhite(ampLo, ampHi);
+
+		// Demand.kr(trig, 0, [rate, centerPos, dur, pan, amp]);
+
+		grainSig = TGrains.ar(
+			numChannels: 2,
+			trigger: trig,
+			bufnum: bufnum,
+			rate: rate,
+			centerPos: centerPos,
+			dur: dur,
+			pan: pan,
+			amp: amp,
+		);
+		// sig = Select.ar(playMode, [loopSig, grainSig]);
+		Out.ar(out, grainSig*env);
+	}).add;
+
+
+		//-------------------------------------------------------------------------------
+
+// synth F
+
+	SynthDef(\grainF, {
+		arg out=0, gate =1, bufnum, triggerLo, triggerHi, rateLo,rateHi, centerPosLo, centerPosHi, durLo, durHi, panLo, panHi, ampLo, ampHi;
+
+		var env,sig, grainSig,loopSig, trig, triggerAmount, rate, dur, pan, amp, centerPos;
+
+		triggerAmount = LFNoise2.kr(12).range(0.5,1);
+		trig = Impulse.kr(LFNoise0.kr(triggerAmount).range(triggerLo, triggerHi));
+		env = EnvGen.kr(Env.asr(1,1,4), gate, doneAction: 2);
+
+		rate = Dwhite(rateLo, rateHi);
+		centerPos = Dwhite(centerPosLo, centerPosHi);
+		dur = Dwhite(durLo, durHi);
+		pan = Dwhite(panLo, panHi);
+		amp = Dwhite(ampLo, ampHi);
+
+		// Demand.kr(trig, 0, [rate, centerPos, dur, pan, amp]);
+
+		grainSig = TGrains.ar(
+			numChannels: 2,
+			trigger: trig,
+			bufnum: bufnum,
+			rate: rate,
+			centerPos: centerPos,
+			dur: dur,
+			pan: pan,
+			amp: amp,
+		);
+		// sig = Select.ar(playMode, [loopSig, grainSig]);
+		Out.ar(out, grainSig*env);
+	}).add;
+
+
+		//-------------------------------------------------------------------------------
 
 
 
