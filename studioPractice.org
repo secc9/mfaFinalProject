@@ -1004,3 +1004,4 @@ repeat for other 5 granular synths
       - I first need to figure out the gui switching
   
 - 
+** 2026_05_23 - Saturday

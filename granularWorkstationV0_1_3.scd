@@ -11,13 +11,16 @@
 /*
 
 
+******* V_0_1_3
+// quite a lot of this code is heavily adapted from Bruno Ruviaro's Granular synthesis GUI demo
+// from the SCCode website
+// https://sccode.org/1-4UF
+
 
 What do I want to do???
 
 
-// quite a lot of this code is heavily adapted from Bruno Ruviaro's Granular synthesis GUI demo
-// from the SCCode website
-// https://sccode.org/1-4UF
+
 
 a new, multiple granular synth/ loop player/ record
 
@@ -39,6 +42,12 @@ a new, multiple granular synth/ loop player/ record
   - add in a level - Done
   - add in the volume sliders for each loop player - Done - 22/05/26
   - do I want Auxillary sends???? here?????
+  - OK. Sends - I need to figure out how sends work. it's been a long time
+    - Reverb
+    - Delay
+      - TODO
+        - Build synthdef for reverb
+        - Build Delay
 
 
   -  with tools to effect each slot
@@ -98,6 +107,13 @@ s.waitForBoot({
 
 
 	var masterMeter, scope;
+
+	/*var verbBus = Bus.audio(s, 2);
+	var delayBus = Bus.audio(s, 2);*/
+
+	var busReverb, busDelay, verbAmpSlider, delayAmpSlider;
+	var verbView, delayView;
+	var verbMix, verbRoom, verbDamp, delayTime, decayTime;
 
 
 	// this block taken from from Bruno Ruviaro Granular synth
@@ -166,18 +182,11 @@ s.waitForBoot({
 
 
 
-	//----------------------------------------------------------------
-	//------------------- soundFile Views ----------------------------
-	//----------------------------------------------------------------
 
 
 
 
-	// soundFileViewB = SoundFileView(win, Rect(10, sfvYPos+(sfvY), sfViewWidth, sfViewHeight)).gridOn_(true);
-	// soundFileViewC = SoundFileView(win, Rect(10, sfvYPos+(sfvY*2), sfViewWidth, sfViewHeight)).gridOn_(true);
-	// soundFileViewD = SoundFileView(win, Rect(10, sfvYPos+(sfvY*3), sfViewWidth, sfViewHeight)).gridOn_(true);
-	// soundFileViewE = SoundFileView(win, Rect(10, sfvYPos+(sfvY*4), sfViewWidth, sfViewHeight)).gridOn_(true);
-	// soundFileViewF = SoundFileView(win, Rect(10, sfvYPos+(sfvY*5), sfViewWidth, sfViewHeight)).gridOn_(true);
+
 
 
 	//------------Position Slider Views ----------------------------
@@ -194,11 +203,15 @@ s.waitForBoot({
 	.background = Color.yellow(0.5);
 	posSilderViewF = CompositeView(win, Rect(10, 965, sfViewWidth, 40))
 	.background = Color.yellow(0.5);
+
+
+
+
+
+
 	// ---------- Master channel window ------------------------------
 
-
-
-	masterWin = CompositeView(win, Rect(1340, 10, 370, 995))
+	masterWin = CompositeView(win, Rect(1270, 10, 440, 995))
 	.background=Color.yellow(0.5);
 
 
@@ -210,7 +223,7 @@ s.waitForBoot({
 
 	// --------- SynthA  Gui window ---------------------
 
-	subwinA = CompositeView.new(win, Rect(sfViewWidth+(20), 10, sfViewWidth/1.15, sfViewHeight+45))
+	subwinA = CompositeView.new(win, Rect(sfViewWidth+(20), 10, sfViewWidth/1.3, sfViewHeight+45))
 	.background=Color.yellow(0.3);
 
 
@@ -388,7 +401,7 @@ s.waitForBoot({
 	ampSliderA = EZRanger(
 		parent: masterWin,
 		bounds: Rect(10, 10, 30, 300),
-		label: "amp",
+		label: "ch1",
 		controlSpec: ControlSpec(
 			minval:0.0,
 			maxval: 1,
@@ -436,6 +449,7 @@ s.waitForBoot({
 					\ampLo, ampSliderA.lo,
 					\ampHi, ampSliderA.hi,
 					\bufnum, bufferA,
+					// \out, verbBus,
 
 		"Player A is playing".postln;
 				]
@@ -469,7 +483,7 @@ s.waitForBoot({
 
 	// --------- SynthB  Gui window ---------------------
 
-	subwinB = CompositeView.new(win, Rect(sfViewWidth+(20), 180, sfViewWidth/1.15, sfViewHeight+45))
+	subwinB = CompositeView.new(win, Rect(sfViewWidth+(20), 180, sfViewWidth/1.3, sfViewHeight+45))
 	.background=Color.yellow(0.3);
 
 
@@ -646,7 +660,7 @@ s.waitForBoot({
 	ampSliderB = EZRanger(
 		parent: masterWin,
 		bounds: Rect(50,10, 30, 300),
-		label: "amp",
+		label: "ch2",
 		controlSpec: ControlSpec(
 			minval:0.0,
 			maxval: 1,
@@ -728,7 +742,7 @@ s.waitForBoot({
 
 	// --------- SynthC  Gui window ---------------------
 
-	subwinC = CompositeView.new(win, Rect(sfViewWidth+(20), 350, sfViewWidth/1.15, sfViewHeight+45))
+	subwinC = CompositeView.new(win, Rect(sfViewWidth+(20), 350, sfViewWidth/1.3, sfViewHeight+45))
 	.background=Color.yellow(0.3);
 
 
@@ -883,7 +897,7 @@ s.waitForBoot({
 	panSliderC= EZRanger(
 		parent: subwinC,
 		bounds: Rect(rangerXpos, 70, rangerWidth, 20),
-		label: "pan",
+		label: "ch3",
 		controlSpec: ControlSpec(
 			minval: -1,
 			maxval: 1,
@@ -905,7 +919,7 @@ s.waitForBoot({
 	ampSliderC = EZRanger(
 		parent: masterWin,
 		bounds: Rect(90,10, 30, 300),
-		label: "amp",
+		label: "ch3",
 		controlSpec: ControlSpec(
 			minval:0.0,
 			maxval: 1,
@@ -988,7 +1002,7 @@ s.waitForBoot({
 
 	// --------- Synth D  Gui window ---------------------
 
-	subwinD = CompositeView.new(win, Rect(sfViewWidth+(20), 520, sfViewWidth/1.15, sfViewHeight+45))
+	subwinD = CompositeView.new(win, Rect(sfViewWidth+(20), 520, sfViewWidth/1.3, sfViewHeight+45))
 	.background=Color.yellow(0.3);
 
 
@@ -1165,7 +1179,7 @@ s.waitForBoot({
 	ampSliderD = EZRanger(
 		parent: masterWin,
 		bounds: Rect(130,10, 30, 300),
-		label: "amp",
+		label: "ch4",
 		controlSpec: ControlSpec(
 			minval:0.0,
 			maxval: 1,
@@ -1173,7 +1187,7 @@ s.waitForBoot({
 			step: 0.01,
 			units: "dB"),
 		action: {|sl|
-			if(startButtonD.value==1, {synthDStart.set(\ampLo, sl.lo, \ampHi, sl.hi)})
+			if(busReverb==1, {busReverb.set(\amp, sl)})
 		},
 		initVal: [0.01,0.1],
 		labelWidth: 30,
@@ -1248,7 +1262,7 @@ s.waitForBoot({
 
 	// --------- Synth E  Gui window ---------------------
 
-	subwinE = CompositeView.new(win, Rect(sfViewWidth+(20), 690, sfViewWidth/1.15, sfViewHeight+45))
+	subwinE = CompositeView.new(win, Rect(sfViewWidth+(20), 690, sfViewWidth/1.3, sfViewHeight+45))
 	.background=Color.yellow(0.3);
 
 
@@ -1425,7 +1439,7 @@ s.waitForBoot({
 	ampSliderE = EZRanger(
 		parent: masterWin,
 		bounds: Rect(170,10, 30, 300),
-		label: "amp",
+		label: "ch5",
 		controlSpec: ControlSpec(
 			minval:0.0,
 			maxval: 1,
@@ -1508,7 +1522,7 @@ s.waitForBoot({
 
 	// --------- Synth E  Gui window ---------------------
 
-	subwinF = CompositeView.new(win, Rect(sfViewWidth+(20), 860, sfViewWidth/1.15, sfViewHeight+45))
+	subwinF = CompositeView.new(win, Rect(sfViewWidth+(20), 860, sfViewWidth/1.3, sfViewHeight+45))
 	.background=Color.yellow(0.3);
 
 
@@ -1685,7 +1699,7 @@ s.waitForBoot({
 	ampSliderF = EZRanger(
 		parent: masterWin,
 		bounds: Rect(210,10, 30, 300),
-		label: "amp",
+		label: "ch6",
 		controlSpec: ControlSpec(
 			minval:0.0,
 			maxval: 1,
@@ -1733,6 +1747,7 @@ s.waitForBoot({
 					\ampLo, ampSliderF.lo,
 					\ampHi, ampSliderF.hi,
 					\bufnum, bufferF,
+					\out, 12,
 
 		"Player F is playing".postln;
 				]
@@ -1768,10 +1783,48 @@ s.waitForBoot({
 	//------------------------SynthDefs --------------------------------
 	//------------------------------------------------------------------
 	//------------------------------------------------------------------
+
+
+	//effects here to run at the start of the program
+
+	// reverb
+	SynthDef(\busVerb, {
+		arg inBus=0,outBus=0,gate=1, mix=0.5,room=0.2,damp=0.3,amp=1;
+
+		var sig, input, env;
+		env = EnvGen.kr(Env.asr(1,1,2), gate, doneAction: 2);
+		input = In.ar(inBus, 2);
+		sig = FreeVerb.ar(input, mix,room,damp,amp);
+
+		Out.ar(outBus, sig*env);
+
+	}).add;
+
+	// delay
+	SynthDef(\busDelay, {
+		arg inBus=12, outBus=0, gate=1, delayTime=0.3, decayTime=10, amp;
+
+		var sig, input, env;
+		env=EnvGen.kr(Env.asr(1,1,4), gate, doneAction: 2);
+		input = In.ar(inBus, 2);
+		sig = CombN.ar(input, 4, delayTime, decayTime, amp=1);
+		Out.ar(outBus, sig*env);
+	}).add;
+
+
+	0.01.wait; // give it time to load the bus effects before starting them
+
+	busReverb = Synth(\busVerb, [\inBus, 10, \outBus, 0], addAction:\addToTail);
+	busDelay = Synth(\busDelay, [\inBus, 12, \outBus,0], addAction:\addToTail);
+
+
+
+
+
 	// synth A
 
 	SynthDef(\grainA, {
-		arg out=0, gate =1, bufnum, triggerLo, triggerHi, rateLo,rateHi, centerPosLo, centerPosHi, durLo, durHi, panLo, panHi, ampLo, ampHi;
+		arg out, gate =1, bufnum, triggerLo, triggerHi, rateLo,rateHi, centerPosLo, centerPosHi, durLo, durHi, panLo, panHi, ampLo, ampHi;
 
 		var env,sig, grainSig,loopSig, trig, triggerAmount, rate, dur, pan, amp, centerPos;
 
@@ -1993,11 +2046,66 @@ s.waitForBoot({
 
 
 
+	//--------------- Bus effects guis
+
+
+	verbAmpSlider = Slider(
+		parent: masterWin,
+		bounds: Rect(260,55, 30, 210),
+
+	)
+	.action_({|sl|
+		busReverb.set(\amp, sl.value.linlin(0, 1, 0, 1))
+
+	});
+	StaticText(masterWin, Rect(262, 270, 30, 20))
+	.string_("verb");
+
+	delayAmpSlider = Slider(
+		parent: masterWin,
+		bounds: Rect(300,55, 30, 210),
+	)
+	.action_({|sl|
+		busDelay.set(\amp, sl.value.linlin(0, 1, 0, 1))
+	});
+	StaticText(masterWin, Rect(297, 270, 35, 20))
+	.string_("delay");
+
+
+
+
+	// reverb gui view
+	verbView = CompositeView(masterWin, Rect(10, 350, 200, 300))
+	.background=Color.grey(0.9,0.4);
+
+
+
+	// delay gui view
+	delayView = CompositeView(masterWin, Rect(230, 350, 200, 300))
+	.background=Color.grey(0.9,0.4);
+
+
+
+
+	// verb gui controls
+
+
+	verbMix = Knob(verbView, Rect(10, 10, 40, 40))
+	.action_({|sl|});
+	// verbRoom,
+	// verbDamp,
+	// delayTime,
+	// decayTime;
+
+
+
+
+
 
 
 	//  masterserver meter
 
-	masterMeter = ServerMeterView(s, masterWin,0@770, 8, 8 );
+	masterMeter = ServerMeterView(s, masterWin,0@770, 6, 13 );
 
 	// scope
 
