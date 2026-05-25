@@ -11,7 +11,517 @@
 
 
 
+//----------------------------------------------------------------------------------------------------------------------------
+* Final Project MFA Computational Arts
+
+
+
+░        ░░        ░░   ░░░  ░░░      ░░░  ░░░░░░░░░░░░░░       ░░░       ░░░░      ░░░        ░░        ░░░      ░░░        ░
+▒  ▒▒▒▒▒▒▒▒▒▒▒  ▒▒▒▒▒    ▒▒  ▒▒  ▒▒▒▒  ▒▒  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒  ▒▒▒▒  ▒▒  ▒▒▒▒  ▒▒  ▒▒▒▒  ▒▒▒▒▒▒▒▒  ▒▒  ▒▒▒▒▒▒▒▒  ▒▒▒▒  ▒▒▒▒▒  ▒▒▒▒
+▓      ▓▓▓▓▓▓▓  ▓▓▓▓▓  ▓  ▓  ▓▓  ▓▓▓▓  ▓▓  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓       ▓▓▓       ▓▓▓  ▓▓▓▓  ▓▓▓▓▓▓▓▓  ▓▓      ▓▓▓▓  ▓▓▓▓▓▓▓▓▓▓▓  ▓▓▓▓
+█  ███████████  █████  ██    ██        ██  ██████████████  ████████  ███  ███  ████  ██  ████  ██  ████████  ████  █████  ████
+█  ████████        ██  ███   ██  ████  ██        ████████  ████████  ████  ███      ████      ███        ███      ██████  ████
+                                                                                                                              
+
+
+
+** Final project points
+*** dates to hit
+
+**** 2026_06_01 - Proposal Deadline 12.00 noon
+
+**** 2026_06_29 - Tech Deadline
+
+**** 2026_06_08 - wip2 install start
+
+**** 2026_06_11 - Thursday - wip 2 VIVA
+
+*** 
+*** Reading
+- [[https://www.soundonsound.com/techniques/chris-watson-art-location-recording][chris watson SOS]]
+
+
+
+** WIP 2
+
+- What am i Doing here?
+  - I think for this wip i need to spend zero money and use what I have going forward
+  - I'm unemployed. so costs have to be low/zero
+  - What do I have/ what was I working on?
+  - what is my idea tho??
+    - I think some kind of recursive feedback loop between my found images and a wavetable synth
+      - I think maybe use Klank. I can at least have an array of ints I can manipulate.
+      - Wavetable doen't seem the way I think from working throough a bit of this
+	- [[https://www.youtube.com/watch?v=8EK9sq_9gFI][SuperCollider Tutorial: 23. Wavetable Synthesis, Part I]]
+      - DynKlank 
+	
+    - the rgb values are connected with the values in a wavetable and are modulatableble parameters with a device, as well as just moving around alone with modulatable synthesis
+  - what software?
+    - ffmpeg 0- to gather images
+    - openFraeworks for the processing of pngs
+    - Ssupercollider for the synthesis
+    - arduino for the device
+  - Hardware?
+    - rasberry pi
+    - old maccbook pro? running linux
+  - What theory/ what am I trying to say??
+    - old and small usable hardwares and software/ open source
+      - sticking the finger up to big tech.
+      - artificial intelligence
+      - 
+- How to start???
+- I dont know
+- i need to have a openframeworks things?
+- I need a synth in SuperColldir
+- I need images
+  - keep writing one bash sript a week to get images
+  - keep using the ffmpeg artschool stuff for further processn
+  - keep an eye out for cameras to try and hack.....
+  - 
+  -
+
+
+- All of the above is now not happening. see final project for work
+
+
+** IDEAS
+- [[https://www.ecosia.org/search?q=zane+lowe+eno&addon=firefox&addonversion=6.3.0&method=topbar][zane lowe brian eno]]
+- have a bucket of images
+  - let each machine get images and create their own videos
+
+- MANIFESTO!!!
+- These are the values you have??
+- these are the walls you want to kick down
+- openness
+- `improvise
+- listen - respond
+- inprov partner
+- i should write doonw my stream of comnsiuss and try to figure out things from that
+- Whats the why???
+
+
+** Uni Tutorials
+
+*** Eleaonora 25_03_19 Thursday
+  - The One thing I really really want to do.........
+    - homework
+    - take a hammer
+    - hammer down all the self judjments
+    - the reason i came here
+    - phase 1
+      - destroy
+    - phase 2
+      - contemplation
+    - phase 3 plan
+    - 
+    - introspection
+    - have a phase of researchx
+    - limiting things are the things that people tell us/ we tell
+    - whta brought me to the mfa
+    - that will inform me
+    -
+
+
+*** write between 100-500 / short/long version 2026_05_06
+ a reflection upon my aesthetics
+ the poetics of my work
+
+ - look at the work
+ - how to describe to the granny
+ - more abstract
+ - what connects the stuff
+ - artist statment
+   - polotics
+   - aethetics
+     - why i resonate????????
+   - how artists produce statments
+   - 
+
+
+*** thinking so far???
+-  i'm starting to realsie that my thought is impacted by my working class chip on my shoulder. I need t find a way through this. I
+  dont really know where to start, so  I implimented a ollama gpt chat in mistral to help with breaking the process down.
+  
+  
+- I started to use a gpt
+- copy from gpt in mistral
+  
+-  To use the Socratic method for self-reflection, we can approach your questions in a series of steps:
+
+1. Identify the problem: Your primary concern seems to be addressing your class consciousness, chip on
+your shoulder, and its potential impact on your judgment. It's essential to recognize that understanding
+these issues is an ongoing process and may require introspection and patience.
+
+2. Ask clarifying questions: To better understand your situation, it might be helpful to ask yourself
+some questions:
+   - What do you mean by "class consciousness"?
+   - When did you first start feeling this chip on your shoulder?
+   - How has it affected your relationships with others or your performance at work?
+   - Are there specific instances where you've noticed its impact?
+
+3. Hypothesize causes: Based on your answers, try to identify the potential reasons behind your feelings
+of class consciousness and why you might have a chip on your shoulder. These could include experiences
+from your past, societal expectations, or personal beliefs.
+
+4. Examine supporting evidence: Look for instances in your life that support these hypotheses. For
+example, you may recall certain events or interactions where you felt judged based on your social class
+or felt a sense of resentment towards others due to perceived advantages they have over you.
+
+5. Analyze counter-arguments: Consider alternative perspectives that might challenge your hypotheses. For
+instance, perhaps there are other factors at play in those instances that led to your feelings, such as
+personal insecurities or misunderstandings.
+
+6. Draw conclusions: Based on your analysis, attempt to reach a conclusion about the roots of your class
+consciousness and chip on your shoulder. This will help you better understand why these feelings exist
+and how they may be impacting your life.
+
+7. Formulate action steps: With a clearer understanding of the issue, identify specific actions you can
+take to address it. This could include seeking out new experiences or perspectives, working on
+self-awareness, practicing empathy towards others, or addressing any underlying insecurities that
+contribute to your feelings.
+
+8. Monitor progress: Reflect regularly on your progress and adjust your action steps as needed. Be
+patient with yourself and remember that change takes time.
+
+By following the Socratic method, you can gain insight into your thoughts and emotions, helping you
+develop a more nuanced understanding of your class consciousness and chip on your shoulder. This
+self-awareness will enable you to minimize its influence on your judgment and make more informed
+decisions in your personal and professional life.
+
+
+** Things to do
+
+*** Organise a trip to Filey
+ - [X] buy a map of Filey
+
+*** Organise a trip to York
+
+*** A trip to guildford???
+
+*** A trip back to London - this can coincide with the wip2
+
+*** look at fixing the portable cassette player
+- things that are wrong
+  - [ ] fix the jack output
+    - its only working in the right channe,l unless its half out
+    - 
+  - I think it seems fine. the belt is slack, nothig I can do about that unless I get a new belt
+  - stereo seems fine in the cheaper headphones
+- The thing seems ripe for bending
+  - the speed/slow
+  - there's the L!4570 IC chip that gives off some high pitches screaming
+  - go back and look at some other bits
+  - maybe rehouse it???????
+
+
+*** got some rechargable batteries
+- 4 x 9 volt
+  - the 9Volt are to supply power to the preamps.
+  - 1 x 9V for 1 x 2 channel preamp
+- 8 x AA for keeping in the recording devices as a backup for the battery bank
+
+
+*** design a casing for the preamp
+- what does the pre amp need???
+  - 2 x jack input
+  - 2 x jack output
+  - 2 x 100k potentiometers
+  - somewhere to hold the board
+  - somewhere for a 9 volt battery
+- at some point, you should put this down to a PCB
+- The unit has to be big enough to house all the materials
+- but small enough to carry around in a second carry bag
+- Blender
+*** 
+
+
+
+** Tutorials/Links/help
+*** [[https://www.youtube.com/watch?v=UXjMk5ti6wk][packt OSC openFrameworks]]
+*** [[https://www.youtube.com/@OfficialPackt/search?query=openFrameworks][packt youtube oF vides????]]
+
+** Daily work
+*** 2026_02_12 - Thursday
+- Started today in earnest with trying to figure out what I'm going to do for this wip 2
+- I have made some restrictions and got myself some tools
+  - no more purchases because I'm unemployed
+  - I have to use things I own
+  - open source softwares/frameworks
+    - ffmpeg
+    - bash
+    - SuperCollider
+    - openFrameworks
+    - arduino
+  - Whats the plan??
+  - The plan is to make a recursive machine that sends image rgb data via osc to supercollider and back again.
+  - why?
+    - I dont really know.
+    - I have all these images I made for wip1. And I need to do something with them.
+    - Why the tools?
+      - I want to use open source as its something close to my heart
+      - I don't want to pay for software if I can help it
+      - down the line you end up not owning anything
+      - maybe even funding thing you dont want to fund......
+    - make a controller that controls both rgb data and the synth
+    - make it a 2 person playable machine
+    - teamwork
+    - think about powering it??
+  - I made a star on SC with searching the correct UGEn for use - DynKlank.ar
+    - a modulatable flter bank of sin oscillators
+  - I also made a start on a oF patch
+    - loaded up an image. Thats it
+    - you are working from [[https://openframeworks.cc/ofBook/chapters/image_processing_computer_vision.html][here]] in the ofBook
+      - Three-Channel (RGB) images
+- 
+
+
+*** 2026_02_13 - Friday
+
+**** TODO lists?????????
+**** TODO  
+
+*** 2026_02_16 - Monday
+**** TODO do some tutorials
+- [ ] ofBook
+- [X] redFrik
+  - [X] udk 12 back to basics
+  - running hrough sin functions in
+    - python
+    - processing
+    - supercollider
+    - arduino
+  - 
+  - 
+- [X] SuperCollider
+  - continueng with the david cottle book
+    - onto synthdefs
+      
+**** TODO work on klank onstr
+
+**** TODO how do I get rgb from a of into sc via osc?????
+
+
+
+
+*** 2026_03_19 - Thursday
+- continuing with oFtutorials
+- have a deepseek chat regarding the osc.
+- not sure its great -
+  - src codes
+    - of = 071wip
+    - sc - ???
+
+
+-  Oblique Stratagies
+   - You don't have to be ashamed of using your own ideas
+
+
+
+
+
+
+
+*** 2026_05_12 - Tuesday
+**** made/making a hydrophone
+- so far, I have the made hydrophone.
+- waiting for silicone filling to dry. maybe be a couple of days.
+- then time for plastidip
+- 
+**** working from [[https://zachpoff.com/resources/building-contact-mics/][diy contact mic - Zach Poff]] & [[https://voicesofthefen.co.uk/take-part/make-a-hydrophone/][diy hydrophone - voices of the fen]]
+
+
+**** looking at audio use withing Supercollider
+- chapter 4 - Fieldsteel book
+- [[https://www.youtube.com/watch?v=aAPngikKkRo]['sampling' Fieldsteel YT]]
+- opying out Bruno Ruviaro's Granular synth gui demo #1
+- things of note
+  - TGrains
+  - EZSlider
+  - EZRangger
+  - Dialog
+  - 
+
+
+
+*** 2026_05_14 - Thursday
+
+**** What doI wnt to make today???
+
+**** I think I need to go through the ixi and make another app in the buffers tutoria;
+
+
+**** make a preamp based on the clean preamp in the Nicolas Collins Book
+- [[file:/documentaionImages/IMG_3733.png]]
+- schematic taken from the Collins book
+- [[file:/documentaionImages/IMG_3696.png]]
+  - breadboard circuit
+- I decided to attempt to make the pre amp a 2 channel version
+- [[file:/documentaionImages/IMG_3797.png]]
+- now to design a case for 3dprint
+
+  
+  
+//////////////////////////////////////////////////////////////
+
+*** 2026_05_18 - Monday
+**** continued working on the granular workstation
+**** set up a git repo for the project backup/documentation
+
+*** 2026_05_18 - Tuesday
+**** took delivery of a bag for transporting the audio recording devices
+
+
+**** 
+I think I have come up with a thing for my final project. After getting a homework assignment from my lecturere (Eleanor) where I really need to get my artist statment done (still not done),  I am coming to terms with what I'm doing. at least for this project.
+ so far I think I still need to come to terms with my past, as much as I dislike the whole "cult of the I" in the field of anything creative - probably an involintry repulsion to the effects of "there is no such thing as community" from Thatcher, I need do come to terms with my past, and reflect on the struggle it's been. My past has been a struggle with crippling anxiety and depression, alcholism, drug abuse, problems with hierachy and authority, amongst others. It is only now, after 1 year and 2 months of sobriety that I'm actually coming to terms with and confronting my past, with a view to overcoming it and having the abitlity to move past and beyond it into some new form of life. Only this catapillar wasn't safetly cocooned in some kind of self spun exo-skeleten, unless of course you count alcholism as a form of armour. Recently daignosed with AuDHD, I realised that I have been using these things as a crutch, to help me to be able to function in a world where I was always an outsider. Attempting to survive in a world and systems built for the 'normal' person. The form filler, the nine to fiver, the ones that were good in the educational system. I really struggle with this. The whole system, the rhubric, the deadlines (although, without a deadline, nothing would get done), the form filling, the meetings, the group work. Let me live in a vacuum. Let me work alone. Let me do whatever it is I need to do without the progression of an idea or a piece of work. Let me do the thing without having to have a piece of paper that apparently validifies my existance to being able to do the thing I'm already doing. I didn't have a BA, but now I have a BA and now I'm here. Now you need a Masters, ok, let me jump through that hoop. Oh. its too late, you need to be a Dr now to have any form of validity. What.. Now we're all Dr's of our tiny little island that we made where no-one actually cares, because all people really care about is going to the next thing and being seen and having a little anecdote you can make the other person your talking to feel bad because they're not 'as cultured' as you.... Anyway. rant over, for now. 
+   Through my life, I never trully managed to complete anything, always half finishing things, or quitting things, because, what's the point? That person over there is better than me, so why even bother. This first started in primary school and was a habit I picked up through my life. I guess I don't have to work at anything. Maybe it also has something to do with my underlying AuDHD. 
+
+
+**** TODO make 1 more hydrophone
+**** TODO make some normal contact mics
+**** TODO work on the granular synth - See the Todo in the scd file
+- progress so far.....
+- the synth seems to be coming along ok. I almost have 1 synth ready and working. jyst need to refactor over the loop size bar from the Ruviaro code. then copy another five synths over.
+- more ideas are (add into the scd file)
+  - make more than TGrains. have some button that selects each slot and turns it into just a loop player into a grains, etc
+  - add in some bus effects
+    - figure out busses in from the documentations - [[https://docs.supercollider.online/Tutorials/Getting-Started/11-Busses.html][Busses Documentation]]
+  - add in a master effect
+  - add in an overall master fader.....
+  - make the screen size adjustable depending on device
+    - check .screenBounds - [[https://docs.supercollider.online/Classes/Window.html][Window documentation]]
+**** TODO read Mark Fisher
+**** WAITING for the Memory book to arrive
+
+
+**** thoughts on the synth
+- i'm spending A LOT of time pixel hunting on the GUI. Flow layout would be a better choice. This I have to start for the next project
+- ok, for now I have a 1 synth granular synth working
+- added in a master meter.
+- make a Select,kr where I can now choose between Loop <-> Granular
+
+
+repeat for other 5 granular synths
+- granularWorkstationV0_1 is working as is.
+  - I'm wanting to add in a switchable LOOP / Grain buffer function, so tht I can just have a loop player of a granular buffer on each channe;
+  - I added in a loop plyer and started to make gui canges, but I'm wanting to now have a stable version I can go back to and V0_1 is it
+  - V0_2 is now attempting to use a stack layout to switch between the grain and loop controls
+
+
+- As my skills are low, I am trying to use a gpt to help with my work. I will add the document at a later date
+
+
+
+*** 2026_05_20 - Wednesday
+
+- ok. I'm having mental blocks on the granular synth. I want to be able to add in a playBuf and a Recording buffer to each slot along with the grain, buut my brain isnt' braining so well. so... I'm going to go back to version 01 and work with just a granular synth for now and extend to all slots.
+- What I probably need to do is make some smaller utilities with a lot less stuff going on and try to do switching in that
+- 
+
+*** 2026_05_21 - Thursday
+- attempted an enclosure for the preamp
+  - [[file:/documentaionImages/IMG_3732.png]]
+    - initial mockup and measuremnts for pre case
+  - [[file:/documentaionImages/blenderPre01_1.png]]
+  - [[file:/documentationImages/blenderPre02_1.png]]
+  - its an 8 hr print. so lets see what happens.
+
+
+
+
+    
+    - stil need to make a fitted bottom for it, but my experience tells me to make the enclosure firsr and make the 'lid' after, where I can make more precice mesuremtnsfor what I need.
+- print failed. it seems as though extruding in blender doest go over to cura???
+  - [[file:/documentaionImages/IMG_3738.png]]
+  - [[file:/documentaionImages/IMG_3739.png]]
+  - [[file:/documentaionImages/IMG_3740.png]]   
+
+
+- some more research needed
+
+
+*** 2026_05_22 - Friday
+- made up another 2 'matched pair' contact mic/hydrophone. I'm waiting for the silicone to dry out before I plastic dip them
+- also made the 1/4" jacks along with the other one.
+
+  - [[file:/documentationImages/IMG_3747.png]]
+
+    
+- ok. tried to knock up a 2nd version of the preamp case. cant print now as I'll not be home when it ends
+
+- built the first  incarnation of the Granular workstation
+  - 6 slots for (currenty) 6 x granular synths-
+    - to add un other synths at a later date
+      - I first need to figure out the gui switching
+  
+- 
+*** 2026_05_23 - Saturday
+
+- Byom - nostalgia -
+  - is a longing for a home that no longer exists or has never existed. Nostalgia is a sentiment of loss and displacement, but it is also a romance  with ones own fantasy -
+  - I think h=I have a fantasy of if my Father had never passed. If he had never passed, what could have been? Maybe I wouldn't have been doing what I am doing today, but It's highly possible I wouldn't have been an alcoholic? Research shows that early childhood trauma (eg, the sudden loss of a parent) has a large impact on the development of the child, leading to ADHD. Maybe I could have managed throuought my schooling better, maybe this, maybe that. For over four decades I have lived a life of "what if?".
+- Is what I suffer from Nostalgia??
+- Or, is it a loss of a future....?????
+- the death of my father set the family along a new timeline, where the original timeline had sustained a huge fracture, we were now sent hurtling into the unknown. 
+
+
+*** 2026_05_25 - Monday
+
+- redesigned the preamp case. Made it 2mm longer and 2mm deeper as well as the overall thickness is now 2/3mm instead of 5. Should all fit fine. it's a 10 hr print.
+
+- worked a little on the portable cassette player. found the IC that deals with speed. Added a slow down pot.
+
+  - [[file:/documentationImages/IMG_3743.jpeg]]
+
+- found a distort on the poweramp IC but I overheated it and poulled out the traces. now I cant get it fixed. So I gues that is on the pile??....
+
+- [[file:/documentationImages/IMG_3745.jpeg]]
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//------------------------------------------------------------------------------------------
+
+* All text below this point is from semester 1
+
+
+
+
+
+
+
+
+
 * [[id:7258CAC0-3FA4-4589-B611-6F54D214A632][MFACompArts]]
+
+
+
+
 
 
 * tutorials/feedback sessions
@@ -606,459 +1116,3 @@ the term in regards practice and contextual research
 	 - John Tuffen, [[https://www.youtube.com/live/i_GFYJp_o20?si=ugmnZMmeTg7YtBud&t=2284][orlandoFerguson]] video chapelFM
 	 - 
      
-
-
-
-
-* Final Project MFA Computational Arts
-* Final project points
-** dates to hit
-
-*** 2026_06_01 - Proposal Deadline 12.00 noon
-
-*** 2026_06_29 - Tech Deadline
-
-*** 2026_06_08 - wip2 install start
-
-*** 2026_06_11 - Thursday - wip 2 VIVA
-
-*** 
-** Reading
-- [[https://www.soundonsound.com/techniques/chris-watson-art-location-recording][chris watson SOS]]
-
-
-
-* WIP 2
-
-- What am i Doing here?
-  - I think for this wip i need to spend zero money and use what I have going forward
-  - I'm unemployed. so costs have to be low/zero
-  - What do I have/ what was I working on?
-  - what is my idea tho??
-    - I think some kind of recursive feedback loop between my found images and a wavetable synth
-      - I think maybe use Klank. I can at least have an array of ints I can manipulate.
-      - Wavetable doen't seem the way I think from working throough a bit of this
-	- [[https://www.youtube.com/watch?v=8EK9sq_9gFI][SuperCollider Tutorial: 23. Wavetable Synthesis, Part I]]
-      - DynKlank 
-	
-    - the rgb values are connected with the values in a wavetable and are modulatableble parameters with a device, as well as just moving around alone with modulatable synthesis
-  - what software?
-    - ffmpeg 0- to gather images
-    - openFraeworks for the processing of pngs
-    - Ssupercollider for the synthesis
-    - arduino for the device
-  - Hardware?
-    - rasberry pi
-    - old maccbook pro? running linux
-  - What theory/ what am I trying to say??
-    - old and small usable hardwares and software/ open source
-      - sticking the finger up to big tech.
-      - artificial intelligence
-      - 
-- How to start???
-- I dont know
-- i need to have a openframeworks things?
-- I need a synth in SuperColldir
-- I need images
-  - keep writing one bash sript a week to get images
-  - keep using the ffmpeg artschool stuff for further processn
-  - keep an eye out for cameras to try and hack.....
-  - 
-  -
-
-** IDEAS
-- [[https://www.ecosia.org/search?q=zane+lowe+eno&addon=firefox&addonversion=6.3.0&method=topbar][zane lowe brian eno]]
-- have a bucket of images
-  - let each machine get images and create their own videos
-
-- MANIFESTO!!!
-- These are the values you have??
-- these are the walls you want to kick down
-- openness
-- `improvise
-- listen - respond
-- inprov partner
-- i should write doonw my stream of comnsiuss and try to figure out things from that
-- Whats the why???
-
-
-** Uni Tutorials
-
-*** Eleaonora 25_03_19 Thursday
-  - The One thing I really really want to do.........
-    - homework
-    - take a hammer
-    - hammer down all the self judjments
-    - the reason i came here
-    - phase 1
-      - destroy
-    - phase 2
-      - contemplation
-    - phase 3 plan
-    - 
-    - introspection
-    - have a phase of researchx
-    - limiting things are the things that people tell us/ we tell
-    - whta brought me to the mfa
-    - that will inform me
-    -
-
-
-*** write between 100-500 / short/long version 2026_05_06
- a reflection upon my aesthetics
- the poetics of my work
-
- - look at the work
- - how to describe to the granny
- - more abstract
- - what connects the stuff
- - artist statment
-   - polotics
-   - aethetics
-     - why i resonate????????
-   - how artists produce statments
-   - 
-
-
-*** thinking so far???
--  i'm starting to realsie that my thought is impacted by my working class chip on my shoulder. I need t find a way through this. I
-  dont really know where to start, so  I implimented a ollama gpt chat in mistral to help with breaking the process down.
-  
-  
-- I started to use a gpt
-- copy from gpt in mistral
-  
--  To use the Socratic method for self-reflection, we can approach your questions in a series of steps:
-
-1. Identify the problem: Your primary concern seems to be addressing your class consciousness, chip on
-your shoulder, and its potential impact on your judgment. It's essential to recognize that understanding
-these issues is an ongoing process and may require introspection and patience.
-
-2. Ask clarifying questions: To better understand your situation, it might be helpful to ask yourself
-some questions:
-   - What do you mean by "class consciousness"?
-   - When did you first start feeling this chip on your shoulder?
-   - How has it affected your relationships with others or your performance at work?
-   - Are there specific instances where you've noticed its impact?
-
-3. Hypothesize causes: Based on your answers, try to identify the potential reasons behind your feelings
-of class consciousness and why you might have a chip on your shoulder. These could include experiences
-from your past, societal expectations, or personal beliefs.
-
-4. Examine supporting evidence: Look for instances in your life that support these hypotheses. For
-example, you may recall certain events or interactions where you felt judged based on your social class
-or felt a sense of resentment towards others due to perceived advantages they have over you.
-
-5. Analyze counter-arguments: Consider alternative perspectives that might challenge your hypotheses. For
-instance, perhaps there are other factors at play in those instances that led to your feelings, such as
-personal insecurities or misunderstandings.
-
-6. Draw conclusions: Based on your analysis, attempt to reach a conclusion about the roots of your class
-consciousness and chip on your shoulder. This will help you better understand why these feelings exist
-and how they may be impacting your life.
-
-7. Formulate action steps: With a clearer understanding of the issue, identify specific actions you can
-take to address it. This could include seeking out new experiences or perspectives, working on
-self-awareness, practicing empathy towards others, or addressing any underlying insecurities that
-contribute to your feelings.
-
-8. Monitor progress: Reflect regularly on your progress and adjust your action steps as needed. Be
-patient with yourself and remember that change takes time.
-
-By following the Socratic method, you can gain insight into your thoughts and emotions, helping you
-develop a more nuanced understanding of your class consciousness and chip on your shoulder. This
-self-awareness will enable you to minimize its influence on your judgment and make more informed
-decisions in your personal and professional life.
-
-
-** Things to do
-
-*** Organise a trip to Filey
- - buy a map of Filey
-
-*** Organise a trip to York
-
-*** A trip to guildford???
-
-*** A trip back to London - this can coincide with the wip2
-
-*** look at fixing the portable cassette player
-- things that are wrong
-  - [ ] fix the jack output
-    - its only working in the right channe,l unless its half out
-    - 
-  - I think it seems fine. the belt is slack, nothig I can do about that unless I get a new belt
-  - stereo seems fine in the cheaper headphones
-- The thing seems ripe for bending
-  - the speed/slow
-  - there's the L!4570 IC chip that gives off some high pitches screaming
-  - go back and look at some other bits
-  - maybe rehouse it???????
-
-
-*** got some rechargable batteries
-- 4 x 9 volt
-  - the 9Volt are to supply power to the preamps.
-  - 1 x 9V for 1 x 2 channel preamp
-- 8 x AA for keeping in the recording devices as a backup for the battery bank
-
-
-*** design a casing for the preamp
-- what does the pre amp need???
-  - 2 x jack input
-  - 2 x jack output
-  - 2 x 100k potentiometers
-  - somewhere to hold the board
-  - somewhere for a 9 volt battery
-- at some point, you should put this down to a PCB
-- The unit has to be big enough to house all the materials
-- but small enough to carry around in a second carry bag
-- Blender
-*** 
-
-
-
-** Tutorials/Links/help
-- [[https://www.youtube.com/watch?v=UXjMk5ti6wk][packt OSC openFrameworks]]
-- [[https://www.youtube.com/@OfficialPackt/search?query=openFrameworks][packt youtube oF vides????]]
-
-
-** 2026_02_12 - Thursday
-- Started today in earnest with trying to figure out what I'm going to do for this wip 2
-- I have made some restrictions and got myself some tools
-  - no more purchases because I'm unemployed
-  - I have to use things I own
-  - open source softwares/frameworks
-    - ffmpeg
-    - bash
-    - SuperCollider
-    - openFrameworks
-    - arduino
-  - Whats the plan??
-  - The plan is to make a recursive machine that sends image rgb data via osc to supercollider and back again.
-  - why?
-    - I dont really know.
-    - I have all these images I made for wip1. And I need to do something with them.
-    - Why the tools?
-      - I want to use open source as its something close to my heart
-      - I don't want to pay for software if I can help it
-      - down the line you end up not owning anything
-      - maybe even funding thing you dont want to fund......
-    - make a controller that controls both rgb data and the synth
-    - make it a 2 person playable machine
-    - teamwork
-    - think about powering it??
-  - I made a star on SC with searching the correct UGEn for use - DynKlank.ar
-    - a modulatable flter bank of sin oscillators
-  - I also made a start on a oF patch
-    - loaded up an image. Thats it
-    - you are working from [[https://openframeworks.cc/ofBook/chapters/image_processing_computer_vision.html][here]] in the ofBook
-      - Three-Channel (RGB) images
-- 
-
-
-** 2026_02_13 - Friday
-
-*** TODO lists?????????
-*** TODO  
-
-** 2026_02_16 - Monday
-
-*** TODO do some tutorials
-- [ ] ofBook
-- [X] redFrik
-  - [X] udk 12 back to basics
-  - running hrough sin functions in
-    - python
-    - processing
-    - supercollider
-    - arduino
-  - 
-  - 
-- [X] SuperCollider
-  - continueng with the david cottle book
-    - onto synthdefs
-
-*** TODO work on klank onstr
-
-*** TODO how do I get rgb from a of into sc via osc?????
-
-*** TODO 
-
-
-** 2026_03_19 - Thursday
-- continuing with oFtutorials
-- have a deepseek chat regarding the osc.
-- not sure its great -
-  - src codes
-    - of = 071wip
-    - sc - ???
-
-
--  Oblique Stratagies
-   - You don't have to be ashamed of using your own ideas
-
-
-
-
-
-
-
-** 2026_05_12 - Tuesday
-
-*** made/making a hydrophone
-- so far, I have the made hydrophone.
-- waiting for silicone filling to dry. maybe be a couple of days.
-- then time for plastidip
-- 
-*** working from [[https://zachpoff.com/resources/building-contact-mics/][diy contact mic - Zach Poff]] & [[https://voicesofthefen.co.uk/take-part/make-a-hydrophone/][diy hydrophone - voices of the fen]]
-
-
-*** looking at audio use withing Supercollider
-
-- chapter 4 - Fieldsteel book
-- [[https://www.youtube.com/watch?v=aAPngikKkRo]['sampling' Fieldsteel YT]]
-- opying out Bruno Ruviaro's Granular synth gui demo #1
-- things of note
-  - TGrains
-  - EZSlider
-  - EZRangger
-  - Dialog
-  - 
-
-
-
-** 2026_05_14 - Thursday
-
-*** What doI wnt to make today???
-
-*** I think I need to go through the ixi and make another app in the buffers tutoria;
-
-
-*** make a preamp based on the clean preamp in the Nicolas Collins Book
-- [[file:/documentaionImages/IMG_3733.png]]
-- schematic taken from the Collins book
-- [[file:/documentaionImages/IMG_3696.png]]
-  - breadboard circuit
-- I decided to attempt to make the pre amp a 2 channel version
-- [[file:/documentaionImages/IMG_3797.png]]
-- now to design a case for 3dprint
-
-  
-  
-//////////////////////////////////////////////////////////////
-
-*** 2026_05_18 - Monday
-*** continued working on the granular workstation
-*** set up a git repo for the project backup/documentation
-
-** 2026_05_18 - Tuesday
-*** took delivery of a bag for transporting the audio recording devices
-
-
-****
-I think I have come up with a thing for my final project. After getting a homework assignment from my lecturere (Eleanor) where I really need to get my artist statment done (still not done),  I am coming to terms with what I'm doing. at least for this project.
- so far I think I still need to come to terms with my past, as much as I dislike the whole "cult of the I" in the field of anything creative - probably an involintry repulsion to the effects of "there is no such thing as community" from Thatcher, I need do come to terms with my past, and reflect on the struggle it's been. My past has been a struggle with crippling anxiety and depression, alcholism, drug abuse, problems with hierachy and authority, amongst others. It is only now, after 1 year and 2 months of sobriety that I'm actually coming to terms with and confronting my past, with a view to overcoming it and having the abitlity to move past and beyond it into some new form of life. Only this catapillar wasn't safetly cocooned in some kind of self spun exo-skeleten, unless of course you count alcholism as a form of armour. Recently daignosed with AuDHD, I realised that I have been using these things as a crutch, to help me to be able to function in a world where I was always an outsider. Attempting to survive in a world and systems built for the 'normal' person. The form filler, the nine to fiver, the ones that were good in the educational system. I really struggle with this. The whole system, the rhubric, the deadlines (although, without a deadline, nothing would get done), the form filling, the meetings, the group work. Let me live in a vacuum. Let me work alone. Let me do whatever it is I need to do without the progression of an idea or a piece of work. Let me do the thing without having to have a piece of paper that apparently validifies my existance to being able to do the thing I'm already doing. I didn't have a BA, but now I have a BA and now I'm here. Now you need a Masters, ok, let me jump through that hoop. Oh. its too late, you need to be a Dr now to have any form of validity. What.. Now we're all Dr's of our tiny little island that we made where no-one actually cares, because all people really care about is going to the next thing and being seen and having a little anecdote you can make the other person your talking to feel bad because they're not 'as cultured' as you.... Anyway. rant over, for now. 
-   Through my life, I never trully managed to complete anything, always half finishing things, or quitting things, because, what's the point? That person over there is better than me, so why even bother. This first started in primary school and was a habit I picked up through my life. I guess I don't have to work at anything. Maybe it also has something to do with my underlying AuDHD. 
-
-
-*** TODO make 1 more hydrophone
-*** TODO make some normal contact mics
-*** TODO work on the granular synth - See the Todo in the scd file
-- progress so far.....
-- the synth seems to be coming along ok. I almost have 1 synth ready and working. jyst need to refactor over the loop size bar from the Ruviaro code. then copy another five synths over.
-- more ideas are (add into the scd file)
-  - make more than TGrains. have some button that selects each slot and turns it into just a loop player into a grains, etc
-  - add in some bus effects
-    - figure out busses in from the documentations - [[https://docs.supercollider.online/Tutorials/Getting-Started/11-Busses.html][Busses Documentation]]
-  - add in a master effect
-  - add in an overall master fader.....
-  - make the screen size adjustable depending on device
-    - check .screenBounds - [[https://docs.supercollider.online/Classes/Window.html][Window documentation]]
-*** TODO read Mark Fisher
-*** WAITING for the Memory book to arrive
-
-
-*** thoughts on the synth
-- i'm spending A LOT of time pixel hunting on the GUI. Flow layout would be a better choice. This I have to start for the next project
-- ok, for now I have a 1 synth granular synth working
-- added in a master meter.
-- make a Select,kr where I can now choose between Loop <-> Granular
-
-
-repeat for other 5 granular synths
-- granularWorkstationV0_1 is working as is.
-  - I'm wanting to add in a switchable LOOP / Grain buffer function, so tht I can just have a loop player of a granular buffer on each channe;
-  - I added in a loop plyer and started to make gui canges, but I'm wanting to now have a stable version I can go back to and V0_1 is it
-  - V0_2 is now attempting to use a stack layout to switch between the grain and loop controls
-
-
-- As my skills are low, I am trying to use a gpt to help with my work. I will add the document at a later date
-
-
-
-** 2026_05_20 - Wednesday
-
-- ok. I'm having mental blocks on the granular synth. I want to be able to add in a playBuf and a Recording buffer to each slot along with the grain, buut my brain isnt' braining so well. so... I'm going to go back to version 01 and work with just a granular synth for now and extend to all slots.
-- What I probably need to do is make some smaller utilities with a lot less stuff going on and try to do switching in that
-- 
-
-** 2026_05_21 - Thursday
-- attempted an enclosure for the preamp
-  - [[file:/documentaionImages/IMG_3732.png]]
-    - initial mockup and measuremnts for pre case
-  - [[file:/documentaionImages/blenderPre01_1.png]]
-  - [[file:/documentationImages/blenderPre02_1.png]]
-  - its an 8 hr print. so lets see what happens.
-
-
-
-
-    
-    - stil need to make a fitted bottom for it, but my experience tells me to make the enclosure firsr and make the 'lid' after, where I can make more precice mesuremtnsfor what I need.
-- print failed. it seems as though extruding in blender doest go over to cura???
-  - [[file:/documentaionImages/IMG_3738.png]]
-  - [[file:/documentaionImages/IMG_3739.png]]
-  - [[file:/documentaionImages/IMG_3740.png]]   
-
-
-- some more research needed
-
-
-** 2026_05_22 - Friday
-- made up another 2 'matched pair' contact mic/hydrophone. I'm waiting for the silicone to dry out before I plastic dip them
-- also made the 1/4" jacks along with the other one.
-
-  - [[file:/documentationImages/IMG_3747.png]]
-  
-- ok. tried to knock up a 2nd version of the preamp case. cant print now as I'll not be home when it ends
-
-- built the first  incarnation of the Granular workstation
-  - 6 slots for (currenty) 6 x granular synths-
-    - to add un other synths at a later date
-      - I first need to figure out the gui switching
-  
-- 
-** 2026_05_23 - Saturday
-
-- Byom - nostalgia -
-  - is a longing for a home that no longer exists or has never existed. Nostalgia is a sentiment of loss and displacement, but it is also a romance  with ones own fantasy -
-  - I think h=I have a fantasy of if my Father had never passed. If he had never passed, what could have been? Maybe I wouldn't have been doing what I am doing today, but It's highly possible I wouldn't have been an alcoholic? Research shows that early childhood trauma (eg, the sudden loss of a parent) has a large impact on the development of the child, leading to ADHD. Maybe I could have managed throuought my schooling better, maybe this, maybe that. For over four decades I have lived a life of "what if?".
-- Is what I suffer from Nostalgia??
-- Or, is it a loss of a future....?????
-- the death of my father set the family along a new timeline, where the original timeline had sustained a huge fracture, we were now sent hurtling into the unknown. 
-
-
-** 2026_05_25 - Monday
-
-- redesigned the preamp case. Made it 2mm longer and 2mm deeper as well as the overall thickness is now 2/3mm instead of 5. Should all fit fine. it's a 10 hr print.
-
-- worked a little on the portable cassette player. found the IC that deals with speed. Added a slow down pot.
-
-  - [[file:/documentationImages/IMG_3743.jpeg]]
-
-- found a distort on the poweramp IC but I overheated it and poulled out the traces. now I cant get it fixed. So I gues that is on the pile??....
-
-- [[file:/documentationImages/IMG_3745.jpeg]]
-  
-  
