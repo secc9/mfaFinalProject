@@ -312,8 +312,18 @@ decisions in your personal and professional life.
 
 
 
+*** The space between April and May
+
+- Seemingly did nothing throgughout this time.
+  I think a lot of this time was dust me following my supervisors suggestions and did a lot of writing
 
 
+
+
+*** Somewhere before this time,
+- I think I finaly came up with the beginings of an idea at least. For a long time I alsways wanted to make myself some kind of audio workstation. A little like the early Electronic Music Studios. I was always quite fascinated with the [[https://www.bbc.com/historyofthebbc/anniversaries/april/bbc-radiophonic-workshop][BBC Radiophonic Workshop]] and I keep a copy of the [[https://www.famousfix.com/topic/music-from-the-bbc-radiophonic-workshop][music from the bbc radiophonic workshop]] record in my collection.
+
+- I settled on making myself some kind of homage to the early studios built in SuperCollider. 
 
 *** 2026_05_12 - Tuesday
 **** made/making a hydrophone
@@ -470,8 +480,10 @@ repeat for other 5 granular synths
 - found a distort on the poweramp IC but I overheated it and poulled out the traces. now I cant get it fixed. So I gues that is on the pile??....
 
 - [[file:/documentationImages/IMG_3745.jpeg]]
-  
-  
+
+- I've not been keeping up with images of the workstation, but here it is in its current state of V1_3
+
+- [[file:/documentationImages/workstatino01_sm.png]]
 
 
 
