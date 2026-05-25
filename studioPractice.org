@@ -330,7 +330,7 @@ decisions in your personal and professional life.
 - so far, I have the made hydrophone.
 - waiting for silicone filling to dry. maybe be a couple of days.
 - then time for plastidip
-- 
+- [[file:/documentationImages_IMG_3728.jpeg]]
 **** working from [[https://zachpoff.com/resources/building-contact-mics/][diy contact mic - Zach Poff]] & [[https://voicesofthefen.co.uk/take-part/make-a-hydrophone/][diy hydrophone - voices of the fen]]
 
 
@@ -360,7 +360,7 @@ decisions in your personal and professional life.
 - [[file:/documentationImages/IMG_3696.png]]
   - breadboard circuit
 - I decided to attempt to make the pre amp a 2 channel version
-- [[file:/documentationImages/IMG_3797.png]]
+- [[file:/documentationImages/IMG_3697.png]]
 - now to design a case for 3dprint
 
   
@@ -483,7 +483,7 @@ repeat for other 5 granular synths
 
 - I've not been keeping up with images of the workstation, but here it is in its current state of V1_3
 
-- [[file:/documentationImages/workstatino01_sm.png]]
+- [[file:/documentationImages/workstation01_sm.png]]
 
 
 
