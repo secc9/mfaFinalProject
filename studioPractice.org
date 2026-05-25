@@ -330,7 +330,7 @@ decisions in your personal and professional life.
 - so far, I have the made hydrophone.
 - waiting for silicone filling to dry. maybe be a couple of days.
 - then time for plastidip
-- [[file:/documentationImages_IMG_3728.jpeg]]
+- [[file:/documentationImages/IMG_3728.jpeg]]
 **** working from [[https://zachpoff.com/resources/building-contact-mics/][diy contact mic - Zach Poff]] & [[https://voicesofthefen.co.uk/take-part/make-a-hydrophone/][diy hydrophone - voices of the fen]]
 
 
