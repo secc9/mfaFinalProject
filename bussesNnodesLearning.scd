@@ -2,6 +2,7 @@
 
 
 // learn how to make  a bus
+// using the cottle book
 
 s.plotTree
 
@@ -167,11 +168,66 @@ SynthDescLib.global.browse;
 
 
 
+(
+SynthDef(\saw, {arg filterBus=16;
+	Out.ar(filterBus, LFSaw.ar([60, 90]))}).add;
+
+SynthDef(\filter, {arg filterBus=16;
+	Out.ar(0, RLPF.ar(In.ar(filterBus, 2), LFNoise0.kr(12, 300,350),0.2))
+}).add;
+)
+
+Synth(\saw)
+Synth(\filter)
 
 
+s.boot;s.meter;s.scope
+ b = Bus.audio
+b.index
+b.free
+c = Bus.audio(s, 2)
+b = Bus.audio(s,2)
+
+s.meter;s.scope
+{Out.ar(c.index, Saw.ar)}.play
+{Out.ar(b.index, SinOsc.ar([500, 1000]))}.scope(8)
+c.free;d.free
+
+{Out.ar(4, SinOsc.ar([100, 200,300,400]))}.scope(8)
+b = Bus.audio(s, 2)
+b.index
+
+{Out.ar(b.index, Saw.ar([800, 1000]))}.scope(8)
+b.free
+s.boot
+
+a = Bus.audio(s, 2)
+b = Bus.audio(s, 1);
+c = Bus.audio(s, 2)
+c.index
+a.index
+b.index
+a.free
+b.free
+d = Bus.audio(s, 1)
+e = Bus.audio(s, 2)
+a = Bus.audio(s, 2)
+b = Bus.audio(s, 1)
+
+[a, b, c, d, e].postln
+s.scope(14)
+Bus.free
 
 
+{Out.ar(0, Mix.ar(In.ar(2,12))*0.1)}.play
+{Out.ar(a.index, SinOsc.ar)}.play
+{Out.ar(b.index, SinOsc.ar(1000))}.play
+{Out.ar(c.index, Saw.ar([400, 800]))}.play
+{Out.ar(d.index, Pulse.ar(200))}.play
+{Out.ar(e.index, [Saw.ar(500), FSinOsc.ar(900)])}.play
 
+
+[a,b,c,d,e].do({arg each; each.free})
 
 
 

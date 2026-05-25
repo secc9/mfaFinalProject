@@ -1747,7 +1747,7 @@ s.waitForBoot({
 					\ampLo, ampSliderF.lo,
 					\ampHi, ampSliderF.hi,
 					\bufnum, bufferF,
-					\out, 12,
+					\out, 22,
 
 		"Player F is playing".postln;
 				]
@@ -1814,7 +1814,7 @@ s.waitForBoot({
 
 	0.01.wait; // give it time to load the bus effects before starting them
 
-	busReverb = Synth(\busVerb, [\inBus, 10, \outBus, 0], addAction:\addToTail);
+	busReverb = Synth(\busVerb, [\inBus, 22, \outBus, 0], addAction:\addToTail);
 	busDelay = Synth(\busDelay, [\inBus, 12, \outBus,0], addAction:\addToTail);
 
 
@@ -2008,7 +2008,7 @@ s.waitForBoot({
 // synth F
 
 	SynthDef(\grainF, {
-		arg out=0, gate =1, bufnum, triggerLo, triggerHi, rateLo,rateHi, centerPosLo, centerPosHi, durLo, durHi, panLo, panHi, ampLo, ampHi;
+		arg out, gate =1, bufnum, triggerLo, triggerHi, rateLo,rateHi, centerPosLo, centerPosHi, durLo, durHi, panLo, panHi, ampLo, ampHi;
 
 		var env,sig, grainSig,loopSig, trig, triggerAmount, rate, dur, pan, amp, centerPos;
 
@@ -2105,7 +2105,7 @@ s.waitForBoot({
 
 	//  masterserver meter
 
-	masterMeter = ServerMeterView(s, masterWin,0@770, 6, 13 );
+	masterMeter = ServerMeterView(s, masterWin,0@770, 0, 23 );
 
 	// scope
 

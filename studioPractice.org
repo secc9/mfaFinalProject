@@ -5,6 +5,8 @@
 #+title: StudioPractice
 #+SEQ_TODO: NEXT(n) TODO(t) WAITING(w) SOMEDAY(s) PROJ(p) | DONE(d) CANCELLED(c)
 
+#+ATTR_ORG: :width 200
+
 
 
 
@@ -1005,3 +1007,23 @@ repeat for other 5 granular synths
   
 - 
 ** 2026_05_23 - Saturday
+
+- Byom - nostalgia -
+  - is a longing for a home that no longer exists or has never existed. Nostalgia is a sentiment of loss and displacement, but it is also a romance  with ones own fantasy -
+  - I think h=I have a fantasy of if my Father had never passed. If he had never passed, what could have been? Maybe I wouldn't have been doing what I am doing today, but It's highly possible I wouldn't have been an alcoholic? Research shows that early childhood trauma (eg, the sudden loss of a parent) has a large impact on the development of the child, leading to ADHD. Maybe I could have managed throuought my schooling better, maybe this, maybe that. For over four decades I have lived a life of "what if?".
+- Is what I suffer from Nostalgia??
+- Or, is it a loss of a future....?????
+- the death of my father set the family along a new timeline, where the original timeline had sustained a huge fracture, we were now sent hurtling into the unknown. 
+
+
+** 2026_05_25 - Monday
+
+- redesigned the preamp case. Made it 2mm longer and 2mm deeper as well as the overall thickness is now 2/3mm instead of 5. Should all fit fine. it's a 10 hr print.
+
+- worked a little on the portable cassette player. found the IC that deals with speed. Added a slow down pot.
+
+- found a distort on the poweramp IC but I overheated it and poulled out the traces. now I cant get it fixed. So I gues that is on the pile??....
+
+- [[file:/Users/ashleysagar/Documents/Academeia/MFA/modules/studioPractice/mfaFinalProject/documentationImages/IMG_3745.jpeg]]
+  
+  
