@@ -573,7 +573,13 @@ motivate:
      - I feel strongly that my process is dependent on the tool. Coming from a long  line of working class families, I feel that my tools are a strong part of my history. My Father was many things, starting out as a sheet metal worker before becoming a cook in the merchant Navy he then finally became a panel beater before passing unexpectedly from Cancer at the age of 46, but all the time his work was dependent on his tools. My Grandfather on my mothers side was a plumber, during and after wartime. He would have needed to fabricate his own tools. I still have a selection of their hand tools to this day (I was going to take some photos, but the toolbox is under a nightmare of other things in the cupboard under the stairs).
 
        .. Mark fell.
-       - ➀ toolmaking is a goodtest of skill; ➁ having high quality tools is important because theirquality impacts everything that is made with them; ➂ toolmakingoffers an increased understanding of the function of a particular tool,its means of construction, and the materials and processes thatwent into its making; and ➃ the toolmaker gains a unique awarenessof the tool’s idiosyncrasies, which enhances their use of it.
+       - ➀ toolmaking is a good
+test of skill; ➁ having high quality tools is important because their
+quality impacts everything that is made with them; ➂ toolmaking
+offers an increased understanding of the function of a particular tool,
+its means of construction, and the materials and processes that
+went into its making; and ➃ the toolmaker gains a unique awareness
+of the tool’s idiosyncrasies, which enhances their use of it.
 	 - Mark Fell - structure and Synthesis -
 
 
@@ -1024,6 +1030,6 @@ repeat for other 5 granular synths
 
 - found a distort on the poweramp IC but I overheated it and poulled out the traces. now I cant get it fixed. So I gues that is on the pile??....
 
-- [[file:/Users/ashleysagar/Documents/Academeia/MFA/modules/studioPractice/mfaFinalProject/documentationImages/IMG_3745.jpeg]]
+- [[file:/documentationImages/IMG_3745.jpeg]]
   
   
