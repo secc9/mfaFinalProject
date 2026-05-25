@@ -935,10 +935,20 @@ decisions in your personal and professional life.
 *** I think I need to go through the ixi and make another app in the buffers tutoria;
 
 
+*** make a preamp based on the clean preamp in the Nicolas Collins Book
+- [[file:/documentaionImages/IMG_3733.png]]
+- schematic taken from the Collins book
+- [[file:/documentaionImages/IMG_3696.png]]
+  - breadboard circuit
+- I decided to attempt to make the pre amp a 2 channel version
+- [[file:/documentaionImages/IMG_3797.png]]
+- now to design a case for 3dprint
+
+  
   
 //////////////////////////////////////////////////////////////
 
-** 2026_05_18 - Monday
+*** 2026_05_18 - Monday
 *** continued working on the granular workstation
 *** set up a git repo for the project backup/documentation
 
@@ -995,15 +1005,32 @@ repeat for other 5 granular synths
 
 ** 2026_05_21 - Thursday
 - attempted an enclosure for the preamp
+  - [[file:/documentaionImages/IMG_3732.png]]
+    - initial mockup and measuremnts for pre case
+  - [[file:/documentaionImages/blenderPre01_1.png]]
+  - [[file:/documentationImages/blenderPre02_1.png]]
   - its an 8 hr print. so lets see what happens.
+
+
+
+
+    
     - stil need to make a fitted bottom for it, but my experience tells me to make the enclosure firsr and make the 'lid' after, where I can make more precice mesuremtnsfor what I need.
 - print failed. it seems as though extruding in blender doest go over to cura???
+  - [[file:/documentaionImages/IMG_3738.png]]
+  - [[file:/documentaionImages/IMG_3739.png]]
+  - [[file:/documentaionImages/IMG_3740.png]]   
+
+
 - some more research needed
 
 
 ** 2026_05_22 - Friday
-- made up another 2 'matched pair' contact mic/hydrophone. I'm waiting for the silicne to dry out before I plastic dip them
+- made up another 2 'matched pair' contact mic/hydrophone. I'm waiting for the silicone to dry out before I plastic dip them
 - also made the 1/4" jacks along with the other one.
+
+  - [[file:/documentationImages/IMG_3747.png]]
+  
 - ok. tried to knock up a 2nd version of the preamp case. cant print now as I'll not be home when it ends
 
 - built the first  incarnation of the Granular workstation
@@ -1027,6 +1054,8 @@ repeat for other 5 granular synths
 - redesigned the preamp case. Made it 2mm longer and 2mm deeper as well as the overall thickness is now 2/3mm instead of 5. Should all fit fine. it's a 10 hr print.
 
 - worked a little on the portable cassette player. found the IC that deals with speed. Added a slow down pot.
+
+  - [[file:/documentationImages/IMG_3743.jpeg]]
 
 - found a distort on the poweramp IC but I overheated it and poulled out the traces. now I cant get it fixed. So I gues that is on the pile??....
 
