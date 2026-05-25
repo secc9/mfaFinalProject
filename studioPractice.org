@@ -355,12 +355,12 @@ decisions in your personal and professional life.
 
 
 **** make a preamp based on the clean preamp in the Nicolas Collins Book
-- [[file:/documentaionImages/IMG_3733.png]]
+- [[file:/documentationImages/IMG_3733.png]]
 - schematic taken from the Collins book
-- [[file:/documentaionImages/IMG_3696.png]]
+- [[file:/documentationImages/IMG_3696.png]]
   - breadboard circuit
 - I decided to attempt to make the pre amp a 2 channel version
-- [[file:/documentaionImages/IMG_3797.png]]
+- [[file:/documentationImages/IMG_3797.png]]
 - now to design a case for 3dprint
 
   
@@ -424,9 +424,9 @@ repeat for other 5 granular synths
 
 *** 2026_05_21 - Thursday
 - attempted an enclosure for the preamp
-  - [[file:/documentaionImages/IMG_3732.png]]
+  - [[file:/documentationImages/IMG_3732.png]]
     - initial mockup and measuremnts for pre case
-  - [[file:/documentaionImages/blenderPre01_1.png]]
+  - [[file:/documentationImages/blenderPre01_1.png]]
   - [[file:/documentationImages/blenderPre02_1.png]]
   - its an 8 hr print. so lets see what happens.
 
@@ -436,9 +436,9 @@ repeat for other 5 granular synths
     
     - stil need to make a fitted bottom for it, but my experience tells me to make the enclosure firsr and make the 'lid' after, where I can make more precice mesuremtnsfor what I need.
 - print failed. it seems as though extruding in blender doest go over to cura???
-  - [[file:/documentaionImages/IMG_3738.png]]
-  - [[file:/documentaionImages/IMG_3739.png]]
-  - [[file:/documentaionImages/IMG_3740.png]]   
+  - [[file:/documentationImages/IMG_3738.png]]
+  - [[file:/documentationImages/IMG_3739.png]]
+  - [[file:/documentationImages/IMG_3740.png]]   
 
 
 - some more research needed
