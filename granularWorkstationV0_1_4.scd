@@ -11,7 +11,7 @@
 /*
 
 
-******* V_0_1_3
+******* V_0_1_4
 // quite a lot of this code is heavily adapted from Bruno Ruviaro's Granular synthesis GUI demo
 // from the SCCode website
 // https://sccode.org/1-4UF
@@ -22,39 +22,41 @@ What do I want to do???
 
 
 
-a new, multiple granular synth/ loop player/ record
+a new, multiple granular synth/ loop player/ record / oscillator
+
+
+DONE
+  - 6 audio slots. - done
+  - make 1 granular synth first, then add in the 5 - This now (20/05/26) - DONE - 22/05/26
+
+ - master view window
+ - add in a level - Done
+
+  - add in the volume sliders for each loop player - Done - 22/05/26
+  - do I want Auxillary sends???? here????? - done 26 may -- reverb and delay
 
  * TODO
-6 audio slots. - done
-  -// make 1 granular synth first, then add in the 5 - This now (20/05/26) - DONE - 22/05/26
+
+
   - add a level meter on the Subwindows
-  - I have space at the bottom of each player control subwindow. maybe some effect dials>>>>?????
 
-
-
-
+   - move  send level meters to indevidual window views
 - add a type button >> switches the type of file player
      - TGrains - GrainBuf - Warp1 - PlayBuf - RecBuf
 
-- master view window
-
   - maybe add in a scope
-  - add in a level - Done
-  - add in the volume sliders for each loop player - Done - 22/05/26
-  - do I want Auxillary sends???? here?????
-  - OK. Sends - I need to figure out how sends work. it's been a long time
-    - Reverb
-    - Delay
-      - TODO
-        - Build synthdef for reverb
-        - Build Delay
 
+  - I have space at the bottom of each player control subwindow. maybe some effect dials>>>>????
+    -  with tools to effect each slot
+      -- distort
+      -- fold
 
-  -  with tools to effect each slot
   -  a master effect
   -  bus effects etc
   - multiple channels out????????????? this would be nice
-record to disk function
+  - record to disk function
+  - add filename to file view - see Ruviaro's code for GUI Demo 2
+
 
 */
 
@@ -2283,42 +2285,14 @@ s.waitForBoot({
 
 	//--------------- Bus effects guis
 
-
-	verbAmpSlider = Slider(
-		parent: masterWin,
-		bounds: Rect(260,55, 30, 210),
-
-	)
-	.action_({|sl|
-		reverb.set(\amp, sl.value.linlin(0, 1, 0, 1))
-
-	})
-	.value_(0.6);
-	StaticText(masterWin, Rect(262, 270, 30, 20))
-	.string_("verb");
-
-	delayAmpSlider = Slider(
-		parent: masterWin,
-		bounds: Rect(300,55, 30, 210),
-	)
-	.action_({|sl|
-		delay.set(\amp, sl.value.linlin(0, 1, 0, 1))
-	})
-	.value_(0.6);
-	StaticText(masterWin, Rect(297, 270, 35, 20))
-	.string_("delay");
-
-
-
-
 	// reverb gui view
-	verbView = CompositeView(masterWin, Rect(10, 350, 120, 300))
+	verbView = CompositeView(masterWin, Rect(10, 350, 170, 300))
 	.background=Color.grey(0.9,0.4);
 
 
 
 	// delay gui view
-	delayView = CompositeView(masterWin, Rect(150, 350, 120, 300))
+	delayView = CompositeView(masterWin, Rect(190, 350, 170, 300))
 	.background=Color.grey(0.9,0.4);
 
 
@@ -2328,7 +2302,8 @@ s.waitForBoot({
 
 
 
-	StaticText(verbView, Rect(10, 10, 100, 40))
+
+	StaticText(verbView, Rect(10, 10, 150, 40))
 	.string_("Reverb")
 	.background_(Color.blue(0.6, 0.6))
 	.align_(\center)
@@ -2357,9 +2332,24 @@ s.waitForBoot({
 	.align_(\center);
 
 
+	// amp
+	verbAmpSlider = Slider(
+	parent: verbView,
+	bounds: Rect(113,60, 40, 200),
+	)
+	.action_({|sl|
+		reverb.set(\amp, sl.value.linlin(0, 1, 0, 1))
+
+	})
+	.value_(0.6);
+	StaticText(verbView, Rect(116, 260, 30, 20))
+	.string_("amp");
+
+
+
 	// delay gui controls
 
-	StaticText(delayView, Rect(10, 10, 100, 40))
+	StaticText(delayView, Rect(10, 10, 150, 40))
 	.string_("Delay")
 	.background_(Color.blue(0.6, 0.6))
 	.align_(\center)
@@ -2386,6 +2376,17 @@ s.waitForBoot({
 	StaticText(delayView, Rect(66, 260, 35, 30))
 	.string_("room size")
 	.align_(\center);
+
+	delayAmpSlider = Slider(
+		parent: delayView,
+		bounds: Rect(113, 60, 40, 200),
+	)
+	.action_({|sl|
+		delay.set(\amp, sl.value.linlin(0, 1, 0, 1))
+	})
+	.value_(0.6);
+	StaticText(delayView, Rect(116, 260, 35, 20))
+	.string_("delay");
 
 
 

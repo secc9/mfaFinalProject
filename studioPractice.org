@@ -493,6 +493,25 @@ repeat for other 5 granular synths
 
 - file:/documentationImages/IMG_3761.jpeg
 
+- ok. finally got magit set up here in emacs again
+
+- push from here
+
+- reading chapter 00 Lost Futires in Mark Fisher's Ghosts Of My Life
+  - we are currently at a point in time where we are having our past repacaged and sold back to us in this, the late stage capitalism. As a child of the 80's I remember a constant push for the future, the Jetsons, Tomorrows World, How2, The BBC Radiophonic Workshop soundtracks. This was all things pointing us to the future, but now, we are sold our past. As a thing for better days gone.
+
+- granular workstation
+  - erm... Look at that deepseek thing with the busses I tried to do the other day
+  - I wnat to now add in a bus that has a reverb and delay and then I can add in send knobs on each player
+- Done a lot of work on the granular workstation today
+  - added in a effect send of a reverb and delay
+  - added in sends to each player
+  - added overall effect parameters
+- preamp print done.
+  - the battery box is just a little too tight. maybe have another hole to push out the battery in  the next iteratio.
+
+  - the little pcb holder I made snapped straight away. it was too tight a fit and the boxes were too thin.
+  - But it will do for now
 
 
 //------------------------------------------------------------------------------------------
