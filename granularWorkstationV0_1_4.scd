@@ -34,14 +34,15 @@ DONE
 
   - add in the volume sliders for each loop player - Done - 22/05/26
   - do I want Auxillary sends???? here????? - done 26 may -- reverb and delay
+   - move  send level meters to indevidual window views - done
+
 
  * TODO
 
 
-  - add a level meter on the Subwindows
+  - add a level meter on the Subwindows/volume faders
 
-   - move  send level meters to indevidual window views
-- add a type button >> switches the type of file player
+-  add a type button >> switches the type of file player
      - TGrains - GrainBuf - Warp1 - PlayBuf - RecBuf
 
   - maybe add in a scope
@@ -2232,10 +2233,12 @@ s.waitForBoot({
 
 
 		grainSig = grainSig * env;
+		// grainSig = grainSig;
 		Out.ar(out, grainSig);
 
 		wetVerb = grainSig * verbSend;
 		Out.ar(busReverb, wetVerb);
+
 
 		wetDelay = grainSig * delaySend;
 		Out.ar(busDelay, wetDelay);
@@ -2273,7 +2276,7 @@ s.waitForBoot({
 	}).add;
 
 
-	// 0.01.wait; // give it time to load the bus effects before starting them
+	0.01.wait; // give it time to load the bus effects before starting them
 
 	reverb = Synth(\busVerb, [\inBus, busReverb.index, \outBus, 0, \amp, 0.6,\room, 0.5,\damp,0.5], addAction:\addToTail);
 	delay = Synth(\busDelay, [\inBus, busDelay.index, \outBus,0, \amp, 0.6, \delayTime, 0.3], addAction:\addToTail);
@@ -2363,18 +2366,18 @@ s.waitForBoot({
 	.value_(0.5)
 	.orientation_(\vert);
 	StaticText(delayView, Rect(16, 260, 35, 30))
-	.string_("room size")
+	.string_("delay time")
 	.align_(\center);
 
 
 	decayTime = Slider(delayView, Rect(63, 60, 40, 200))
 	.action_({|sl|
-		delay.set(\decayTime, sl.value.linlin(0, 1, 0, 1))
+		delay.set(\decayTime, sl.value.linlin(0, 1, 0, 50))
 	})
 	.value_(0.5)
 	.orientation_(\vert);
 	StaticText(delayView, Rect(66, 260, 35, 30))
-	.string_("room size")
+	.string_("decay time")
 	.align_(\center);
 
 	delayAmpSlider = Slider(
