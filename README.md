@@ -4,9 +4,8 @@
 The Ghosts of my life. 
 
 
-The title is taken from Mark Fisher's book of the same name. 
+Prompted by  Mark Fisher's book of the same name, this project is a sonic and psychogeographical exploration into my own past. 
 
-This project is a sonic exploration into my past. 
 
 In an attempt to come to terms with my past I am sonically documenting the places I was geographically when things started to turn sour. 
 
@@ -19,6 +18,6 @@ I want to sonically and pictorally document the places where I have signifiant m
 
 The computational side of this is a way for me to present, remix and change the sounds of my past to try and make sense of it and to push me out into the future.
 
-To do this I will be making a granular synthesizer/ loop playing  workstation which will act as a tool for me to do this
+To do this I will be making a granular synthesizer/ loop playing  workstation which will be my tool for this purpose
 
 

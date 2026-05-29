@@ -56,6 +56,7 @@ DONE
   -  bus effects etc
   - multiple channels out????????????? this would be nice
   - record to disk function
+     - how to do this>???
   - add filename to file view - see Ruviaro's code for GUI Demo 2
 
 
@@ -115,12 +116,6 @@ s.waitForBoot({
 
 	var masterMeter, scope;
 
-
-
-
-	/*var verbBus = Bus.audio(s, 2);
-	var delayBus = Bus.audio(s, 2);*/
-
 	var reverb, delay, busReverb, busDelay, verbAmpSlider, delayAmpSlider;
 	var verbView, delayView, verbTitle, delayTitle;
 	var verbRoom, verbDamp, delaySend, delayTime, decayTime;
@@ -131,8 +126,12 @@ s.waitForBoot({
 
 
 
+		var recButton, recStatusText, recSynth, recFile, recBus;
+
+
 	busReverb = Bus.audio(s, 2);
 	busDelay = Bus.audio(s, 2);
+
 
 
 	// this block taken from from Bruno Ruviaro Granular synth
@@ -2246,6 +2245,19 @@ s.waitForBoot({
 	}).add;
 
 
+	//--------------------------------------------------
+
+//--------------------------------------------------
+
+	// record syynth
+
+	SynthDef(\masterRecordToDisk, {
+		arg outBus=0, bufnum;
+
+		var sig = In.ar(outBus, 2);
+		DiskOut.ar(bufnum, sig)
+	}).add;
+
 		//-------------------------------------------------------------------------------
 
 
@@ -2394,12 +2406,68 @@ s.waitForBoot({
 
 
 
+	// from Deepseek
+// ---------- WORKING RECORD BUTTON ----------
+recButton = Button(masterWin, Rect(380, 930, 50, 50))
+    .states_([["REC", Color.black, Color.red], ["STOP", Color.black, Color.grey]])
+    .action_({ |btn|
+        if(btn.value == 1) {
+            Dialog.savePanel({ |path|
+                if(path.extension != "wav") { path = path ++ ".wav" };
+                recFile = SoundFile.new;
+                recFile.numChannels = 2;
+                recFile.sampleFormat = "float";
+                recFile.path = path;
+                recFile.openWrite;
+                recBus = Buffer.alloc(s, s.sampleRate * 0.1, 2);
+                recSynth = Synth(\masterRecordToDisk,
+                    [\outBus, 0, \bufnum, recBus.bufnum],
+                    addAction: \addToTail
+                );
+                recStatusText.string = "Recording: " ++ path.basename;
+                recStatusText.background = Color.red(0.7);
+            });
+        } {
+            if(recSynth.notNil) {
+                recSynth.free;
+                SystemClock.sched(0.1, {
+                    if(recFile.notNil) { recFile.close; recFile = nil };
+                    if(recBus.notNil) { recBus.free; recBus = nil };
+                    {
+                        recStatusText.string = "Ready";
+                        recStatusText.background = Color.green(0.7);
+                    }.defer;
+                    nil;
+                });
+            } {
+                if(recFile.notNil) { recFile.close; recFile = nil };
+                if(recBus.notNil) { recBus.free; recBus = nil };
+                recStatusText.string = "Ready";
+                recStatusText.background = Color.green(0.7);
+            };
+        }
+    });
 
+recStatusText = StaticText(masterWin, Rect(280, 900, 150, 30))
+    .string_("Ready")
+    .background_(Color.green(0.7))
+    .align_(\center);
+
+// Cleanup when window closes
+win.onClose = {
+    masterMeter.remove;
+    masterMeter = nil;
+    if(recSynth.notNil) { recSynth.free };
+    if(recBus.notNil) { recBus.free };
+    if(recFile.notNil) { recFile.close };
+    "Thanks for your time. Goodbye".postln;
+    SystemClock.sched(0.1, { s.freeAll; nil });
+};
 
 
 	//  masterserver meter
 
-	masterMeter = ServerMeterView(s, masterWin,0@770, 6, 2);
+	masterMeter = ServerMeterView(s, masterWin,0@770, 6, 6);
 
 	// scope - for another time
 
