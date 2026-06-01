@@ -35,6 +35,7 @@ DONE
   - add in the volume sliders for each loop player - Done - 22/05/26
   - do I want Auxillary sends???? here????? - done 26 may -- reverb and delay
    - move  send level meters to indevidual window views - done
+ - record to disk function - done
 
 
  * TODO
@@ -55,8 +56,8 @@ DONE
   -  a master effect
   -  bus effects etc
   - multiple channels out????????????? this would be nice
-  - record to disk function
-     - how to do this>???
+  - add in a recording clock
+
   - add filename to file view - see Ruviaro's code for GUI Demo 2
 
 
@@ -190,13 +191,7 @@ s.waitForBoot({
 	).front;
 	"Hi. Welcome to the Meanwood Audio Granular Workstation".postln;
 	win.background=Color.green(0.2);
-	win.onClose = {
-		masterMeter.remove; // kills server meter
-		masterMeter = nil;
-		"Thanks for your time. Goodbye".postln;
 
-		SystemClock.sched(0.1, { s.freeAll; nil});
-	};
 
 
 
@@ -355,16 +350,16 @@ s.waitForBoot({
 		bounds: Rect(rangerXpos, 30, rangerWidth, 20),
 		label: "rate",
 		controlSpec: ControlSpec(
-			minval: -2,
-			maxval: 12,
+			minval: -24,
+			maxval: 24,
 			warp: 'lin',
 			step: 0.1,
 			units: "ST"
 		),
 		action: {|sl|
 			if(startButtonA.value ==1, {synthAStart.set(
-				\rateLo, sl.lo,
-				\rateHi, sl.hi)})
+				\rateLo, transpToRate.value(sl.lo),
+				\rateHi, transpToRate.value(sl.hi))})
 		},
 		initVal: [0.3,1.5],
 		labelWidth: 50,
@@ -643,16 +638,16 @@ s.waitForBoot({
 		bounds: Rect(rangerXpos, 30, rangerWidth, 20),
 		label: "rate",
 		controlSpec: ControlSpec(
-			minval: -2,
-			maxval: 12,
+			minval: -24,
+			maxval: 24,
 			warp: 'lin',
 			step: 0.1,
 			units: "ST"
 		),
 		action: {|sl|
 			if(startButtonB.value ==1, {synthBStart.set(
-				\rateLo, sl.lo,
-				\rateHi, sl.hi)})
+				\rateLo, transpToRate.value(sl.lo),
+				\rateHi, transpToRate.value(sl.hi))})
 		},
 		initVal: [0.3,1.5],
 		labelWidth: 50,
@@ -931,16 +926,16 @@ s.waitForBoot({
 		bounds: Rect(rangerXpos, 30, rangerWidth, 20),
 		label: "rate",
 		controlSpec: ControlSpec(
-			minval: -2,
-			maxval: 12,
+			minval: -24,
+			maxval: 24,
 			warp: 'lin',
 			step: 0.1,
 			units: "ST"
 		),
 		action: {|sl|
 			if(startButtonC.value ==1, {synthCStart.set(
-				\rateLo, sl.lo,
-				\rateHi, sl.hi)})
+				\rateLo, transpToRate.value(sl.lo),
+				\rateHi, transpToRate.value(sl.hi))})
 		},
 		initVal: [0.3,1.5],
 		labelWidth: 50,
@@ -1220,16 +1215,16 @@ s.waitForBoot({
 		bounds: Rect(rangerXpos, 30, rangerWidth, 20),
 		label: "rate",
 		controlSpec: ControlSpec(
-			minval: -2,
-			maxval: 12,
+			minval: -24,
+			maxval: 24,
 			warp: 'lin',
 			step: 0.1,
 			units: "ST"
 		),
 		action: {|sl|
 			if(startButtonD.value ==1, {synthDStart.set(
-				\rateLo, sl.lo,
-				\rateHi, sl.hi)})
+				\rateLo, transpToRate.value(sl.lo),
+				\rateHi, transpToRate.value(sl.hi))})
 		},
 		initVal: [0.3,1.5],
 		labelWidth: 50,
@@ -1507,16 +1502,16 @@ s.waitForBoot({
 		bounds: Rect(rangerXpos, 30, rangerWidth, 20),
 		label: "rate",
 		controlSpec: ControlSpec(
-			minval: -2,
-			maxval: 12,
+			minval: -24,
+			maxval: 24,
 			warp: 'lin',
 			step: 0.1,
 			units: "ST"
 		),
 		action: {|sl|
 			if(startButtonE.value ==1, {synthEStart.set(
-				\rateLo, sl.lo,
-				\rateHi, sl.hi)})
+				\rateLo, transpToRate.value(sl.lo),
+				\rateHi, transpToRate.value(sl.hi))})
 		},
 		initVal: [0.3,1.5],
 		labelWidth: 50,
@@ -1795,16 +1790,16 @@ s.waitForBoot({
 		bounds: Rect(rangerXpos, 30, rangerWidth, 20),
 		label: "rate",
 		controlSpec: ControlSpec(
-			minval: -2,
-			maxval: 12,
+			minval: -24,
+			maxval: 24,
 			warp: 'lin',
 			step: 0.1,
 			units: "ST"
 		),
 		action: {|sl|
 			if(startButtonF.value ==1, {synthFStart.set(
-				\rateLo, sl.lo,
-				\rateHi, sl.hi)})
+				\rateLo, transpToRate.value(sl.lo),
+				\rateHi, transpToRate.value(sl.hi))})
 		},
 		initVal: [0.3,1.5],
 		labelWidth: 50,
@@ -1998,7 +1993,7 @@ s.waitForBoot({
 		pan = Dwhite(panLo, panHi);
 		amp = Dwhite(ampLo, ampHi);
 
-		// Demand.kr(trig, 0, [rate, centerPos, dur, pan, amp]);
+		Demand.kr(trig, 0, [rate, centerPos, dur, pan, amp]);
 
 		grainSig = TGrains.ar(
 			numChannels: 2,
@@ -2042,7 +2037,7 @@ s.waitForBoot({
 		pan = Dwhite(panLo, panHi);
 		amp = Dwhite(ampLo, ampHi);
 
-		// Demand.kr(trig, 0, [rate, centerPos, dur, pan, amp]);
+		Demand.kr(trig, 0, [rate, centerPos, dur, pan, amp]);
 
 		grainSig = TGrains.ar(
 			numChannels: 2,
@@ -2085,7 +2080,7 @@ s.waitForBoot({
 		pan = Dwhite(panLo, panHi);
 		amp = Dwhite(ampLo, ampHi);
 
-		// Demand.kr(trig, 0, [rate, centerPos, dur, pan, amp]);
+		Demand.kr(trig, 0, [rate, centerPos, dur, pan, amp]);
 
 		grainSig = TGrains.ar(
 			numChannels: 2,
@@ -2129,7 +2124,7 @@ s.waitForBoot({
 		pan = Dwhite(panLo, panHi);
 		amp = Dwhite(ampLo, ampHi);
 
-		// Demand.kr(trig, 0, [rate, centerPos, dur, pan, amp]);
+		Demand.kr(trig, 0, [rate, centerPos, dur, pan, amp]);
 
 		grainSig = TGrains.ar(
 			numChannels: 2,
@@ -2173,7 +2168,7 @@ s.waitForBoot({
 		pan = Dwhite(panLo, panHi);
 		amp = Dwhite(ampLo, ampHi);
 
-		// Demand.kr(trig, 0, [rate, centerPos, dur, pan, amp]);
+		Demand.kr(trig, 0, [rate, centerPos, dur, pan, amp]);
 
 		grainSig = TGrains.ar(
 			numChannels: 2,
@@ -2216,7 +2211,7 @@ s.waitForBoot({
 		pan = Dwhite(panLo, panHi);
 		amp = Dwhite(ampLo, ampHi);
 
-		// Demand.kr(trig, 0, [rate, centerPos, dur, pan, amp]);
+		Demand.kr(trig, 0, [rate, centerPos, dur, pan, amp]);
 
 		grainSig = TGrains.ar(
 			numChannels: 2,
@@ -2249,14 +2244,14 @@ s.waitForBoot({
 
 //--------------------------------------------------
 
-	// record syynth
+	/*// record syynth
 
 	SynthDef(\masterRecordToDisk, {
 		arg outBus=0, bufnum;
 
 		var sig = In.ar(outBus, 2);
 		DiskOut.ar(bufnum, sig)
-	}).add;
+	}).add;*/
 
 		//-------------------------------------------------------------------------------
 
@@ -2407,46 +2402,30 @@ s.waitForBoot({
 
 
 	// from Deepseek
+	// consider ommitting all of this.
 // ---------- WORKING RECORD BUTTON ----------
-recButton = Button(masterWin, Rect(380, 930, 50, 50))
-    .states_([["REC", Color.black, Color.red], ["STOP", Color.black, Color.grey]])
-    .action_({ |btn|
-        if(btn.value == 1) {
-            Dialog.savePanel({ |path|
-                if(path.extension != "wav") { path = path ++ ".wav" };
-                recFile = SoundFile.new;
-                recFile.numChannels = 2;
-                recFile.sampleFormat = "float";
-                recFile.path = path;
-                recFile.openWrite;
-                recBus = Buffer.alloc(s, s.sampleRate * 0.1, 2);
-                recSynth = Synth(\masterRecordToDisk,
-                    [\outBus, 0, \bufnum, recBus.bufnum],
-                    addAction: \addToTail
-                );
-                recStatusText.string = "Recording: " ++ path.basename;
-                recStatusText.background = Color.red(0.7);
-            });
-        } {
-            if(recSynth.notNil) {
-                recSynth.free;
-                SystemClock.sched(0.1, {
-                    if(recFile.notNil) { recFile.close; recFile = nil };
-                    if(recBus.notNil) { recBus.free; recBus = nil };
-                    {
-                        recStatusText.string = "Ready";
-                        recStatusText.background = Color.green(0.7);
-                    }.defer;
-                    nil;
-                });
-            } {
-                if(recFile.notNil) { recFile.close; recFile = nil };
-                if(recBus.notNil) { recBus.free; recBus = nil };
-                recStatusText.string = "Ready";
-                recStatusText.background = Color.green(0.7);
-            };
-        }
-    });
+
+	recButton = Button(masterWin, Rect(380, 930, 50, 50))
+	.states_([["REC", Color.black, Color.red],["STOP", Color.black, Color.grey]])
+	.action_({|btn|
+		if(btn.value==1){
+			Dialog.savePanel({|path|
+				if(path.extension !="wav"){path = path ++ ".wav"};
+
+				s.recorder.recHeaderFormat = "wav";
+				s.recorder.recSampleFormat = "float";
+
+				s.record(path:path, numChannels:2, bus: 0);
+
+				recStatusText.string = "Recording: " ++ path.basename;
+				recStatusText.background = Color.red(0.7);
+			})
+		} {
+			s.stopRecording;
+			recStatusText.string = "Ready";
+			recStatusText.background = Color.green(0.7);
+		}
+	});
 
 recStatusText = StaticText(masterWin, Rect(280, 900, 150, 30))
     .string_("Ready")
@@ -2454,15 +2433,7 @@ recStatusText = StaticText(masterWin, Rect(280, 900, 150, 30))
     .align_(\center);
 
 // Cleanup when window closes
-win.onClose = {
-    masterMeter.remove;
-    masterMeter = nil;
-    if(recSynth.notNil) { recSynth.free };
-    if(recBus.notNil) { recBus.free };
-    if(recFile.notNil) { recFile.close };
-    "Thanks for your time. Goodbye".postln;
-    SystemClock.sched(0.1, { s.freeAll; nil });
-};
+
 
 
 	//  masterserver meter
@@ -2488,7 +2459,16 @@ win.onClose = {
 	);
 	*/
 
+win.onClose = {
+		masterMeter.remove; // kills server meter
+		masterMeter = nil;
+		if(recSynth.notNil) { recSynth.free };
+		if(recBus.notNil) { recBus.free };
+		if(recFile.notNil) { recFile.close; recFile = nil };
+		"Thanks for your time. Goodbye".postln;
 
+		SystemClock.sched(0.1, { s.freeAll; nil});
+	};
 
 })
 
