@@ -4,12 +4,11 @@
 The Ghosts of my life. 
 
 
-Prompted by  Mark Fisher's book of the same name, this project is a sonic and psychogeographical exploration into my own past. 
+Prompted by Mark Fisher's book of the same name, this project is a sonic and psychogeographical exploration into my past. 
 
+In an attempt to come to terms with my nostalgia for a past I think I lost, I am sonically documenting the places I was geographically when things started to turn sour. 
 
-In an attempt to come to terms with my past I am sonically documenting the places I was geographically when things started to turn sour. 
-
-I'm wanting to travel back into my past to hopefully find a point in my past where it started to go wron, where I started to slip through the cracks. 
+I'm wanting to travel back into my past to hopefully find a point in my past where it started to go wrong, where I started to slip through the cracks. 
 
 I need to travel far enough back.
 
