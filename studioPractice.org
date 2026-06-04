@@ -194,10 +194,10 @@ decisions in your personal and professional life.
 - took images
 - 
 *** A trip to guildford???
-
+- maybe at the same time as london
 *** A trip back to London - this can coincide with the wip2
 
-*** WAITING look at fixing the portable cassette player
+*** DONE look at fixing the portable cassette player
 - things that are wrong
   - [ ] fix the jack output
     - its only working in the right channe,l unless its half out
@@ -233,7 +233,9 @@ decisions in your personal and professional life.
 - but small enough to carry around in a second carry bag
 - Blender
 
-*** TODO edit up the audio recodings from York
+
+
+*** DONE edit up the audio recodings from York
 
 
 
@@ -547,19 +549,53 @@ repeat for other 5 granular synths
 
 
 
-** 
+*** 2026_06_04 - Thursday
+- made a lot of movement on the maars workstation.
+  - now working on v2. adding in new synths
+- hooked up the cassette recorder
+- looked for my old minidisc recorder - cant find it. possibly binned it :/
+- [ ] make some quick recordings, with the audio I have, before going oout
+- [X] get the latest stuff off the tascam
+- 
 
-;;-------------------------------------------------------------------------
 
-;;-------------------------------------------------------------------------
 
-;;-------------------------------------------------------------------------
 
-;;-------------------------------------------------------------------------
 
-;;-------------------------------------------------------------------------
 
-;;-------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* ;;-------------------------------------------------------------------------
+
+* ;;-------------------------------------------------------------------------
+
+* ;;-------------------------------------------------------------------------
+
+* ;;-------------------------------------------------------------------------
+
+* ;;-------------------------------------------------------------------------
+
+* ;;-------------------------------------------------------------------------
+
 
 
 
@@ -578,6 +614,21 @@ repeat for other 5 granular synths
 
 
 *** 
+
+
+
+
+
+
+
+
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 
 * All text below this point is from semester 1
 * [[id:7258CAC0-3FA4-4589-B611-6F54D214A632][MFACompArts]]
