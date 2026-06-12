@@ -559,6 +559,84 @@ repeat for other 5 granular synths
 - 
 
 
+*** 2026_06_05 - Friday
+- [ ] get yesterdays recordins from tascam
+- [ ] clean up and name
+- [ ] meeting about website for wip2
+- [ ] do some recodings
+- [ ] 
+
+
+
+
+*** 2026_06_10 - Wednesday
+- [ ] write up a thing for Quiang
+  - I am trying to take a look at my personal history
+    with a sense of braking free from my own personal sense
+    of nostalgia from a part of my familial life of a huge moment of instant trauma.
+    For almost 40 years I have continuously looked back to that part of my life and continuosly asked the question
+    "What if?"
+    This work in progress examins the 'current snapshot' of my life. By taking a pyschogeographical exploration
+    into my past I am hoping to shake free a moment of significant personal trauma, which has consistanly been
+    filtered and supressed through the disease of addiction, alchololism and capitalism. 
+
+
+-  Prompted by Mark Fisher's book with the same title,  I am trying to take a look at my personal history with a sense of breaking free from my own nostalgia regarding a part of my familial life that was a huge moment of instant trauma.
+ For almost 40 years, I have looked back on that part of my life and asked the question, "What if?"
+This work in progress examines the 'current snapshot' of my life. By taking a psychogeographical exploration into my past, I am hoping to shake free a moment of significant personal trauma, which has consistently been filtered and suppressed through the disease of addiction, alcoholism, and capitalism.
+
+
+- Prompted by Mark Fisher's book with the same title, In this work in progress, I am exploring my personal history in an effort to break free from the nostalgia associated with a significant moment of trauma in my family life. For nearly 40 years, I have reflected on that part of my life, constantly asking myself, "What if?"
+
+This project focuses on the current snapshot of my life. By undertaking a psychogeographical exploration of my past, I hope to liberate myself from a moment of profound personal trauma that has been distorted and suppressed by struggles with addiction, alcoholism, and the pressures of capitalism.
+
+
+- This
+  - This work in progress is prompted by Mark Fisher's book of the same title and delves into my personal history as I seek to break free from the nostalgia linked to a significant traumatic moment in my early family life. For nearly 40 years, I have reflected on this part of my life, constantly asking myself, "What if?"
+
+The focus of this work in progress is to provide a current snapshot of my life. Through a psychogeographical exploration of my near and distant past, I aim to liberate myself from a moment of deep personal trauma that has been distorted and suppressed by struggles with addiction, depression, and the pressures of capitalism. The project seeks to raise questions about nostalgia, lost futures, and hauntology..
+- 
+    
+
+
+
+
+
+
+
+- [X] write up the sticker
+- [X] print it out
+- [ ] something at 3pm - H/S maybe??
+  
+- [ ] 
+- 
+
+
+
+
+
+** Website
+- hi fi wireframe
+- index
+- about
+- individual project pages [11]
+- CSS
+- asap
+- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
