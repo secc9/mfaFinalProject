@@ -588,7 +588,7 @@ This work in progress examines the 'current snapshot' of my life. By taking a ps
 
 - Prompted by Mark Fisher's book with the same title, In this work in progress, I am exploring my personal history in an effort to break free from the nostalgia associated with a significant moment of trauma in my family life. For nearly 40 years, I have reflected on that part of my life, constantly asking myself, "What if?"
 
-This project focuses on the current snapshot of my life. By undertaking a psychogeographical exploration of my past, I hope to liberate myself from a moment of profound personal trauma that has been distorted and suppressed by struggles with addiction, alcoholism, and the pressures of capitalism.
+026_This project focuses on the current snapshot of my life. By undertaking a psychogeographical exploration of my past, I hope to liberate myself from a moment of profound personal trauma that has been distorted and suppressed by struggles with addiction, alcoholism, and the pressures of capitalism.
 
 
 - This
@@ -612,6 +612,22 @@ The focus of this work in progress is to provide a current snapshot of my life. 
 - 
 
 
+*** 2026_06_12 - Friday
+- Heading home.
+- been in London for the week.
+- tired. Annoyed. Didn't want to be there.
+-
+
+
+*** 2026_06_15
+- time to continue on the mworkstatin
+- continued work on the Image synth
+- added in a rgb mode and a single sine mode
+- added in a top middle bottom row.
+- fixed a bunch of logic flaws with the loading of the image file
+- this is now ready to move on.
+- I thhkn some sybth parameter controls where the file view should be. Tomorrow
+- PUSH
 
 
 
