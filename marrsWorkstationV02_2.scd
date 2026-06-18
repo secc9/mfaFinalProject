@@ -47,6 +47,17 @@ DONE
       - RecBuf - Image reader - oscillators -
 
 
+  - add in a post window???? - done
+
+- 2026-06-18
+  - added in a switchable distort anf filter type in the image synths
+  - added in a detune to Image Synths
+
+
+
+
+
+
  * TODO
 
 
@@ -55,7 +66,6 @@ DONE
 
 
   - maybe add in a scope
-  - add in a post window????
 
   - I have space at the bottom of each player control subwindow. maybe some effect dials>>>>????
     -  with tools to effect each slot
@@ -121,10 +131,11 @@ s.waitForBoot({
 	var warpScaleSizeA, warpWindowRandA, warpOverlapsA, warpPanA, warpAmpA;
 
 	// Image variables
-	var imageViewA, imageControlViewA, imageA, imageBrightnessDataA, imageScanRoutineA, imageReadyToLoadA;
+	var imageViewA, imageControlViewA, imageSynthViewA, imageA, imageBrightnessDataA, imageScanRoutineA, imageReadyToLoadA;
 	var imageScanSpeedA, imageScanRowA = 0.5;
 	var imageR_DataA, imageG_DataA, imageB_DataA;
 	var imageSynthModeA;
+	var sinAmpA, cutoffAmountA, qAmountA, tuneAmountA, imageFiltVolA, imageDistortMenuA, imageFilterMenuA;
 
 
 
@@ -308,6 +319,7 @@ s.waitForBoot({
 				soundFileViewA.visible_(true);
 				centerPosSliderA.visible_(true); // show the loop slider
 				posSilderViewA.visible_(true);
+				imageSynthViewA.visible_(false);
 
 
 			},
@@ -319,6 +331,7 @@ s.waitForBoot({
 				soundFileViewA.visible_(true);
 				centerPosSliderA.visible_(false); // disable the loop slider
 				posSilderViewA.visible_(false);
+				imageSynthViewA.visible_(false);
 
 
 			},
@@ -330,6 +343,7 @@ s.waitForBoot({
 				soundFileViewA.visible_(true);
 				centerPosSliderA.visible_(false); // disable the loop slider
 				posSilderViewA.visible_(false);
+				imageSynthViewA.visible_(false);
 
 			},
 			3,{ // Image player view
@@ -340,6 +354,7 @@ s.waitForBoot({
 				soundFileViewA.visible_(false);
 				centerPosSliderA.visible_(false); // disable the loop slider
 				posSilderViewA.visible_(false);
+				imageSynthViewA.visible_(true);
 
 
 
@@ -366,6 +381,13 @@ s.waitForBoot({
 		hiSlider = selectionSpecA.unmap(hiFrames);
 		2.do{centerPosSliderA.setSpanActive(loSlider, hiSlider)}; // 2.do = hack...
 	};
+
+
+
+	// image synth controls
+	imageSynthViewA = CompositeView(win, Rect(10, 10, sfViewWidth, sfViewHeight+45))
+	.background_(Color.green(0.9, 0.5));
+	imageSynthViewA.visible_(false);
 
 
 	//----------------------------------------------------------------
@@ -712,7 +734,7 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 
 
 	//--------------------------------------------------------------
-	// image scan controls
+	// image scan A controls
 
 	imageScanSpeedA = Slider(imageControlViewA, Rect(rangerXpos+60, 10, rangerWidth-70, 20))
 	.value_(0.5);
@@ -752,6 +774,103 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 	.string_("mode - choose before opening file")
 	.background_(Color.grey(0.6, 0.6))
 	.align_(\center);
+
+
+	// image synth A Controls
+
+	tuneAmountA = Knob(imageSynthViewA, Rect(10, 10, 100, 100))
+	.action_({|kn|
+		if(synthAStart.notNil){
+			synthAStart.set(\tune, kn.value.linlin(0, 1, -1000,1000))
+		}
+	})
+	.value_(0.5);
+
+	StaticText(imageSynthViewA, Rect(25, 115, 70, 20))
+	.string_("tune")
+	.background_(Color.green(0.9,0.9))
+	.align_(\center)
+	.font_("Monaco", 50);
+
+
+
+	sinAmpA = Knob(imageSynthViewA, Rect(120, 10, 100, 100))
+	.action_({|kb|
+		if(synthAStart.notNil){
+			synthAStart.set(\sinAmp, kb.value.linlin(0,1,0,5))
+		}
+	})
+	.value_(0.1);
+
+		StaticText(imageSynthViewA, Rect(135, 115, 70, 20))
+	.string_("amp>fold")
+	.background_(Color.green(0.9,0.9))
+	.align_(\center)
+	.font_("Monaco", 50);
+
+	cutoffAmountA = Knob(imageSynthViewA, Rect(230, 10, 100, 100))
+	.action_({|kb|
+		if(synthAStart.notNil){
+			synthAStart.set(\cut, kb.value.linlin(0, 1, 0, 5000))
+		}
+	})
+	.value_(1);
+
+		StaticText(imageSynthViewA, Rect(245, 115, 70, 20))
+	.string_("cutoff")
+	.background_(Color.green(0.9,0.9))
+	.align_(\center)
+	.font_("Monaco", 50);
+
+	qAmountA = Knob(imageSynthViewA, Rect(340, 10, 100, 100))
+	.action_({|kn|
+		if(synthAStart.notNil){
+			synthAStart.set(\q, kn.value.linlin(0, 1, 1, 0))
+		}
+	})
+	.value_(0);
+
+		StaticText(imageSynthViewA, Rect(355, 115, 70, 20))
+	.string_("resonance")
+	.background_(Color.green(0.9,0.9))
+	.align_(\center)
+	.font_("Monaco", 50);
+
+
+	imageFiltVolA =Knob(imageSynthViewA, Rect(450, 10, 100, 100))
+	.action_({|kn|
+		if(synthAStart.notNil){
+			synthAStart.set(\filtVol, kn.value.linlin(0.001,1,0,2))
+		}
+	})
+	.value_(0.5);
+
+	imageDistortMenuA=PopUpMenu(imageSynthViewA, Rect(600, 10, 70, 30))
+	.items_(["Clean","Clip", "Fold", "Wrap"])
+	.action_({|menu|
+		if(synthAStart.notNil){
+			synthAStart.set(\distortType, menu.value)
+		}
+	});
+
+	StaticText(imageSynthViewA, Rect(570, 45, 120, 20))
+	.string_("distortion type")
+	.background_(Color.green(0.9,0.9))
+	.align_(\center)
+	.font_("Monaco", 30);
+
+	imageFilterMenuA = PopUpMenu(imageSynthViewA,Rect(600, 80, 70, 20))
+	.items_(["RLPF", "DFM1", "MoogVCF"])
+	.action_({|menu|
+		if(synthAStart.notNil){
+			synthAStart.set(\filterType, menu.value)
+		}
+	});
+	StaticText(imageSynthViewA, Rect(570, 105, 120, 20))
+	.string_("filter type")
+	.background_(Color.green(0.9,0.9))
+	.align_(\center)
+	.font_("Monaco", 30);
 
 
 
@@ -1086,10 +1205,22 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 	// image Synth A
 
 	SynthDef(\imageSineA, {
-		arg out=0, freq = 440, imageAmp=0.3, imagePan=0.0, gate=1, verbSend=0,delaySend=0;
+		arg out=0, freq = 440, tune=0,sinAmp=0.3, cut=5000,q=1, filtVol=1,imageAmp=0.3, distortType=0, filterType=0, imagePan=0.0, gate=1, verbSend=0,delaySend=0;
 		var sig, env, wetVerb, wetDelay;
 		env = EnvGen.kr(Env.asr(1,1,1),gate, doneAction: 2);
-		sig = SinOsc.ar(freq,0,  0.1);
+		sig = SinOsc.ar(freq+tune,0,  sinAmp);
+		sig = Select.ar(distortType,[
+			sig,
+			Clip.ar(sig, 0, 1),
+			Fold.ar(sig,0,1),
+			Wrap.ar(sig, 0, 1)
+		]);
+		sig = Select.ar(filterType,[
+			RLPF.ar(sig, cut, q,filtVol),
+			DFM1.ar(sig, cut, q, filtVol),
+			MoogVCF.ar(sig, cut, q, filtVol)
+
+		]);
 		sig = Pan2.ar(sig, imagePan, imageAmp )*env;
 		Out.ar(out, sig);
 		wetVerb = sig * verbSend;
@@ -1101,14 +1232,25 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 
 
 	// image RGB Sine
+
 	SynthDef(\imageRGBA, {
-		arg out=0, freqR=220, freqG=330, freqB=440, imageAmp=0.3,gate=1,verbSend=0,delaySend=0;
-		var sigR, sigG, sigB, sig, env, wetVerb, wetDelay;
+		arg out=0, freqR=220, freqG=330, freqB=440,tune=0,sinAmp=0.3, distortType=0,filterType=0, filtVol=1,cut=5000,q=1, imageAmp=0.3,gate=1,verbSend=0,delaySend=0;
+		var  sig, env, wetVerb, wetDelay;
 		env = EnvGen.kr(Env.asr(1,1,1),gate,doneAction:2);
-		sigR = Pan2.ar(SinOsc.ar(freqR), -0.8);
-		sigG = Pan2.ar(SinOsc.ar(freqG), 0.0);
-		sigB = Pan2.ar(SinOsc.ar(freqB), 0.8);
-		sig = (sigR + sigG + sigB) *(1/3) * imageAmp * env;
+		sig = Pan2.ar(SinOsc.ar([freqR,freqG,freqB]+tune, 0, sinAmp), [-0.8, 0.0, 0.8]);
+		sig = Select.ar(distortType,[
+			Clip.ar(sig, 0, 1),
+			Fold.ar(sig,0,1),
+			Wrap.ar(sig, 0, 1)
+		]);
+
+	sig = Select.ar(filterType,[
+			RLPF.ar(sig, cut, q,filtVol),
+			DFM1.ar(sig, cut, q, filtVol),
+			MoogVCF.ar(sig, cut, q, filtVol)
+
+		]);
+		sig = sig *(1/3) * imageAmp * env;
 		Out.ar(out, sig);
 		wetVerb = sig * verbSend;
 		Out.ar(busReverb, wetVerb);

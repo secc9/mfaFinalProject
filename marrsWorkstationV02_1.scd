@@ -43,16 +43,19 @@ DONE
  - added in PlayBuf and gui
  - Added in Warp and gui
 
+-  added a type button >> switches the type of file player
+      - RecBuf - Image reader - oscillators -
+
 
  * TODO
 
 
   - add a level meter on the Subwindows/volume faders
 
--  add a type button >> switches the type of file player
-      - RecBuf - Image reader - oscillators -
+
 
   - maybe add in a scope
+  - add in a post window????
 
   - I have space at the bottom of each player control subwindow. maybe some effect dials>>>>????
     -  with tools to effect each slot
@@ -142,7 +145,7 @@ s.waitForBoot({
 
 
 
-	var masterMeter, scope;
+	var masterMeter, scope, postWindow, log;
 
 	var reverb, delay, busReverb, busDelay, verbAmpSlider, delayAmpSlider;
 	var verbView, delayView, verbTitle, delayTitle;
@@ -216,7 +219,7 @@ s.waitForBoot({
 	win = Window("MARRS Workstation",
 		Rect(0, 0, Window.screenBounds.width,Window.screenBounds.height);
 	).front;
-	"Hi. Welcome to the Meanwood Audio Workstation".postln;
+	log.("Hi. Welcome to the Meanwood Audio Workstation");
 	win.background=Color.green(0.2);
 
 
@@ -342,7 +345,7 @@ s.waitForBoot({
 
 			}
 		);
-		("Selected: " ++ menu.item).postln;
+		log.("Selected: " ++ menu.item);
 	});
 
 	//------------------- soundFileViewA window----------------------------
@@ -387,14 +390,14 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 	var proceed = true;
 	if(typeMenuA.value == 3, {
 		if(imageReadyToLoadA.not, {
-			"--- Image Mode: pick your row and synth mode first, then click Load again ---".postln;
+				log.("--- Image Mode: pick your row and synth mode first, then click Load again ---");
 			imageReadyToLoadA = true;
 			proceed = false;
 		}, {
 			imageReadyToLoadA = false;
 		});
 	}, {
-		"Opening sound file for Player A".postln;
+			log.("Opening sound file for Player A");
 	});
 	if(proceed, {
 		startButtonA.value = 0;
@@ -418,7 +421,7 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 							imageA.getColor(x, imageScanRowA.linlin(0, 1, 0, imageA.height - 1).asInteger).blue
 						});
 						imageA.free;
-						"Image loaded - % pixels".format(imageBrightnessDataA.size).postln;
+							log.("Image loaded - % pixels".format(imageBrightnessDataA.size));
 					}.defer;
 				}, {
 					// audio mode
@@ -432,7 +435,7 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 					soundFileViewA.mouseUpAction.value(soundFileViewA);
 				});
 			},
-			{"cancelled".postln}
+				{log.("cancelled")};
 		);
 	});
 });
@@ -810,7 +813,7 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 						if(bufferA.isNil,
 							// No file loaded — warn the user and reset the button
 							{
-								"Please load a file first!".postln;
+								log.("Please load a file first!");
 								button.value_(0); // un-press the button visually
 							},{
 								synthAStart = Synth(\tgrainsPlayerA, [
@@ -830,7 +833,7 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 									\verbSend,    verbSendA.value,
 									\delaySend,   delaySendA.value,
 								]);
-								{"TGrains playing".postln};
+								log.({"TGrains playing"});
 							});
 					},
 
@@ -838,7 +841,7 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 					// Menu is on Loop (index 1) — fire PlayBuf
 					1,{
 						if(bufferA.isNil,
-							{ "Please load a file first".postln;
+							{ log.("Please load a file first");
 								button.value_(0);
 							},{
 								synthAStart = Synth(\playBufferA, [
@@ -852,14 +855,14 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 									\verbSend,  verbSendA.value,
 									\delaySend, delaySendA.value,
 								]);
-								{"PlayBuf playing".postln};
+								log.({"PlayBuf playing"});
 							});
 					},
 
 
 					2,{// menu is on warp (index 2)
 						if(bufferA.isNil,
-							{ "Please load a file first".postln;
+							{ log.("Please load a file first");
 								button.value_(0);
 							},{
 
@@ -876,7 +879,7 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 									\delaySend, delaySendA.value
 
 								]);
-								{"Warp buffer Playing".postln};
+								log.({"Warp buffer Playing"});
 							});
 					},
 
@@ -884,7 +887,7 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 					3,{
 						// menu is on image (index 3)
 						if(imageBrightnessDataA.isNil, {
-							"Load an image first".postln;
+							log.("Load an image first");
 							button.value_(0);
 						},{
 							var amp =ampSliderA.lo;
@@ -936,7 +939,7 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 										speed.wait;
 									});
 								});
-								"Scan Complete".postln;
+								log.("Scan Complete");
 							}).play(AppClock);
 
 						});
@@ -952,9 +955,9 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 					if(synthAStart.notNil, {
 						synthAStart.set(\gate, 0);
 						synthAStart = nil;
-						"Player A has stopped".postln;
+						log.("Player A has stopped");
 					}, {
-						"Nothing was playing".postln;
+						log.("Nothing was playing");
 					});
 				}
 		);
@@ -1299,6 +1302,7 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 
 	masterMeter = ServerMeterView(s, masterWin,0@770, 6, 6);
 
+
 	// scope - for another time
 
 	/*scope = ScopeView(masterWin, Rect(240,800, 180, 180));
@@ -1318,13 +1322,30 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 	);
 	*/
 
+	// post window
+	postWindow = TextView(win, Rect(1270, 1010, 440, 40))
+	.background_(Color.grey(0.8, 0.3))
+	.editable_(false)
+	.string_("---MARRS Log---")
+	.stringColor_(Color.black);
+
+	log = {|msg|
+		msg.postln;
+		{
+			postWindow.string_(msg.asString)
+		}.defer
+	};
+
+
+
+
 	win.onClose = {
 		masterMeter.remove; // kills server meter
 		masterMeter = nil;
 		if(recSynth.notNil) { recSynth.free };
 		if(recBus.notNil) { recBus.free };
 		if(recFile.notNil) { recFile.close; recFile = nil };
-		"Thanks for your time. Goodbye".postln;
+		log.("Thanks for your time. Goodbye");
 
 		SystemClock.sched(0.1, { s.freeAll; nil});
 	};
