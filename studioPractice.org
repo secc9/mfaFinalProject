@@ -629,6 +629,30 @@ The focus of this work in progress is to provide a current snapshot of my life. 
 - I thhkn some sybth parameter controls where the file view should be. Tomorrow
 - PUSH
 
+*** 2026_06_16 Tuesday
+- FIELDWORK
+- cycled to Where I first grew up in West Ardsley, a little village between Leeds and Wakefield.
+- [ ] need to get audio from recorder
+- [ ] photos
+- [ ] write some more
+
+
+*** 2026_06_17 - Wednsesday
+- did a little work on the workstation
+  - finished the post window
+
+
+
+*** 2026_06_18 - Thursday
+- made a gui for the image synth controls
+- added in a switchable distort tuype
+- added in a switchable filter type
+- [[file:/documentationImages/distort/filter.png]]
+- [[file:/documentationImages/distort.png]]
+- [[file:/documentationImages/filter.png]]
+  
+  
+
 
 
 ** Website
