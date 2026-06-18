@@ -650,12 +650,6 @@ The focus of this work in progress is to provide a current snapshot of my life. 
 - [[file:/documentationImages/distort/filter.png]]
 - [[file:/documentationImages/distort.png]]
 - [[file:/documentationImages/filter.png]]
-  
-  
-
-
-
-** Website
 - hi fi wireframe
 - index
 - about
@@ -663,6 +657,8 @@ The focus of this work in progress is to provide a current snapshot of my life. 
 - CSS
 - asap
 - 
+
+
 
 
 
