@@ -230,9 +230,24 @@ s.waitForBoot({
 	win = Window("MARRS Workstation",
 		Rect(0, 0, Window.screenBounds.width,Window.screenBounds.height);
 	).front;
-	log.("Hi. Welcome to the Meanwood Audio Workstation");
 	win.background=Color.green(0.2);
 
+
+		// post window
+	postWindow = TextView(win, Rect(1270, 1010, 440, 40))
+	.background_(Color.grey(0.8, 0.3))
+	.editable_(false)
+	.string_("---MARRS Log---")
+	.stringColor_(Color.black);
+
+	log = {|msg|
+		msg.postln;
+		{
+			postWindow.string_(msg.asString)
+		}.defer
+	};
+
+	log.("Hi. Welcome to the Meanwood Audio Workstation");
 
 
 
@@ -844,6 +859,11 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 		}
 	})
 	.value_(0.5);
+	StaticText(imageSynthViewA, Rect(455, 115, 90, 20))
+	.string_("filter vol")
+	.background_(Color.green(0.9,0.9))
+	.align_(\center)
+	.font_("Monaco", 50);
 
 	imageDistortMenuA=PopUpMenu(imageSynthViewA, Rect(600, 10, 70, 30))
 	.items_(["Clean","Clip", "Fold", "Wrap"])
@@ -952,7 +972,7 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 									\verbSend,    verbSendA.value,
 									\delaySend,   delaySendA.value,
 								]);
-								log.({"TGrains playing"});
+								log.("TGrains playing");
 							});
 					},
 
@@ -974,7 +994,7 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 									\verbSend,  verbSendA.value,
 									\delaySend, delaySendA.value,
 								]);
-								log.({"PlayBuf playing"});
+								log.("PlayBuf playing");
 							});
 					},
 
@@ -998,7 +1018,7 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 									\delaySend, delaySendA.value
 
 								]);
-								log.({"Warp buffer Playing"});
+								log.("Warp buffer Playing");
 							});
 					},
 
@@ -1009,10 +1029,17 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 							log.("Load an image first");
 							button.value_(0);
 						},{
-							var amp =ampSliderA.lo;
+							var amp = ampSliderA.lo;
 							var verbSend = verbSendA.value;
 							var delaySend = delaySendA.value;
 							var mode = imageSynthModeA.value;
+							var tune = tuneAmountA.value.linlin(0, 1, -1000,1000);
+							var sinAmp = sinAmpA.value.linlin(0, 1, 0, 5);
+							var cut = cutoffAmountA.value.linlin(0, 1, 0, 5000);
+							var q = qAmountA.value.linlin(0, 1, 1, 0);
+							var filtVol = imageFiltVolA.value.linlin(0.001, 1, 0, 2);
+							var distortType = imageDistortMenuA.value;
+							var filterType = imageFilterMenuA.value;
 
 							imageScanRoutineA = Routine({
 								if(mode == 0,{
@@ -1025,6 +1052,13 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 												synthAStart = Synth(\imageSineA, [
 													\freq, freq,
 													\imageAmp, amp,
+													\tune, tune,
+													\sinAmp, sinAmp,
+													\cut, cut,
+													\q, q,
+													\filtVol, filtVol,
+													\distortType, distortType,
+													\filterType, filterType,
 													\verbSend, verbSend,
 													\delaySend, delaySend,
 												]);
@@ -1048,6 +1082,13 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 													\freqG, freqG,
 													\freqB, freqB,
 													\imageAmp, amp,
+													\tune, tune,
+													\sinAmp, sinAmp,
+													\cut, cut,
+													\q, q,
+													\filtVol, filtVol,
+													\distortType, distortType,
+													\filterType, filterType,
 													\verbSend, verbSend,
 													\delaySend, delaySend,
 												]);
@@ -1209,12 +1250,15 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 		var sig, env, wetVerb, wetDelay;
 		env = EnvGen.kr(Env.asr(1,1,1),gate, doneAction: 2);
 		sig = SinOsc.ar(freq+tune,0,  sinAmp);
+
+		// distort select
 		sig = Select.ar(distortType,[
 			sig,
 			Clip.ar(sig, 0, 1),
 			Fold.ar(sig,0,1),
 			Wrap.ar(sig, 0, 1)
 		]);
+		// filter select
 		sig = Select.ar(filterType,[
 			RLPF.ar(sig, cut, q,filtVol),
 			DFM1.ar(sig, cut, q, filtVol),
@@ -1237,20 +1281,23 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 		arg out=0, freqR=220, freqG=330, freqB=440,tune=0,sinAmp=0.3, distortType=0,filterType=0, filtVol=1,cut=5000,q=1, imageAmp=0.3,gate=1,verbSend=0,delaySend=0;
 		var  sig, env, wetVerb, wetDelay;
 		env = EnvGen.kr(Env.asr(1,1,1),gate,doneAction:2);
-		sig = Pan2.ar(SinOsc.ar([freqR,freqG,freqB]+tune, 0, sinAmp), [-0.8, 0.0, 0.8]);
+		sig = Pan2.ar(Mix.ar(SinOsc.ar([freqR,freqG,freqB]+tune, 0, sinAmp)), [-0.8, 0.0, 0.8]);
+		// distort type
 		sig = Select.ar(distortType,[
+			sig,
 			Clip.ar(sig, 0, 1),
 			Fold.ar(sig,0,1),
 			Wrap.ar(sig, 0, 1)
 		]);
 
+		// filter select
 	sig = Select.ar(filterType,[
 			RLPF.ar(sig, cut, q,filtVol),
 			DFM1.ar(sig, cut, q, filtVol),
 			MoogVCF.ar(sig, cut, q, filtVol)
 
 		]);
-		sig = sig *(1/3) * imageAmp * env;
+		sig = sig.sum *(1/3) * imageAmp * env;
 		Out.ar(out, sig);
 		wetVerb = sig * verbSend;
 		Out.ar(busReverb, wetVerb);
@@ -1464,19 +1511,6 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 	);
 	*/
 
-	// post window
-	postWindow = TextView(win, Rect(1270, 1010, 440, 40))
-	.background_(Color.grey(0.8, 0.3))
-	.editable_(false)
-	.string_("---MARRS Log---")
-	.stringColor_(Color.black);
-
-	log = {|msg|
-		msg.postln;
-		{
-			postWindow.string_(msg.asString)
-		}.defer
-	};
 
 
 
