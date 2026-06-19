@@ -53,6 +53,10 @@ DONE
   - added in a switchable distort anf filter type in the image synths
   - added in a detune to Image Synths
 
+- 2026-07-19
+  - added a pluck synth
+
+
 
 
 
@@ -134,7 +138,7 @@ s.waitForBoot({
 	var imageViewA, imageControlViewA, imageSynthViewA, imageA, imageBrightnessDataA, imageScanRoutineA, imageReadyToLoadA;
 	var imageScanSpeedA, imageScanRowA = 0.5;
 	var imageR_DataA, imageG_DataA, imageB_DataA;
-	var imageSynthModeA;
+	var imageSynthModeA, imageSynthDefsA, imageSynthTrigA;
 	var sinAmpA, cutoffAmountA, qAmountA, tuneAmountA, imageFiltVolA, imageDistortMenuA, imageFilterMenuA;
 
 
@@ -233,7 +237,7 @@ s.waitForBoot({
 	win.background=Color.green(0.2);
 
 
-		// post window
+	// post window
 	postWindow = TextView(win, Rect(1270, 1010, 440, 40))
 	.background_(Color.grey(0.8, 0.3))
 	.editable_(false)
@@ -421,61 +425,61 @@ s.waitForBoot({
 
 
 	imageReadyToLoadA = false;
-openfileA = Button(subwinA, Rect(5, 50, 60, 30))
-.states_([["open file", Color.black, Color.gray]])
-.action_({
-	var proceed = true;
-	if(typeMenuA.value == 3, {
-		if(imageReadyToLoadA.not, {
+	openfileA = Button(subwinA, Rect(5, 50, 60, 30))
+	.states_([["open file", Color.black, Color.gray]])
+	.action_({
+		var proceed = true;
+		if(typeMenuA.value == 3, {
+			if(imageReadyToLoadA.not, {
 				log.("--- Image Mode: pick your row and synth mode first, then click Load again ---");
-			imageReadyToLoadA = true;
-			proceed = false;
+				imageReadyToLoadA = true;
+				proceed = false;
+			}, {
+				imageReadyToLoadA = false;
+			});
 		}, {
-			imageReadyToLoadA = false;
-		});
-	}, {
 			log.("Opening sound file for Player A");
-	});
-	if(proceed, {
-		startButtonA.value = 0;
-		Dialog.openPanel(
-			{|path|
-				if(typeMenuA.value == 3, {
-					// image mode
-					{ // defer for AppClock
-						imageA = Image.open(path);
-						imageBrightnessDataA = Array.fill(imageA.width, {|x|
-							var col = imageA.getColor(x, imageScanRowA.linlin(0, 1, 0, imageA.height - 1).asInteger);
-							(col.red + col.green + col.blue) / 3;
-						});
-						imageR_DataA = Array.fill(imageA.width, {|x|
-							imageA.getColor(x, imageScanRowA.linlin(0, 1, 0, imageA.height - 1).asInteger).red
-						});
-						imageG_DataA = Array.fill(imageA.width, {|x|
-							imageA.getColor(x, imageScanRowA.linlin(0, 1, 0, imageA.height - 1).asInteger).green
-						});
-						imageB_DataA = Array.fill(imageA.width, {|x|
-							imageA.getColor(x, imageScanRowA.linlin(0, 1, 0, imageA.height - 1).asInteger).blue
-						});
-						imageA.free;
+		});
+		if(proceed, {
+			startButtonA.value = 0;
+			Dialog.openPanel(
+				{|path|
+					if(typeMenuA.value == 3, {
+						// image mode
+						{ // defer for AppClock
+							imageA = Image.open(path);
+							imageBrightnessDataA = Array.fill(imageA.width, {|x|
+								var col = imageA.getColor(x, imageScanRowA.linlin(0, 1, 0, imageA.height - 1).asInteger);
+								(col.red + col.green + col.blue) / 3;
+							});
+							imageR_DataA = Array.fill(imageA.width, {|x|
+								imageA.getColor(x, imageScanRowA.linlin(0, 1, 0, imageA.height - 1).asInteger).red
+							});
+							imageG_DataA = Array.fill(imageA.width, {|x|
+								imageA.getColor(x, imageScanRowA.linlin(0, 1, 0, imageA.height - 1).asInteger).green
+							});
+							imageB_DataA = Array.fill(imageA.width, {|x|
+								imageA.getColor(x, imageScanRowA.linlin(0, 1, 0, imageA.height - 1).asInteger).blue
+							});
+							imageA.free;
 							log.("Image loaded - % pixels".format(imageBrightnessDataA.size));
-					}.defer;
-				}, {
-					// audio mode
-					soundFileA = SoundFile.new;
-					soundFileA.openRead(path);
-					bufferA = Buffer.readChannel(s, path, channels: [0]);
-					soundFileViewA.soundfile_(soundFileA);
-					soundFileViewA.read(0, soundFileA.numFrames);
-					selectionSpecA = ControlSpec(0, soundFileA.numFrames);
-					soundFileViewA.setSelection(0, selectionSpecA.map([0.1, 0.2]));
-					soundFileViewA.mouseUpAction.value(soundFileViewA);
-				});
-			},
+						}.defer;
+					}, {
+						// audio mode
+						soundFileA = SoundFile.new;
+						soundFileA.openRead(path);
+						bufferA = Buffer.readChannel(s, path, channels: [0]);
+						soundFileViewA.soundfile_(soundFileA);
+						soundFileViewA.read(0, soundFileA.numFrames);
+						selectionSpecA = ControlSpec(0, soundFileA.numFrames);
+						soundFileViewA.setSelection(0, selectionSpecA.map([0.1, 0.2]));
+						soundFileViewA.mouseUpAction.value(soundFileViewA);
+					});
+				},
 				{log.("cancelled")};
-		);
+			);
+		});
 	});
-});
 
 
 
@@ -777,12 +781,17 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 	.align_(\center);
 
 
+
+	// synth swap
+	imageSynthDefsA = [\imageSineA, \imageRGBA, \ksPluck];
+	imageSynthTrigA = [false,        false,      true];
+
+
+
+
 	// toggle between  single and three tones
-	imageSynthModeA = Button(imageControlViewA, Rect(rangerXpos+270, 60, 100, 20))
-	.states_([
-		["Sine", Color.black, Color.cyan(0.6, 0.7)],
-		["RGB", Color.black, Color.cyan(0.4, 0.3)]
-	])
+	imageSynthModeA = PopUpMenu(imageControlViewA, Rect(rangerXpos+270, 60, 100, 20))
+	.items_(["Sine", "RGB", "Pluck"])
 	.value_(0);
 
 	StaticText(imageControlViewA, Rect(rangerXpos+10, 60, 215, 20))
@@ -793,6 +802,8 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 
 	// image synth A Controls
 
+
+	// course tuning
 	tuneAmountA = Knob(imageSynthViewA, Rect(10, 10, 100, 100))
 	.action_({|kn|
 		if(synthAStart.notNil){
@@ -808,7 +819,7 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 	.font_("Monaco", 50);
 
 
-
+	// amp into distortion
 	sinAmpA = Knob(imageSynthViewA, Rect(120, 10, 100, 100))
 	.action_({|kb|
 		if(synthAStart.notNil){
@@ -817,12 +828,14 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 	})
 	.value_(0.1);
 
-		StaticText(imageSynthViewA, Rect(135, 115, 70, 20))
-	.string_("amp>fold")
+	StaticText(imageSynthViewA, Rect(120, 115, 100, 20))
+	.string_("dist amount")
 	.background_(Color.green(0.9,0.9))
 	.align_(\center)
 	.font_("Monaco", 50);
 
+
+	// filter cutoff
 	cutoffAmountA = Knob(imageSynthViewA, Rect(230, 10, 100, 100))
 	.action_({|kb|
 		if(synthAStart.notNil){
@@ -831,12 +844,17 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 	})
 	.value_(1);
 
-		StaticText(imageSynthViewA, Rect(245, 115, 70, 20))
+	StaticText(imageSynthViewA, Rect(245, 115, 70, 20))
 	.string_("cutoff")
 	.background_(Color.green(0.9,0.9))
 	.align_(\center)
 	.font_("Monaco", 50);
 
+
+	// filter resonance
+	// note: the RLPF q us backwared
+	// the other 2 filters is normal,
+	// not sure how to rectify this
 	qAmountA = Knob(imageSynthViewA, Rect(340, 10, 100, 100))
 	.action_({|kn|
 		if(synthAStart.notNil){
@@ -845,13 +863,13 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 	})
 	.value_(0);
 
-		StaticText(imageSynthViewA, Rect(355, 115, 70, 20))
+	StaticText(imageSynthViewA, Rect(355, 115, 70, 20))
 	.string_("resonance")
 	.background_(Color.green(0.9,0.9))
 	.align_(\center)
 	.font_("Monaco", 50);
 
-
+	// filter volume
 	imageFiltVolA =Knob(imageSynthViewA, Rect(450, 10, 100, 100))
 	.action_({|kn|
 		if(synthAStart.notNil){
@@ -865,6 +883,8 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 	.align_(\center)
 	.font_("Monaco", 50);
 
+
+	// distortion type menu
 	imageDistortMenuA=PopUpMenu(imageSynthViewA, Rect(600, 10, 70, 30))
 	.items_(["Clean","Clip", "Fold", "Wrap"])
 	.action_({|menu|
@@ -879,6 +899,8 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 	.align_(\center)
 	.font_("Monaco", 30);
 
+
+	// filter type menu
 	imageFilterMenuA = PopUpMenu(imageSynthViewA,Rect(600, 80, 70, 20))
 	.items_(["RLPF", "DFM1", "MoogVCF"])
 	.action_({|menu|
@@ -944,7 +966,7 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 			// --- PRESSED ---
 			{
 				// A file IS loaded — now check which synth type is selected
-			switch(typeMenuA.value,
+				switch(typeMenuA.value,
 					// Menu is on Grains (index 0) — fire TGrains
 					0,{
 						// First, check if a file has been loaded into the buffer.
@@ -973,7 +995,7 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 									\delaySend,   delaySendA.value,
 								]);
 								log.("TGrains playing");
-							});
+						});
 					},
 
 
@@ -995,7 +1017,7 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 									\delaySend, delaySendA.value,
 								]);
 								log.("PlayBuf playing");
-							});
+						});
 					},
 
 
@@ -1019,7 +1041,7 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 
 								]);
 								log.("Warp buffer Playing");
-							});
+						});
 					},
 
 
@@ -1029,7 +1051,7 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 							log.("Load an image first");
 							button.value_(0);
 						},{
-							var amp = ampSliderA.lo;
+							var amp = ampSliderA.hi;
 							var verbSend = verbSendA.value;
 							var delaySend = delaySendA.value;
 							var mode = imageSynthModeA.value;
@@ -1042,84 +1064,66 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 							var filterType = imageFilterMenuA.value;
 
 							imageScanRoutineA = Routine({
-								if(mode == 0,{
-									// Sine mode
-									imageBrightnessDataA.do({|brightness|
-										var freq = brightness.linexp(0.001, 1, 80, 4000);
-										var speed = imageScanSpeedA.value.linlin(0, 1, 0.5, 0.01);
-										{
+								imageBrightnessDataA.size.do({|i|
+									var freq = imageBrightnessDataA[i].max(0.001).linexp(0.001,1,80,4000);
+									var freqR = imageR_DataA[i].max(0.001).linexp(0.001,1,80, 4000);
+									var freqG = imageG_DataA[i].max(0.001).linexp(0.001,1,80, 4000);
+									var freqB = imageB_DataA[i].max(0.001).linexp(0.001,1,80, 4000);
+									var speed = imageScanSpeedA.value.linlin(0, 1, 0.5, 0.01);
+
+									{
+										var args = [
+											\freq, freq,
+											\freqR, freqR,
+											\freqG, freqG,
+											\freqB, freqB,
+											\imageAmp, ampSliderA.hi,
+											\tune, tuneAmountA.value.linlin(0, 1, -1000,1000),
+											\sinAmp, sinAmpA.value.linlin(0, 1, 0, 5),
+											\cut, cutoffAmountA.value.linlin(0, 1, 0, 5000),
+											\q, qAmountA.value.linlin(0, 1, 1, 0),
+											\filtVol, imageFiltVolA.value.linlin(0.001, 1, 0, 2),
+											\distortType, imageDistortMenuA.value,
+											\filterType, imageFilterMenuA.value,
+											\verbSend, verbSendA.value,
+											\delaySend, delaySendA.value
+										];
+										if(imageSynthTrigA[mode],{
+											//triggered: a fresh synth every pixel (frees itself)
+											Synth(imageSynthDefsA[mode], args);
+										},{
+											// held: make one, then slide its pitch
 											if(synthAStart.isNil,{
-												synthAStart = Synth(\imageSineA, [
-													\freq, freq,
-													\imageAmp, amp,
-													\tune, tune,
-													\sinAmp, sinAmp,
-													\cut, cut,
-													\q, q,
-													\filtVol, filtVol,
-													\distortType, distortType,
-													\filterType, filterType,
-													\verbSend, verbSend,
-													\delaySend, delaySend,
-												]);
+												synthAStart = Synth(imageSynthDefsA[mode], args);
 											},{
-												synthAStart.set(\freq,freq);
+												synthAStart.set(\freq, freq, \freqR, freqR, \freqG, freqG, \freqB, freqB);
+
 											});
-										}.defer;
-										speed.wait;
-									});
-								},{
-									//RGB mode
-									imageR_DataA.size.do({|i|
-										var freqR = imageR_DataA[i].max(0.001).linexp(0.001, 1, 80, 4000);
-										var freqG = imageG_DataA[i].max(0.001).linexp(0.001, 1, 80, 4000);
-										var freqB = imageB_DataA[i].max(0.001).linexp(0.001, 1, 80, 4000);
-										var speed = imageScanSpeedA.value.linlin(0, 1, 0.5, 0.01);
-										{
-											if(synthAStart.isNil, {
-												synthAStart = Synth(\imageRGBA, [
-													\freqR, freqR,
-													\freqG, freqG,
-													\freqB, freqB,
-													\imageAmp, amp,
-													\tune, tune,
-													\sinAmp, sinAmp,
-													\cut, cut,
-													\q, q,
-													\filtVol, filtVol,
-													\distortType, distortType,
-													\filterType, filterType,
-													\verbSend, verbSend,
-													\delaySend, delaySend,
-												]);
-											},{
-												synthAStart.set(\freqR,freqR,\freqG,freqG,\freqB,freqB);
-											});
-										}.defer;
-										speed.wait;
-									});
+										});
+									}.defer;
+									speed.wait;
 								});
 								log.("Scan Complete");
 							}).play(AppClock);
-
+							// should end here???
 						});
-				};
+					};
 				);
 			},
-				// --- RELEASED / STOPPED ---
-				{
+			// --- RELEASED / STOPPED ---
+			{
 				if(imageScanRoutineA.notNil,{
 					imageScanRoutineA.stop;
 					imageScanRoutineA = nil;
 				});
-					if(synthAStart.notNil, {
-						synthAStart.set(\gate, 0);
-						synthAStart = nil;
-						log.("Player A has stopped");
-					}, {
-						log.("Nothing was playing");
-					});
-				}
+				if(synthAStart.notNil, {
+					synthAStart.set(\gate, 0);
+					synthAStart = nil;
+					log.("Player A has stopped");
+				}, {
+					log.("Nothing was playing");
+				});
+			}
 		);
 	});
 
@@ -1281,7 +1285,7 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 		arg out=0, freqR=220, freqG=330, freqB=440,tune=0,sinAmp=0.3, distortType=0,filterType=0, filtVol=1,cut=5000,q=1, imageAmp=0.3,gate=1,verbSend=0,delaySend=0;
 		var  sig, env, wetVerb, wetDelay;
 		env = EnvGen.kr(Env.asr(1,1,1),gate,doneAction:2);
-		sig = Pan2.ar(Mix.ar(SinOsc.ar([freqR,freqG,freqB]+tune, 0, sinAmp)), [-0.8, 0.0, 0.8]);
+		sig = Pan2.ar(SinOsc.ar([freqR,freqG,freqB]+tune, 0, sinAmp), [-0.8, 0.0, 0.8]);
 		// distort type
 		sig = Select.ar(distortType,[
 			sig,
@@ -1291,7 +1295,7 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 		]);
 
 		// filter select
-	sig = Select.ar(filterType,[
+		sig = Select.ar(filterType,[
 			RLPF.ar(sig, cut, q,filtVol),
 			DFM1.ar(sig, cut, q, filtVol),
 			MoogVCF.ar(sig, cut, q, filtVol)
@@ -1304,6 +1308,40 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 		wetDelay = sig * delaySend;
 		Out.ar(busDelay, wetDelay);
 	}).add;
+
+	// image KS_Pluck from ixi tutorial 10
+	SynthDef(\ksPluck,{ arg out=0, freq=220, imagePan=0, rand=0.3, delayTime=3, noiseType=1, verbSend=0, delaySend=0, distortType=0, filterType=0, filtVol=1, cut=5000, q=1, sinAmp=0.3, tune=0, imageAmp=0.3;
+		var sig, env, wetVerb, wetDelay;
+		env = Env.new(#[1, 1, 0],#[2, 0.001]);
+		// A simple exciter x, with some randomness.
+		sig = Decay.ar(Impulse.ar(0, 0, rand), 0.1+rand, WhiteNoise.ar(sinAmp));
+		sig = CombL.ar(sig, 0.05, (freq+tune).max(20).reciprocal, delayTime, EnvGen.ar(env, doneAction:2));
+
+		// distort select
+		sig = Select.ar(distortType, [
+			sig,
+			Clip.ar(sig, 0, 1),
+			Fold.ar(sig,0,1),
+			Wrap.ar(sig, 0, 1)
+		]);
+
+		// filter selct
+		sig = Select.ar(filterType,[
+			RLPF.ar(sig, cut, q,filtVol),
+			DFM1.ar(sig, cut, q, filtVol),
+			MoogVCF.ar(sig, cut, q, filtVol)
+
+		]);
+
+		sig = Pan2.ar(sig, imagePan, imageAmp);
+		Out.ar(out, LeakDC.ar(sig));
+		wetVerb = sig * verbSend;
+		Out.ar(busReverb, wetVerb);
+		wetDelay = sig * delaySend;
+		Out.ar(busDelay, wetDelay);
+	}).add;
+
+
 	//-------------------------------------------------------------------------
 
 
@@ -1516,6 +1554,7 @@ openfileA = Button(subwinA, Rect(5, 50, 60, 30))
 
 
 	win.onClose = {
+		if(imageScanRoutineA.notNil,{imageScanRoutineA.stop; imageScanRoutineA=nil;});
 		masterMeter.remove; // kills server meter
 		masterMeter = nil;
 		if(recSynth.notNil) { recSynth.free };

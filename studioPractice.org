@@ -636,10 +636,20 @@ The focus of this work in progress is to provide a current snapshot of my life. 
 - [ ] photos
 - [ ] write some more
 
+- the first house I lived in
+- [[file:/documentationImages/IMG_3993.jpeg]]
+- the house where I have vague memories of my father
+- [[file:/documentationImages/IMG_3995.jpeg]]
+- primary school I was bullied for the death of my father
+- [[file:/documentationImages/IMG_3997.jpeg]]
+- Leeds Cremetorium, where my Fathers ashes were scattered (without plaque. we have no way of knowing where he was scattered)
+- [[file:/documentationImages/IMG_3998.jpeg]]
+  
 
 *** 2026_06_17 - Wednsesday
 - did a little work on the workstation
   - finished the post window
+  - [[file:/documentationImages/post_window.png]]
 
 
 
@@ -647,16 +657,20 @@ The focus of this work in progress is to provide a current snapshot of my life. 
 - made a gui for the image synth controls
 - added in a switchable distort tuype
 - added in a switchable filter type
-- [[file:/documentationImages/distort/filter.png]]
+- [[file:/documentationImages/distort:filter.png]]
 - [[file:/documentationImages/distort.png]]
 - [[file:/documentationImages/filter.png]]
-- hi fi wireframe
-- index
-- about
-- individual project pages [11]
-- CSS
-- asap
 - 
+
+
+
+*** 2026_06_9 - Friday
+- pretty much worked on  making a pluck sytnh work for the image synth
+  - took all day
+- cleaned up some stuff
+- a lot of claude
+- 
+
 
 
 
