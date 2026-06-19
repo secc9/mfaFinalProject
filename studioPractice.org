@@ -569,6 +569,13 @@ repeat for other 5 granular synths
 
 
 
+*** 2026_06_09 - Tuesday
+- went out in London to my old flat
+- [[file:/documentationImages/IMG_3921.jpeg]]
+- then to the place I worked - Deep Recording Studios (it's no longer there)
+- [[file:/documentationImages/IMG_3939.jpeg]]
+  
+
 *** 2026_06_10 - Wednesday
 - [ ] write up a thing for Quiang
   - I am trying to take a look at my personal history
@@ -633,23 +640,41 @@ The focus of this work in progress is to provide a current snapshot of my life. 
 - FIELDWORK
 - cycled to Where I first grew up in West Ardsley, a little village between Leeds and Wakefield.
 - [ ] need to get audio from recorder
-- [ ] photos
+- [X] photos
 - [ ] write some more
 
 - the first house I lived in
 - [[file:/documentationImages/IMG_3993.jpeg]]
+- the neighbours house where I also had a pretty terrible time
+- [[file:/documentationImages/IMG_3992.jpeg]]
+
+- [[file:/documentationImages/IMG_4021.jpeg]]
+
+- 
+  
 - the house where I have vague memories of my father
 - [[file:/documentationImages/IMG_3995.jpeg]]
+
+- [[file:/documentationImages/IMG_4022.jpeg]]
+
+- [[file:/documentationImages/IMG_4023.jpeg]]
+
+- [[file:/documentationImages/IMG_4024.jpeg]]
+  
 - primary school I was bullied for the death of my father
 - [[file:/documentationImages/IMG_3997.jpeg]]
 - Leeds Cremetorium, where my Fathers ashes were scattered (without plaque. we have no way of knowing where he was scattered)
 - [[file:/documentationImages/IMG_3998.jpeg]]
+- [[file:/documentationImages/IMG_4045.jpeg]]
   
+
+
 
 *** 2026_06_17 - Wednsesday
 - did a little work on the workstation
   - finished the post window
   - [[file:/documentationImages/post_window.png]]
+  - posts the latest thing that happened in the workstation
 
 
 
@@ -669,9 +694,11 @@ The focus of this work in progress is to provide a current snapshot of my life. 
   - took all day
 - cleaned up some stuff
 - a lot of claude
+- I built an image synth in the workstation where I can upload the images I have taken as momentos and have the synth play them
+
+- I had the worst feeling at the old house where the begining of my memories are. I did write some things down in my notebook
+
 - 
-
-
 
 
 
