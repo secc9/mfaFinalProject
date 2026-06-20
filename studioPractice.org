@@ -500,7 +500,8 @@ repeat for other 5 granular synths
 
 - [[file:/documentationImages/IMG_3760.jpeg]]
 
-- file:/documentationImages/IMG_3761.jpeg
+- [[file:/documentatinImages/IMG_3761.jpeg]]
+  
 
 - ok. finally got magit set up here in emacs again
 
