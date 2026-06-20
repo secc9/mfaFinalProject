@@ -533,7 +533,55 @@ repeat for other 5 granular synths
 - trying to get a record button to work
   - failing miserably
   - for some reason the file is empty, there's zero data
-  - 
+
+- plantation way. the house of my teens, 
+- [[file:/documentationImages/IMG_3855.jpeg]]
+- [[file://documentationImages/IMG_3863.jpeg]]
+
+- Churchfield Park. - my first drunk at around 14 years old 
+- [[file:/documentationImages/IMG_3854.jpeg]]
+- [[file:/documentationImages/IMG_3864.jpeg]]
+
+
+- haxby shopping center
+- [[file:/documentationImages/IMG_3856.jpeg]]
+- 
+
+
+- Joseph Rountree School
+- [[file:/documentationImages/IMG_3857.jpeg]]
+- [[file:/documentationImages/IMG_3866.jpeg]]
+
+
+- Henry J Beans - image needed
+- [[file:/documentationImages/IMG_3867.jpeg]]
+- [[file:/documentationImages/IMG_3668.jpeg]]
+
+
+- Scarcroft Road
+- [[file:/documentationImages/IMG_3858.jpeg]]
+- [[file:/documentationImages/IMG_3869.jpeg]]
+
+- Walpole Street
+- [[file:/documentationImages/IMG_3861.jpeg]]
+- [[file:/documentationImages/IMG_3870.jpeg]]
+
+
+- Bootham Hospital
+- [[file:/documentationImages/IMG_3859.jpeg]]
+- [[file:/documentationImages/IMG_3871.jpeg]]
+- [[file:/documentationImages/IMG_3872.jpeg]]
+
+
+- Kensington Street
+- [[file:/documentationImages/IMG_3862.jpeg]]
+- [[file:/documentationImages/IMG_3873.jpeg]]
+
+
+
+
+
+
 
 *** 2026_05_30 - Saturday
 - moved from deepseek to claude to help with teachning me the code for my workstation
@@ -552,9 +600,20 @@ repeat for other 5 granular synths
 *** 2026_06_04 - Thursday
 - made a lot of movement on the maars workstation.
   - now working on v2. adding in new synths
+
+  - Tgrain
+  - [[file:/documentationImages/marrsWorkstation01.png]]
+
+  - PlayBuf
+  - [[file:/documentationImages/marrsWorkstation02.png]]
+
+  - Warp
+  - [[file:/documentationImages/marrsWorkstation03.png]]
+
+    
 - hooked up the cassette recorder
 - looked for my old minidisc recorder - cant find it. possibly binned it :/
-- [ ] make some quick recordings, with the audio I have, before going oout
+- [X] make some quick recordings, with the audio I have, before going oout
 - [X] get the latest stuff off the tascam
 - 
 
@@ -635,7 +694,7 @@ The focus of this work in progress is to provide a current snapshot of my life. 
 -
 
 
-*** 2026_06_15
+*** 2026_06_15 - Monday
 - time to continue on the mworkstatin
 - continued work on the Image synth
 - added in a rgb mode and a single sine mode
@@ -690,6 +749,10 @@ The focus of this work in progress is to provide a current snapshot of my life. 
 
 *** 2026_06_18 - Thursday
 - made a gui for the image synth controls
+
+- [[file:/documentationImages/marrsWorkstation04.png]]
+  
+  
 - added in a switchable distort tuype
 - added in a switchable filter type
 - [[file:/documentationImages/distort:filter.png]]
