@@ -354,7 +354,7 @@ decisions in your personal and professional life.
   - Dialog
   - 
 
-
+    
 
 *** 2026_05_14 - Thursday
 
@@ -594,7 +594,19 @@ repeat for other 5 granular synths
   - for the longest time, I thought that if my father had still been alive, I would have no doubt followed a different path in life. 
 
 
+*** 2026_06_01 - Monday
+- Testing the contact mics / hydrophones at the allotment
+- [[file:/documentationImages/IMG_3885.jpeg]]
+- [[file:/documentationImages/IMG_3886.jpeg]]
+- file:/documentationImages/IMG_3887.jpeg
+- file:/documentationImages/IMG_3888.jpeg
+- file:/documentationImages/IMG_3889.jpeg
 
+
+- Went out on first field trip in Leeds. taking in areas of my current and recent history overlapping the dinking time/recovery time
+- 
+
+*** 2026_06_03 - Wednesday
 
 
 *** 2026_06_04 - Thursday
@@ -686,6 +698,9 @@ The focus of this work in progress is to provide a current snapshot of my life. 
 - [ ] 
 - 
 
+
+*** 2026_06_11 - Thursday
+- WIP2
 
 *** 2026_06_12 - Friday
 - Heading home.
