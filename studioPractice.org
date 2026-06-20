@@ -600,11 +600,9 @@ repeat for other 5 granular synths
 - [[file:/documentationImages/IMG_3885.jpeg]]
 - [[file:/documentationImages/IMG_3886.jpeg]]
 - [[file:/documentationImages/IMG_3887.jpeg]]
-- file:/documentationImages/IMG_3888.jpeg
-- [[file:documentationImages/IMG_3889.jpeg]]
+- [[file:/documentationImages/IMG_3887.jpeg]]
+- [[file:/documentationImages/IMG_3889.jpeg]]
 
-
-- 
 
 *** 2026_06_03 - Wednesday
 
