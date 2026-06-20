@@ -783,15 +783,15 @@ s.waitForBoot({
 
 
 	// synth swap
-	imageSynthDefsA = [\imageSineA, \imageRGBA, \ksPluck];
-	imageSynthTrigA = [false,        false,      true];
+	imageSynthDefsA = [\imageSineA, \imageSineRGBA, \ksPluck, \imageSaw, \imageSquare];
+	imageSynthTrigA = [false,        false,      true,    false,      false];
 
 
 
 
 	// toggle between  single and three tones
 	imageSynthModeA = PopUpMenu(imageControlViewA, Rect(rangerXpos+270, 60, 100, 20))
-	.items_(["Sine", "RGB", "Pluck"])
+	.items_(["Sine", "SineRGB", "Pluck", "Saw", "Square"])
 	.value_(0);
 
 	StaticText(imageControlViewA, Rect(rangerXpos+10, 60, 215, 20))
@@ -861,7 +861,7 @@ s.waitForBoot({
 			synthAStart.set(\q, kn.value.linlin(0, 1, 1, 0))
 		}
 	})
-	.value_(0);
+	.value_(0.5);
 
 	StaticText(imageSynthViewA, Rect(355, 115, 70, 20))
 	.string_("resonance")
@@ -1281,7 +1281,7 @@ s.waitForBoot({
 
 	// image RGB Sine
 
-	SynthDef(\imageRGBA, {
+	SynthDef(\imageSineRGBA, {
 		arg out=0, freqR=220, freqG=330, freqB=440,tune=0,sinAmp=0.3, distortType=0,filterType=0, filtVol=1,cut=5000,q=1, imageAmp=0.3,gate=1,verbSend=0,delaySend=0;
 		var  sig, env, wetVerb, wetDelay;
 		env = EnvGen.kr(Env.asr(1,1,1),gate,doneAction:2);
@@ -1339,6 +1339,76 @@ s.waitForBoot({
 		Out.ar(busReverb, wetVerb);
 		wetDelay = sig * delaySend;
 		Out.ar(busDelay, wetDelay);
+	}).add;
+
+
+/*	// image fm
+	SynthDef(\imageFM, {
+		arg out=0, freq=220, imagePan=0, verbSend=0, delaySend=0, distortType=o, filterType=0, filtVol=1,
+		cut=5000, q=1,sinAmp=0.3,tune=0, imageAmp=0.3, gate=1;
+		var env, carrier, modulator, wetVerb, wetDelay;
+		env = EnvGen.kr(Env.asr(1,1,1),gate, doneAction: 2);
+		modulator = SinOsc.ar(400, 0, 0.1);
+		carrier = SinOsc.ar(freq, 0, 0.1);
+	})*/
+
+
+	SynthDef(\imageSaw, {
+		arg out=0, freqR=220, freqG=330, freqB=440, tune = 0, sinAmp=0.3, cut=5000, q=1, filtVol=1, imageAmp=0.3,imagePan=0, distortType=0, filterType=0, gate=1, verbSend=0, delaySend=0;
+		var sig, env, wetDelay, wetVerb;
+		env = EnvGen.kr(Env.asr(1, 1, 1),gate, doneAction: 2);
+		sig = Pan2.ar(Saw.ar([freqR,freqG,freqB]+tune, sinAmp), [-0.8, 0.0, 0.8]);
+		// distort select
+		sig = Select.ar(distortType,[
+			sig,
+			Clip.ar(sig, 0, 1),
+			Fold.ar(sig,0,1),
+			Wrap.ar(sig, 0, 1)
+		]);
+		// filter select
+		sig = Select.ar(filterType,[
+			RLPF.ar(sig, cut, q,filtVol),
+			DFM1.ar(sig, cut, q, filtVol),
+			MoogVCF.ar(sig, cut, q, filtVol)
+
+		]);
+		sig = sig.sum *(1/3) * imageAmp * env;
+		Out.ar(out, sig);
+		wetVerb = sig * verbSend;
+		Out.ar(busReverb, wetVerb);
+		wetDelay = sig * delaySend;
+		Out.ar(busDelay, wetDelay);
+
+	}).add;
+
+	SynthDef(\imageSquare, {
+		arg out=0, freqR=220, freqG=330, freqB=440, tune = 0, sinAmp=0.3, cut=5000, q=1, filtVol=1, imageAmp=0.3,imagePan=0, distortType=0, filterType=0, gate=1, verbSend=0, delaySend=0;
+		var sig, env, wetDelay, wetVerb;
+		env = EnvGen.kr(Env.asr(1, 1, 1),gate, doneAction: 2);
+		sig = Pan2.ar(Pulse.ar([freqR,freqG,freqB]+tune, 0.5, sinAmp),[-0.8, 0.0, 0.8]);
+		// distort select
+		sig = Select.ar(distortType,[
+			sig,
+			Clip.ar(sig, 0, 1),
+			Fold.ar(sig,0,1),
+			Wrap.ar(sig, 0, 1)
+		]);
+		// filter select
+		sig = Select.ar(filterType,[
+			RLPF.ar(sig, cut, q,filtVol),
+			DFM1.ar(sig, cut, q, filtVol),
+			MoogVCF.ar(sig, cut, q, filtVol)
+
+		]);
+
+		sig = sig.sum *(1/3) * imageAmp * env;
+
+		Out.ar(out, sig);
+		wetVerb = sig * verbSend;
+		Out.ar(busReverb, wetVerb);
+		wetDelay = sig * delaySend;
+		Out.ar(busDelay, wetDelay);
+
 	}).add;
 
 
