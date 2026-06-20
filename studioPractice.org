@@ -599,9 +599,9 @@ repeat for other 5 granular synths
 - Testing the contact mics / hydrophones at the allotment
 - [[file:/documentationImages/IMG_3885.jpeg]]
 - [[file:/documentationImages/IMG_3886.jpeg]]
-- file:/documentationImages/IMG_3887.jpeg
+- [[file:/documentationImages/IMG_3887.jpeg]]
 - file:/documentationImages/IMG_3888.jpeg
-- file:/documentationImages/IMG_3889.jpeg
+- [[file:documentationImages/IMG_3889.jpeg]]
 
 
 - 
