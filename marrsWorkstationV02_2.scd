@@ -71,6 +71,11 @@ DONE
     -  with tools to effect each slot
       -- distort
       -- fold
+  - add in more synthdefs for the Image synth
+  - add in a record buffer
+  - add in some function for squencing?
+    - Latch = sample and Hold
+    - Stepper
 
   -  a master effect
   -  bus effects etc

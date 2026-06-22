@@ -18,18 +18,18 @@
 
 
 
-** Final project points
-*** dates to hit
+* Final project points
+* dates to hit
 
-**** 2026_06_01 - Proposal Deadline 12.00 noon
+* 2026_06_01 - Proposal Deadline 12.00 noon
 
-**** 2026_06_29 - Tech Deadline
+* 2026_06_29 - Tech Deadline
 
-**** 2026_06_08 - wip2 install start
+* 2026_06_08 - wip2 install start
 
-**** 2026_06_11 - Thursday - wip 2 VIVA
+* 2026_06_11 - Thursday - wip 2 VIVA
 
-*** 
+ 
 *** Reading
 - [[https://www.soundonsound.com/techniques/chris-watson-art-location-recording][chris watson SOS]]
 - 
@@ -236,7 +236,7 @@ decisions in your personal and professional life.
 
 
 *** DONE edit up the audio recodings from York
-
+*** NEXT Get recordings from London/East Ardsley
 
 
 ** Tutorials/Links/help
@@ -891,15 +891,20 @@ sounds of field recordings produced at particular map locations. Material
 choices were appropriate to the topic however there is more potential to
 consider how trauma affects time perception or other distortions in the
 recordings. Candidate would benefit from deeper engagement with existing
-frameworks around memory, space and sound." 
+frameworks around memory, space and sound."
 
-- "----- however there is more potential to
-consider how trauma affects time perception or other distortions in the
-recordings. Candidate would benefit from deeper engagement with existing
-frameworks around memory, space and sound . -----"
+- spend a little time trying to make a new org-roam brain where this is the main
+- here's a little test
+- [[id:62FC38AE-73E6-414E-BEDA-02E546F9FBBB][test]]
+- ok. I think it works
+- Mx org-roam-mfa
+- Mx org-roam-arts
 
+  switch between the two
 
+  
 
+  
 
 
 * ;;-------------------------------------------------------------------------
