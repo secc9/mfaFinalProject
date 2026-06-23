@@ -901,9 +901,24 @@ frameworks around memory, space and sound."
 - Mx org-roam-arts
 
   switch between the two
+- tried to find some reading regarding the feedback
+- 
 
-  
 
+*** 2026_06_23 - Tuesday
+
+- looking at adding a record buffer into the workstation
+- get audio from Tascam
+- edit audio
+- make a recording
+- still didnt do any of this
+- I DID
+  - do a lot on the workstation
+    - added a audio interface select menu before book
+    - record buffer
+      - springs into a player
+- kinda did a lot of work today.
+- gotta remember the claude file at some point
   
 
 
