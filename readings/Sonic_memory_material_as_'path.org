@@ -1,0 +1,4 @@
+* Sonic_memory_material_as_'path
+:PROPERTIES:
+:NOTER_DOCUMENT: Sonic_memory_material_as_'path.pdf
+:END:
