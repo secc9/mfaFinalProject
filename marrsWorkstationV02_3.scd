@@ -149,7 +149,7 @@ buildMarrs = {
 
 
 
-	s.waitForBoot({
+	s.doWhenBooted({
 
 		var win, subwinA, subwinB,subwinC,subwinD,subwinE,subwinF, masterWin, posSilderViewA,posSilderViewB,posSilderViewC,posSilderViewD,posSilderViewE,posSilderViewF;
 
@@ -201,7 +201,7 @@ buildMarrs = {
 
 		// record buffer variables
 		var recViewA, recButtonA, recSynthA,inChMenuA, recStartTimeA, loadFileA;
-		var jumpMenuA;
+		var jumpMenuA, meterA, meterSynthA;
 
 
 
@@ -370,6 +370,7 @@ buildMarrs = {
 		});
 
 
+
 		//----------------------------------------------------------------
 		//---------------------- Synth A view ----------------------------
 		//----------------------------------------------------------------
@@ -410,6 +411,7 @@ buildMarrs = {
 		.items_(["Grains", "Loop", "Warp", "Image", "Record"])
 		.action_({
 			|menu|
+			startButtonA.visible_(menu.value !=4);
 			switch(typeMenuA.value,
 				0,{ // grain player view
 					grainViewA.visible_(true);
@@ -812,7 +814,7 @@ buildMarrs = {
 		.y_(0.5)
 		.action_({|sl|
 			if(synthAStart.notNil){
-				synthAStart.set(\warpFreqScale, sl.x.linlin(0,1,-10,10), \warpWinSize,sl.y.linlin(0,1,0.0001,0.1))
+				synthAStart.set(\warpFreqScale, sl.x.linlin(0,1,-1,1), \warpWinSize,sl.y.linlin(0,1,1,0.1))
 			}
 		});
 		StaticText(warpViewA, Rect(350, 115, 170, 20))
@@ -1063,6 +1065,9 @@ buildMarrs = {
 		StaticText(recViewA, Rect(155, 10, 90, 30))
 		.string_("Send recording to ->")
 		.background_(Color.yellow(0.8, 0.6));
+
+		// level meter
+		meterA = LevelIndicator(recViewA, Rect(520, 10, 10, 130));
 
 
 
@@ -1385,7 +1390,7 @@ buildMarrs = {
 		SynthDef(\warpBufferA, {
 			arg out = 0, gate=1, bufnum,warpFreqScale=0.1,warpWinSize=0.2,warpPan=0.0,warpWinRand=0.1,warpOverlaps=8, warpAmp=0.3, verbSend=0, delaySend=0;
 			var sig, env, wetVerb, wetDelay,warpPointer;
-			warpPointer = LFSaw.ar(1/15).range(0,1);
+			warpPointer = LFSaw.ar(BufDur.kr(bufnum).reciprocal).range(0,1);
 			env = EnvGen.kr(Env.asr(1,1,1),gate, doneAction: 2);
 			sig = Warp1.ar(1,bufnum,warpPointer,warpFreqScale,warpWinSize,-1,warpOverlaps,warpWinRand,2,0.1)*env;
 			sig = Pan2.ar(sig, warpPan, warpAmp);
@@ -1575,6 +1580,19 @@ buildMarrs = {
 			RecordBuf.ar(in, bufnum, loop: 0, doneAction:2);
 		}).add;
 
+
+		// level meter
+
+		SynthDef(\inMeterA, {
+			arg inCh = 0;
+			SendReply.kr(Impulse.kr(20), '/inAmp',
+				Amplitude.kr(SoundIn.ar(inCh), 0.01,0.2),
+				0)
+		}).add;
+
+		OSCdef(\inMeter, {|msg| {meterA.value = msg[3]}.defer}, '/inAmp');
+
+
 		//-------------------------------------------------------------------------
 
 
@@ -1611,6 +1629,11 @@ buildMarrs = {
 		delay = Synth(\busDelay, [\inBus, busDelay.index, \outBus,0, \amp, 0.6, \delayTime, 0.3], addAction:\addToTail);
 
 
+//----------------------
+
+		// meter levels
+		meterSynthA = Synth(\inMeterA, [\inCh, inChMenuA.value]);
+
 
 
 
@@ -1626,6 +1649,11 @@ buildMarrs = {
 		// delay gui view
 		delayView = CompositeView(masterWin, Rect(190, 350, 170, 300))
 		.background=Color.grey(0.9,0.4);
+
+
+
+
+
 
 
 
