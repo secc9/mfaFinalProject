@@ -919,8 +919,17 @@ frameworks around memory, space and sound."
       - springs into a player
 - kinda did a lot of work today.
 - gotta remember the claude file at some point
-  
+- [ ]
 
+
+
+*** 2026_06_24 
+ - added in a level meter
+ - tinkkered a little with the Warp 1 player settings
+
+
+
+ 
 
 * ;;-------------------------------------------------------------------------
 
