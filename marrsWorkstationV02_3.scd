@@ -53,11 +53,17 @@ DONE
   - added in a switchable distort anf filter type in the image synths
   - added in a detune to Image Synths
 
-- 2026-07-19
+- 2026-06-19
   - added a pluck synth
 
 - 2026_06_23
  - added in a audio devices boot menu
+ - added in a record mode
+ - added a record switching synth that jumps to a different loop player
+
+- 2026_06_24
+ - added in a level meter
+ - tinkkered a little with the Warp 1 player settings
 
 
 
@@ -93,42 +99,54 @@ DONE
 (
 
 // boot menu
-var buildMarrs, audioSelectWin, devIn, devOut, ins, outs;
+var buildMarrs, audioSelectWin, devIn, devOut, ins, outs, srMenu;
 audioSelectWin = Window("MARRS - Audio Setup", Rect(200, 300, 380, 280))
 .background_(Color.yellow(0.9, 0.4))
 .front;
 
+
+devIn = PopUpMenu(audioSelectWin, Rect(10, 30, 360, 26))
+.items_(ServerOptions.inDevices);
 StaticText(audioSelectWin, Rect(10, 10, 360, 20))
 .string_("Input Audio Device");
-devIn = PopUpMenu(audioSelectWin, Rect(10, 32, 360, 26))
-.items_(ServerOptions.inDevices);
 
-StaticText(audioSelectWin, Rect(10, 70, 360, 20))
-.string_("Output Audio Device");
-devOut = PopUpMenu(audioSelectWin, Rect(10, 92, 360, 26))
+
+devOut = PopUpMenu(audioSelectWin, Rect(10, 82, 360, 26))
 .items_(ServerOptions.outDevices);
+StaticText(audioSelectWin, Rect(10, 60, 360, 20))
+.string_("Output Audio Device");
 
 
+// srMenu = PopUpMenu(audioSelectWin, Rect(10, 130, 360,26))
+// .items_(["Default", "44100", "48000"]);
+// StaticText(audioSelectWin, Rect(10, 110, 360, 20))
+// .string_("Sample Rate");
 
 
-StaticText(audioSelectWin, Rect(10, 130, 120, 20))
+ins = NumberBox(audioSelectWin, Rect(50, 170, 90, 26)).value_(2);
+StaticText(audioSelectWin, Rect(10, 180, 50, 20))
 .string_("Inputs");
-ins = NumberBox(audioSelectWin, Rect(10, 152, 90, 26)).value_(2);
 
 
-
-StaticText(audioSelectWin, Rect(140, 130, 120, 20))
+outs = NumberBox(audioSelectWin, Rect(240, 170, 90, 26)).value_(2);
+StaticText(audioSelectWin, Rect(190, 180, 50, 20))
 .string_("Outputs");
-outs = NumberBox(audioSelectWin, Rect(140, 152, 90, 26)).value_(2);
 
 
-Button(audioSelectWin, Rect(10, 200, 360, 40))
+Button(audioSelectWin, Rect(10, 230, 360, 40))
 .states_([["Boot with this audio device", Color.white, Color.green(0.6)]])
 .action_({
 	s.options.inDevice = devIn.item;
 	s.options.outDevice = devOut.item;
 	s.options.numInputBusChannels = ins.value.asInteger;
 	s.options.numOutputBusChannels = outs.value.asInteger;
+
+	// sample rate
+/*	if(srMenu.value == 0, {s.options.sampleRate = nil}, // "default" -> let device decide
+		{s.options.sampleRate = srMenu.item.asInteger} // e.g "48000" -> 48000
+
+	);*/
+
 	audioSelectWin.close;
 	s.reboot;
 	buildMarrs.value;
@@ -203,6 +221,8 @@ buildMarrs = {
 		var recViewA, recButtonA, recSynthA,inChMenuA, recStartTimeA, loadFileA;
 		var jumpMenuA, meterA, meterSynthA;
 
+		// output routing
+		var outSelA, outLevelMeterA, outLevelMonA;
 
 
 
@@ -731,6 +751,22 @@ buildMarrs = {
 			layout:'vert'
 		);
 
+		outLevelMeterA = LevelIndicator(masterWin, Rect(45, 60,12,200))
+		.drawsPeak_(true)
+		.warning_(0.7)
+		.critical_(0.9);
+
+		// channel select out
+		outSelA = PopUpMenu(masterWin, Rect(10, 315, 47, 22))
+		.items_(
+			(0..((s.options.numOutputBusChannels/2).asInteger - 1))
+			.collect({|i| "Out " ++ (i*2+1) ++ "-" ++ (i*2+2)})
+		)
+		.action_({|menu|
+			if(synthAStart.notNil, {synthAStart.set(\out, menu.value*2)});
+			outLevelMonA.set(\outBus, menu.value * 2);
+		});
+
 
 		//-------------------------------------------
 		//-------------------------------------------
@@ -1150,6 +1186,7 @@ buildMarrs = {
 										\bufnum,      bufferA,
 										\verbSend,    verbSendA.value,
 										\delaySend,   delaySendA.value,
+										\out,         outSelA.value * 2
 									]);
 									log.("TGrains playing");
 							});
@@ -1172,6 +1209,7 @@ buildMarrs = {
 										\playBufLoop, 1,
 										\verbSend,  verbSendA.value,
 										\delaySend, delaySendA.value,
+										\out,         outSelA.value * 2
 									]);
 									log.("PlayBuf playing");
 							});
@@ -1194,7 +1232,8 @@ buildMarrs = {
 										\warpWinRand,warpWindowRandA.value,
 										\warpAmp, ampSliderA.lo,
 										\verbSend, verbSendA.value,
-										\delaySend, delaySendA.value
+										\delaySend, delaySendA.value,
+										\out,         outSelA.value * 2
 
 									]);
 									log.("Warp buffer Playing");
@@ -1243,7 +1282,8 @@ buildMarrs = {
 												\distortType, imageDistortMenuA.value,
 												\filterType, imageFilterMenuA.value,
 												\verbSend, verbSendA.value,
-												\delaySend, delaySendA.value
+												\delaySend, delaySendA.value,
+												\out,         outSelA.value * 2
 											];
 											if(imageSynthTrigA[mode],{
 												//triggered: a fresh synth every pixel (frees itself)
@@ -1595,6 +1635,19 @@ buildMarrs = {
 
 		//-------------------------------------------------------------------------
 
+		// level metering
+		SynthDef(\outLevelMonA, {|outBus=0|
+			var sig = In.ar(outBus, 2);
+			SendReply.kr(Impulse.kr(20), '/outAmpA',
+				Amplitude.kr(sig.sum, 0.01, 0.1),
+				0);
+		}).add;
+
+		OSCdef(\outMeterA,  {|msg| {outLevelMeterA.value = msg[3]}.defer},'/outAmpA');
+
+
+		//-------------------------------------------------------------------------
+
 
 		//effects here to run at the start of the program
 
@@ -1631,8 +1684,12 @@ buildMarrs = {
 
 //----------------------
 
-		// meter levels
+		// meter levels - record in
 		meterSynthA = Synth(\inMeterA, [\inCh, inChMenuA.value]);
+
+
+		// meter levels  - mixer out
+		outLevelMonA = Synth(\outLevelMonA, [\outBus, 0], addAction: \addToTail);
 
 
 
