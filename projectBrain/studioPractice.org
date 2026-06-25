@@ -923,14 +923,18 @@ frameworks around memory, space and sound."
 
 
 
-*** 2026_06_24 
+*** 2026_06_24 - Wednesday 
  - added in a level meter
  - tinkkered a little with the Warp 1 player settings
 
 
 
  
+*** 2026_06_25 - Thursday
+- added in a sample and hold synth
 
+ 
+ 
 * ;;-------------------------------------------------------------------------
 
 * ;;-------------------------------------------------------------------------
