@@ -2398,7 +2398,7 @@ s.waitForBoot({
 	.action_({|btn|
 		if(btn.value==1){
 			Dialog.savePanel({|path|
-				if(path.extension !="wav"){path = path ++ ".wav"};
+				if(PathName(path).extension !="wav"){path = path ++ ".wav"};
 
 				s.recorder.recHeaderFormat = "wav";
 				s.recorder.recSampleFormat = "float";

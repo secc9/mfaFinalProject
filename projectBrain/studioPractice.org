@@ -594,7 +594,7 @@ repeat for other 5 granular synths
   - If I confront my nostalgia to return to 'my native land" - which is here - but at least to the places I grew up, Can i finally move past this idea I have had about a lost future which I may have had.
   - for the longest time, I thought that if my father had still been alive, I would have no doubt followed a different path in life. 
 
-
+    
 *** 2026_06_01 - Monday
 - Testing the contact mics / hydrophones at the allotment
 - [[file:/documentationImages/IMG_3885.jpeg]]
@@ -697,7 +697,7 @@ repeat for other 5 granular synths
 - [[file:/documentationImages/IMG_3939.jpeg]]
 - [[file:/documentationImages/IMG_4019.jpeg]]
   
-
+  
 - Goldsmith University -
 - [[file:/documentationImages/IMG_3958.jpeg]]
 - [[file:/documentationImages/IMG_4020.jpeg]]
@@ -840,41 +840,6 @@ The focus of this work in progress is to provide a current snapshot of my life. 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 *** 2026_06_22 - Monday
 - where am I ? What am I doing?
 - I'm still working on 1 single player  on the marrsWorkstation
@@ -933,8 +898,55 @@ frameworks around memory, space and sound."
 *** 2026_06_25 - Thursday
 - added in a sample and hold synth
 
- 
- 
+- [ ] 
+
+*** 2026_06_26 - Friday
+- fill in the form
+- I no longer care about the project. I just prefer working on the software
+- a claude prompt gave me this
+  - Ghosts of My Life is a sound installation that questions nostalgia, imagined memory and personal trauma and the afer effects of undiagnosed disabilities and substance addiction due to this. Working within Mark Fisher's framework of hauntology, it it questions my own lost futures and unresolved pasts in the texture of recorded sound. Field recordings made at specific Ordnance Survey map locations — gathered through a psychogeographic practice that binds memory to place — are routed through hacked cassette players and fractured by granular synthesis, where loops refuse to resolve, glitches intrude, and moments jump and repeat. These distortions stand in for the way trauma disrupts the felt experience of time, collapsing past into present and making certain moments inescapable while others dissolve. Rather than reconstructing memory faithfully, the installation stages its failures, leaving a haunted acoustic space where the past returns uninvited, distorted, and incomplete.
+
+- Ghosts of My Life is a work-in-progress sound installation, prompted by Mark Fisher's book of the same title, that treats nostalgia as a symptom to be examined rather than indulged. The piece delves into my personal history as I seek to break free from the nostalgia bound up with a significant traumatic moment in my early family life — a moment I have reflected on for nearly forty years, constantly asking "What if?" Through a psychogeographical exploration of my near and distant past, it offers a current snapshot of my life and attempts to liberate me from a trauma that has been distorted and suppressed by struggles with addiction, depression, and the pressures of capitalism. Field recordings made at specific Ordnance Survey map locations are routed through hacked cassette players and fractured by granular synthesis, where loops refuse to resolve, glitches intrude, and moments jump and repeat; these distortions stand in for the way trauma disrupts the felt experience of time, collapsing past into present and making certain moments inescapable while others dissolve. Rather than reconstructing memory faithfully, the installation stages its failures, raising questions about nostalgia, lost futures, and hauntology within a haunted acoustic space where the past returns uninvited, distorted, and incomplete.
+
+
+- Ghosts of My Life is a sound installation that questions nostalgia, imagined memory, personal trauma, undiagnosed disabilities and addiction. Working within Mark Fisher's framework of hauntology, it it questions my own lost futures and unresolved pasts in the texture of recorded sound. Field recordings made at specific locations — gathered through a psychogeographic practice that binds memory to place — are processed with personal software and routed through hacked cassette players. The distortions made with these stand in for the way trauma disrupts the felt experience of time. Unable to  reconstruct memory faithfully, I attempt to hijack my memories by reinventing them.
+
+  
+- Ghosts of My Life is a sound installation that questions nostalgia, imagined memory, personal trauma, undiagnosed disabilities, depression and addiction. Working within the frameworks of hauntology, mempory and nostalgia it interrogates my own lost futures and unresolved pasts in the texture of recorded sound. Field recordings made at specific sites from my history — childhood homes, schoolyards, a crematorium — are gathered through a psychogeographic practice that binds memory to place — are processed with personal software and routed through hacked cassette players. Building my own tools, in open-source software, continues my  working-class line of inherited craft whilst simutaniously refusing the walled garden. The distortions this produces stand in for the way trauma disrupts the felt experience of time. Unable to reconstruct memory faithfully, I attempt to hijack my own memories by reinventing them.
+  
+
+*** 2026_06_29 - Monday
+- working on the sample and hold section of the software
+- I'm still waiting for my titration. I'm feeling pretty desperate. It's been around 1 year now waiting.
+  Just to see if some medication will halp me sit down and read.
+- I cant seem to read anything about this. It just bounces off. I cant even get sat down to read a book.
+  This has happened all my life. All through my BA, all through this MFA. How am I supposed to be able to deal with the feedback if I cant even bring myself to open a fucking book!
+   -  "Development
+evident but uneven. Conceptual framing partially articulated. Student can
+speak to the work but with limited critical depth."
+- This is just total bullshit!
+- is it any wonder why thinking suicide (not that I would do it) is a better option than whatever this academic bullshit is??!!
+- Just the fact that its possible someone "needs' medication just to be able to operate in this situation is bullshit. And the fact that the process to get this is just as much bullshit. 4 years. Since the start of this MFA I've been on a waiting list and only in the last year or two has this made any kind of movement. I'm so tired. By the time the medication actually kicks in, this programme will be over. Again. Slipped through the cracks. This seems to be the story of my life.
+ -  anyway, self indulgent rant over!
+
+
+***  2026_06_29 - Tuesday
+- worked on the workstation
+- working more on the Sample and Hold synth.
+  - added extra sound sources
+- had DWP  interview for PiP for constant suiciadal thoughts
+- not sure if I can get it. Hopefully I do as it will elliviate some pressure for finding work. Just the thought of having to
+  be working for someone again fils me with constant dread. back to the "doing it all' until I burn out then slowly self implode until I get the sack. Again.
+- I guess that's my life?
+  
+
+
+
+
+
+
+
+
 * ;;-------------------------------------------------------------------------
 
 * ;;-------------------------------------------------------------------------
