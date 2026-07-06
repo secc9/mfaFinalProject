@@ -78,7 +78,7 @@
 - All of the above is now not happening. see final project for work
 
 
-** IDEAS
+* IDEAS
 - [[https://www.ecosia.org/search?q=zane+lowe+eno&addon=firefox&addonversion=6.3.0&method=topbar][zane lowe brian eno]]
 - have a bucket of images
   - let each machine get images and create their own videos
@@ -94,7 +94,7 @@
 - Whats the why???
 
 
-** Uni Tutorials
+* Uni Tutorials
 
 *** Eleaonora 25_03_19 Thursday
   - The One thing I really really want to do.........
@@ -183,7 +183,7 @@ self-awareness will enable you to minimize its influence on your judgment and ma
 decisions in your personal and professional life.
 
 
-** Things to do
+* Things to do
 
 *** Organise a trip to Filey
  - [X] buy a map of Filey
@@ -239,11 +239,11 @@ decisions in your personal and professional life.
 *** NEXT Get recordings from London/East Ardsley
 
 
-** Tutorials/Links/help
+* Tutorials/Links/help
 *** [[https://www.youtube.com/watch?v=UXjMk5ti6wk][packt OSC openFrameworks]]
 *** [[https://www.youtube.com/@OfficialPackt/search?query=openFrameworks][packt youtube oF vides????]]
 
-** Daily work
+* Daily work
 *** 2026_02_12 - Thursday
 - Started today in earnest with trying to figure out what I'm going to do for this wip 2
 - I have made some restrictions and got myself some tools
@@ -930,7 +930,7 @@ speak to the work but with limited critical depth."
  -  anyway, self indulgent rant over!
 
 
-***  2026_06_29 - Tuesday
+***  2026_06_30 - Tuesday
 - worked on the workstation
 - working more on the Sample and Hold synth.
   - added extra sound sources
@@ -940,12 +940,28 @@ speak to the work but with limited critical depth."
 - I guess that's my life?
   
 
+*** 2026_07_01 - Wednesday
+
+- worked more on the sample and hold
+- added a distortion selector for the waveforms in the S&H and gui
+- added in a distortion drive for the waveforms and gui
+- fixing the filter problem where I have filters with different resonance and cutoffs.
+  - trying to make the gui snap to the actual setting whilst chosing filter type
 
 
+*** 2026_07_02 - Thursday
 
+- tidied up the S&H synth view
+- added gain in dail for the record synth
+- 
+  
 
-
-
+*** 2026_07_06 - Monday
+- upgraded to a 6 slot workstation
+- spent 2 days in Claude bug fixing
+- try to consider working in Arrays for the futire for an easier expansion to more channels
+- seems to be working.
+- theres still a little errenous behavour from the gui that cas come across, mainly the Image synth filter.
 
 * ;;-------------------------------------------------------------------------
 

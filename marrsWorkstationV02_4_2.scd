@@ -14,7 +14,7 @@
 ******* V_2_4
 
 
-// quite a lot of this code is heavily adapted from Bruno Ruviaro's Granular synthesis GUI demo
+// The TGRAIN code is heavily adapted from Bruno Ruviaro's Granular synthesis GUI demo
 // from the SCCode website
 // https://sccode.org/1-4UF
 
@@ -78,8 +78,17 @@ DONE
  - added in a Sample and Hold Synth
 
 
+- 2026_07_02  ALL DONE
+ latch controls still to do
+  - pulse width needs moving
+  - Blip harmonics needs moving
+  - FOrmant controls need moving
+  - PMOSc controls need moving
+  - SineFM feedback also needs moving
 
 
+
+- added in a gain dail for the record synth
 
  * TODO
 
@@ -102,6 +111,7 @@ DONE
 
   - add filename to file view - see Ruviaro's code for GUI Demo 2
 
+  - convert lots of label arguments to variables
 
 */
 
@@ -231,7 +241,7 @@ buildMarrs = {
 		var sinAmpA, cutoffAmountA, qAmountA, tuneAmountA, imageFiltVolA, imageDistortMenuA, imageFilterMenuA;
 
 		// record buffer variables
-		var recViewA, recButtonA, recSynthA,inChMenuA, recStartTimeA, loadFileA;
+		var recViewA, recButtonA, recSynthA,inChMenuA, recStartTimeA, loadFileA, inputGainA;
 		var jumpMenuA, meterA, meterSynthA;
 
 
@@ -242,7 +252,7 @@ buildMarrs = {
 		var latchSynthViewA;
 		var latchTrigSpeedA, latchFreqAA, latchFreqBA, latchSpeedA, latchSpeedLabelA;
 		var latchPulseWidthA, latchNHarmA, latchOscMenuA,latchPWLabelA,latchNHarmLabelA, latchFormFreqA, latchBwFreqA, latchFormFreqLabelA, latchBwFreqLabelA, latchCoarseA;
-		var latchPmRatioA, latchPmIndexA, latchPmRatioLabelA, latchPmIndexLabelA, latchFbA, latchFbLabelA;
+		var latchPmRatioA, latchPmIndexA, latchPmRatioLabelA, latchPmIndexLabelA, latchFbA, latchFbLabelA, latchDetuneA, latchDistortMenuA, latchDistAmpA;
 		var latchPatMenuA, latchTrigMenuA;
 		var latchFilterMenuA, latchCutA, latchQA;
 
@@ -1132,7 +1142,7 @@ buildMarrs = {
 			if(btn.value==1){
 				recStartTimeA = Main.elapsedTime;
 				bufferA = Buffer.alloc(s, s.sampleRate*30, 1); // 30 sec mono buffer
-				recSynthA = Synth(\recBufA, [\bufnum, bufferA, \inCh, inChMenuA.value]);
+				recSynthA = Synth(\recBufA, [\bufnum, bufferA, \inCh, inChMenuA.value, \inGain, inputGainA.value.linlin(0, 1, -20, 20).dbamp]);
 			}{
 				var recFrames = ((Main.elapsedTime - recStartTimeA)*s.sampleRate).asInteger.min(bufferA.numFrames);
 
@@ -1171,6 +1181,20 @@ buildMarrs = {
 		// level meter
 		meterA = LevelIndicator(recViewA, Rect(520, 10, 10, 130));
 
+		// input gain knob
+		inputGainA = Knob(recViewA, Rect(380, 5, 100, 100))
+		.action_({|kb|
+			var gain = kb.value.linlin(0, 1, -20, 20).dbamp;
+			if(recSynthA.notNil, {recSynthA.set(\inGain, gain)});
+			meterSynthA.set(\inGain, gain);
+		})
+		.value_(0.5);
+
+		StaticText(recViewA, Rect(380, 110, 50, 20))
+		.string_("gain")
+		.background_(Color.grey(0.7, 0.5))
+		.align_(\center);
+
 		//----------------------------------------------------------------------------
 
 
@@ -1181,11 +1205,12 @@ buildMarrs = {
 		.action_({|sl|
 			synthAStart.set(\trigSpeed, sl.value.linlin(0, 1, 0.5, 20))
 		})
-		.value_(0.49);
+		.value_(0.2);
 		StaticText(latchViewA, Rect(rangerXpos+20, 9, 70,16))
 		.string_("t_Speed")
 		.background_(Color.grey(0.7, 0.5))
-		.align_(\center);
+		.align_(\center)
+		.font_("Monaco", 30);
 
 		latchFreqAA = Slider(latchViewA,Rect(rangerXpos+90, 28, rangerWidth-100, 20))
 		.action_({|sl|
@@ -1195,7 +1220,8 @@ buildMarrs = {
 		StaticText(latchViewA, Rect(rangerXpos+20, 30, 70,16))
 		.string_("freqA")
 		.background_(Color.grey(0.7, 0.5))
-		.align_(\center);
+		.align_(\center)
+		.font_("Monaco", 30);
 
 		latchFreqBA = Slider(latchViewA,Rect(rangerXpos+90, 49, rangerWidth-100, 20))
 		.action_({|sl|
@@ -1205,7 +1231,8 @@ buildMarrs = {
 		StaticText(latchViewA, Rect(rangerXpos+20, 51, 70,16))
 		.string_("freqB")
 		.background_(Color.grey(0.7, 0.5))
-		.align_(\center);
+		.align_(\center)
+		.font_("Monaco", 30);
 
 		latchSpeedA = Slider(latchViewA,Rect(rangerXpos+90, 70, rangerWidth-100, 20))
 		.action_({|sl|
@@ -1216,7 +1243,8 @@ buildMarrs = {
 		latchSpeedLabelA=StaticText(latchViewA, Rect(rangerXpos+20, 72, 70,16))
 		.string_("pat spd")
 		.background_(Color.grey(0.7, 0.5))
-		.align_(\center);
+		.align_(\center)
+		.font_("Monaco", 30);
 
 
 		latchPatMenuA = PopUpMenu(latchViewA, Rect(rangerXpos+360, 93, 80, 20))
@@ -1229,7 +1257,8 @@ buildMarrs = {
 		StaticText(latchViewA, Rect(rangerXpos+280, 93, 70, 16))
 		.string_("pat type")
 		.background_(Color.grey(0.7, 0.5))
-		.align_(\center);
+		.align_(\center)
+		.font_("Monaco", 30);
 
 
 		latchTrigMenuA = PopUpMenu(latchViewA, Rect(rangerXpos+360, 114, 80, 20))
@@ -1240,7 +1269,8 @@ buildMarrs = {
 		StaticText(latchViewA, Rect(rangerXpos+280, 114, 70, 16))
 		.string_("trig type")
 		.background_(Color.grey(0.7, 0.5))
-		.align_(\center);
+		.align_(\center)
+		.font_("Monaco", 30);
 
 
 
@@ -1251,27 +1281,11 @@ buildMarrs = {
 
 
 
-		latchPulseWidthA = Knob(latchSynthViewA, Rect(200, 10, 50, 50))
-		.action_({|kb|
-			synthAStart.set(\pulseWidth, kb.value.linlin(0,1,0,1))
-		})
-		.value_(0.5);
-
-		latchPWLabelA=StaticText(latchSynthViewA, Rect(200, 60,rangerXpos-5 , 25))
-		.string_("pullse width");
-
-		latchNHarmA = Knob(latchSynthViewA, Rect(260,10, 50, 50))
-		.action_({|kb|
-			synthAStart.set(\nHarm, kb.value.linlin(0,1,0,30).round(1))})
-		.value_(0.1);
-
-	latchNHarmLabelA=StaticText(latchSynthViewA, Rect(260, 60, 70, 25))
-		.string_("harmonics");
 
 
 
 		latchOscMenuA = PopUpMenu(latchSynthViewA, Rect(85, 10, 70, 22))
-		.items_(["Sine", "Tri", "Saw", "Pulse", "Blip", "Formant", "PM", "SineFB"])
+		.items_(["Sine", "Tri", "Saw", "Pulse", "Blip", "Formant", "Phase Modulation", "SineFB"])
 		.action_({|menu|
 			synthAStart.set(\oscType, menu.value);
 			latchPulseWidthA.visible_(menu.value == 3);
@@ -1295,7 +1309,8 @@ buildMarrs = {
 		StaticText(latchSynthViewA, Rect(10, 10, 70, 22))
 		.string_("osc type")
 		.background_(Color.grey(0.7, 0.7))
-		.align_(\center);
+		.align_(\center)
+		.font_("Monaco", 30);
 
 
 
@@ -1308,61 +1323,175 @@ buildMarrs = {
 		StaticText(latchSynthViewA, Rect(20, 110, 50, 30))
 		.string_("coarse tune")
 		.background_(Color.grey(0.7, 0.7))
-		.align_(\center);
+		.align_(\center)
+		.font_("Monaco", 30);
 
+
+		latchDetuneA = Knob(latchSynthViewA, Rect(90, 40, 70, 70))
+		.action_({|kb|
+			synthAStart.set(\detune, kb.value.linlin(0, 1, 0, 0.02))
+		})
+		.value_(0);
+
+		StaticText(latchSynthViewA, Rect(100, 110, 50, 30))
+		.string_("detune")
+		.background_(Color.grey(0.7, 0.7))
+		.align_(\center)
+		.font_("Monaco", 30);
+
+
+
+		//-------- distortion controls
+
+		latchDistortMenuA = PopUpMenu(latchSynthViewA, Rect(230, 10, 70, 22))
+		.items_(["Clean", "Clip", "Fold", "Warp"])
+		.action_({|menu|
+			synthAStart.set(\distType, menu.value)
+		});
+
+		StaticText(latchSynthViewA, Rect(165, 10, 60, 22))
+		.string_("distort")
+		.background_(Color.grey(0.7, 0.7))
+		.align_(\center)
+		.font_("Monaco", 30);
+
+
+
+		latchDistAmpA = Knob(latchSynthViewA, Rect(190, 40, 70, 70))
+		.action_({|kb|
+			synthAStart.set(\distAmp, kb.value.linlin(0, 1, 0, 2))
+		})
+		.value_(0.1);
+
+		StaticText(latchSynthViewA, Rect(175, 110, 100, 30))
+		.string_("distortion drive")
+		.background_(Color.grey(0.7, 0.7))
+		.align_(\center)
+		.font_("Monaco", 30);
+
+
+
+
+
+		// Pulse width Knob
+
+		latchPulseWidthA = Knob(latchSynthViewA, Rect(350, 40, 70, 70))
+		.action_({|kb|
+			synthAStart.set(\pulseWidth, kb.value.linlin(0,1,0,1))
+		})
+		.value_(0.5);
+
+		latchPWLabelA=StaticText(latchSynthViewA, Rect(340, 110, 100, 30))
+		.string_("pulse width")
+		.background_(Color.grey(0.7, 0.7))
+		.align_(\center)
+		.font_("Monaco", 30);
+
+
+
+		// Blip Harmonics knob
+
+		latchNHarmA = Knob(latchSynthViewA, Rect(350, 40, 70, 70))
+		.action_({|kb|
+			synthAStart.set(\nHarm, kb.value.linlin(0,1,0,30).round(1))})
+		.value_(0.1);
+
+	latchNHarmLabelA=StaticText(latchSynthViewA, Rect(340, 110, 90, 30))
+		.string_("harmonics")
+		.background_(Color.grey(0.7, 0.7))
+		.align_(\center)
+		.font_("Monaco", 30);
+
+
+
+		// formant  controls
+		latchFormFreqA = Knob(latchSynthViewA, Rect(310, 40, 70, 70))
+		.action_({|kb|
+			synthAStart.set(\formFreq, kb.value.linexp(0.001,1,100, 5000))
+		})
+		.value_(0.5);
+
+		latchFormFreqLabelA = StaticText(latchSynthViewA, Rect(300, 110, 90, 30))
+		.string_("form freq")
+		.background_(Color.grey(0.7, 0.7))
+		.align_(\center)
+		.font_("Monaco", 30);
+
+
+
+		latchBwFreqA = Knob(latchSynthViewA, Rect(410, 40, 70, 70))
+		.action_({|kb|
+			synthAStart.set(\bwFreq, kb.value.linexp(0.001, 1, 50, 2000))
+		})
+		.value_(0.5);
+
+		latchBwFreqLabelA = StaticText(latchSynthViewA, Rect(400, 110, 90, 30))
+		.string_("bandwidth")
+		.background_(Color.grey(0.7, 0.7))
+		.align_(\center)
+		.font_("Monaco", 30);
 
 
 
 		// PMOsc Controls
-		latchPmRatioA = Knob(latchSynthViewA, Rect(200, 10, 70, 70 ))
+		latchPmRatioA = Knob(latchSynthViewA, Rect(310, 40, 70, 70 ))
 		.action_({|kb|
 			synthAStart.set(\pmRatio, kb.value.linlin(0, 1, 1, 8))
 		})
 		.value_(0);
 
-		latchPmRatioLabelA = StaticText(latchSynthViewA, Rect(200, 70, 70, 23))
+		latchPmRatioLabelA = StaticText(latchSynthViewA, Rect(300, 110, 90, 30))
 		.string_("pm ratio")
 		.background_(Color.grey(0.7, 0.7))
-		.align_(\center);
+		.align_(\center)
+		.font_("Monaco", 30);
 
 
-		latchPmIndexA = Knob(latchSynthViewA, Rect(260, 10, 70, 70))
+		latchPmIndexA = Knob(latchSynthViewA, Rect(410, 40, 70, 70))
 		.action_({|kb|
 			synthAStart.set(\pmIndex, kb.value.linlin(0, 1, 0, 12))
 		})
 		.value_(0.08);
 
-		latchPmIndexLabelA  = StaticText(latchSynthViewA, Rect(270, 70, 70, 23))
+		latchPmIndexLabelA  = StaticText(latchSynthViewA, Rect(400, 110, 90, 30))
 		.string_("pm index")
 		.background_(Color.grey(0.7, 0.7))
-		.align_(\center);
+		.align_(\center)
+		.font_("Monaco", 30);
 
 
-		// SinOscFB control
+		//------- SinOscFB control
 
-		latchFbA = Knob(latchSynthViewA, Rect(200, 10, 70, 70))
+		latchFbA = Knob(latchSynthViewA, Rect(350, 40, 70, 70))
 		.action_({|kb|
 			synthAStart.set(\fbAmount, kb.value.linlin(0, 1, 0, 4))
 		})
 		.value_(0.08);
 
-		latchFbLabelA  = StaticText(latchSynthViewA, Rect(270, 70, 70, 23))
+		latchFbLabelA  = StaticText(latchSynthViewA, Rect(330, 110, 100, 30))
 		.string_("feedback")
 		.background_(Color.grey(0.7, 0.7))
-		.align_(\center);
+		.align_(\center)
+		.font_("Monaco", 30);
 
 
 
-		// filter
+
+
+		//------- filter
 		latchFilterMenuA = PopUpMenu(latchSynthViewA, Rect(620, 10, 70, 20))
 		.items_(["RLPF", "RHPF", "DFM1", "MoofVCF", "MoogLadder", "GlitchRHPF-CAREFUL-LOUD!!", "Resonz"])
 		.action_({|menu|
-			synthAStart.set(\filterType, menu.value)
+			synthAStart.set(\filterType, menu.value);
+			{
+				latchQA.valueAction_(if(menu.value <=1, 1, 0));
+			}.defer;
 		});
 		StaticText(latchSynthViewA, Rect(550, 10, rangerXpos-5, 20))
 		.string_("filter")
 		.background_(Color.grey(0.7, 0.7))
-		.align_(\center);
+		.align_(\center)
+		.font_("Monaco", 30);
 
 
 
@@ -1374,7 +1503,8 @@ buildMarrs = {
 		StaticText(latchSynthViewA, Rect(550, 120, rangerXpos-5, 18))
 		.string_("cutoff")
 		.background_(Color.grey(0.7, 0.7))
-		.align_(\center);
+		.align_(\center)
+		.font_("Monaco", 30);
 
 
 
@@ -1386,30 +1516,10 @@ buildMarrs = {
 		StaticText(latchSynthViewA, Rect(630, 120, rangerXpos-5, 18))
 		.string_("rez")
 		.background_(Color.grey(0.7, 0.7))
-		.align_(\center);
+		.align_(\center)
+		.font_("Monaco", 30);
 
 
-
-		// formant filter controls
-		latchFormFreqA = Knob(latchSynthViewA, Rect(rangerXpos, 10, 50, 50))
-		.action_({|kb|
-			synthAStart.set(\formFreq, kb.value.linexp(0.001,1,100, 5000))
-		})
-		.value_(0.5);
-
-		latchFormFreqLabelA = StaticText(latchSynthViewA, Rect(10, 60, rangerXpos-5, 25))
-		.string_("form freq");
-
-
-
-		latchBwFreqA = Knob(latchSynthViewA, Rect(rangerXpos+60, 10, 50, 50))
-		.action_({|kb|
-			synthAStart.set(\bwFreq, kb.value.linexp(0.001, 1, 50, 2000))
-		})
-		.value_(0.5);
-
-		latchBwFreqLabelA = StaticText(latchSynthViewA, Rect(70, 60, rangerXpos-5, 25))
-		.string_("bandwidth");
 
 
 
@@ -1626,10 +1736,15 @@ buildMarrs = {
 								// should end here???
 							});
 						},
+						4,{ // menu item 4 - Record
+
+
+						},
 						5,{// menu is on item 5 - seq S&H
 							synthAStart = Synth(\latchSeqA, [
 								\trigSpeed, latchTrigSpeedA.value.linlin(0, 1, 0.5, 20),
 								\coarse, latchCoarseA.value.linlin(0, 1, -24, 24).round(1),
+								\detune, latchDetuneA.value.linlin(0, 1, 0, 0.02),
 								\latchFreqA, latchFreqAA.value.linlin(0, 1, 50, 400),
 								\latchFreqB, latchFreqBA.value.linlin(0, 1, 50, 2000),
 								\patSpeed, latchSpeedA.value.linlin(0, 1, 0.1, 20),
@@ -1642,6 +1757,8 @@ buildMarrs = {
 								\patType, latchPatMenuA.value,
 								\trigType, latchTrigMenuA.value,
 								\filterType, latchFilterMenuA.value,
+								\distType, latchDistortMenuA.value,
+								\distAmp, latchDistAmpA.value.linlin(0, 1, 0, 2),
 								\cut, latchCutA.value.linexp(0.001,1,20,20000),
 								\q, latchQA.value,
 								\formFreq, latchFormFreqA.value.linexp(0.001, 1, 100, 5000),
@@ -1964,8 +2081,8 @@ buildMarrs = {
 			// Osc select
 			// latch in select
 
-			arg out=0, latchFreqA=200, latchFreqB=500, patSpeed=1, trigSpeed=10, cut=1000,q=0.5, gate=1, verbSend=0,delaySend=0, latchAmp=1,pan=0.0, patType=0, trigType=0, oscType=0, filterType=0, pulseWidth=0.5, nHarm=4, formFreq=1760, bwFreq=880, coarse=0, pmRatio=1, pmIndex=1, fbAmount=0.5;
-			var sig, env1, env2, trig, wetDelay, wetVerb;
+			arg out=0, latchFreqA=200, latchFreqB=500, patSpeed=1, trigSpeed=3, cut=1000,q=0.5, gate=1, verbSend=0,delaySend=0, latchAmp=1,pan=0.0, patType=0, trigType=0, oscType=0, filterType=0, distType=0, pulseWidth=0.5, nHarm=4, formFreq=1760, bwFreq=880, coarse=0, pmRatio=1, pmIndex=1, fbAmount=0.5, detune=0.0, distAmp=0.2, oscLag = 0.1;
+			var sig, env1, env2, trig, wetDelay, wetVerb, filtMapped, qMapped;
 			trig = Select.kr(trigType,[
 				Impulse.kr(trigSpeed), // trigger select
 				Dust.kr(trigSpeed),
@@ -1975,6 +2092,7 @@ buildMarrs = {
 			env1 = EnvGen.kr(Env.linen(0.01, 0.5, 0.1), trig);
 			env2 = EnvGen.kr(Env.asr(0.1,1,0.5),gate, doneAction: 2);
 
+			// pattern select
 			sig = Select.kr( patType,[
 				SinOsc.kr(patSpeed, 0, latchFreqA, latchFreqB),
 				LFTri.kr(patSpeed, 0.0, latchFreqA, latchFreqB),
@@ -1985,29 +2103,64 @@ buildMarrs = {
 				LFNoise2.kr(trigSpeed, latchFreqA, latchFreqB)
 			]);
 
-			sig = Latch.kr(sig, trig*env1);
-			sig = sig * coarse.midiratio;
+			sig = Latch.kr(sig, trig*env1); // the actual S&H
+			sig = sig * coarse.midiratio; // coarse detune
+			sig = sig * [1 - detune, 1 + detune]; // fine detune -> chorusing
 
-			sig = SelectX.ar(Lag.kr(oscType, 0.1), [
-				SinOsc.ar(sig, 0.0, 0.2)*env2,			// Osc select
-				LFTri.ar(sig, 0.0, 0.2)*env2,
-				Saw.ar(sig, 0.2 )*env2,
-				Pulse.ar(sig, pulseWidth, 0.2)*env2,
-				Blip.ar(sig, nHarm, 0.2)*env2,
-				Formant.ar(sig,formFreq, bwFreq, 0.2)*env2,
-				PMOsc.ar(sig, sig*pmRatio, pmIndex, 0,0.2)*env2,
-				SinOscFB.ar(sig, fbAmount, 0.2)*env2
+			// signal oscillator selection
+			sig = SelectX.ar(Lag.kr(oscType, oscLag), [
+				SinOsc.ar(sig, 0.0, distAmp)*env2,			// Osc select
+				LFTri.ar(sig, 0.0, distAmp)*env2,
+				Saw.ar(sig, distAmp )*env2,
+				Pulse.ar(sig, pulseWidth, distAmp)*env2,
+				Blip.ar(sig, nHarm, distAmp)*env2,
+				Formant.ar(sig,formFreq, bwFreq, distAmp)*env2,
+				PMOsc.ar(sig, sig*pmRatio, pmIndex, 0,distAmp)*env2,
+				SinOscFB.ar(sig, fbAmount, distAmp)*env2
 
 			]);
 
-			sig = Select.ar(filterType, [
-				RLPF.ar(sig, cut, q),
-				RHPF.ar(sig, cut, q),
-				DFM1.ar(sig,cut,q),
-				MoogVCF.ar(sig,cut, q),
-				MoogLadder.ar(sig, cut, q),
-				GlitchRHPF.ar(sig, cut, q),
-				Resonz.ar(sig, cut, q),
+			sig = sig.sum * 0.5; // sum the signals up
+
+			//distortion select
+			sig = SelectX.ar(Lag.kr(distType,0.1),[
+				sig,
+				Clip.ar(sig, 0, 1),
+				Fold.ar(sig, 0, 1),
+				Wrap.ar(sig, 0, 1)
+			]);
+
+			//filter mapping
+		/*	filtMapped = Select.kr(filterType, [
+				cut.linlin(0, 1, 50, 5000),   // RLPF
+				cut.linlin(0, 1, 5000, 50),   // RHPF
+				cut.linlin(0, 1, 50, 5000),     // DFM1
+				cut.linlin(0, 1, 50, 5000),   // MoogVCF
+				cut.linlin(0, 1, 50, 5000),   // MoogLadder
+				cut.linlin(0, 1, 5000, 50),   // GlitchRHPF
+				cut.linlin(0, 1, 50, 5000),  // Resonz
+			])*/
+
+			// resonance mapping
+			qMapped = Select.kr(filterType, [
+				q.linlin(0, 1, 0.1, 1),   // RLPF
+				q.linlin(0, 1, 0.1, 1),   // RHPF
+				q.linlin(0, 1, 0, 1),     // DFM1
+				q.linlin(0, 1, 0, 2.5),   // MoogVCF
+				q.linlin(0, 1, 0, 0.9),   // MoogLadder
+				q.linlin(0, 1, 1, 0.3),   // GlitchRHPF
+				q.linlin(0, 1, 2, 0.05),  // Resonz
+			]);
+
+			// filter type selection
+			sig = SelectX.ar(Lag.kr(filterType, 0.1), [
+				RLPF.ar(sig, cut, qMapped),
+				RHPF.ar(sig, cut, qMapped),
+				DFM1.ar(sig, cut, qMapped),
+				MoogVCF.ar(sig, cut, qMapped, 2),
+				MoogLadder.ar(sig, cut, qMapped, 2),
+				GlitchRHPF.ar(sig, cut, qMapped, 0.7),
+				Resonz.ar(sig, cut, qMapped),
 			]);
 
 			sig = Pan2.ar(sig, pan, latchAmp);
@@ -2026,8 +2179,8 @@ buildMarrs = {
 
 
 		SynthDef(\recBufA, {
-			arg bufnum, inCh = 0;
-			var in = SoundIn.ar(inCh);
+			arg bufnum, inCh = 0, inGain=1;
+			var in = SoundIn.ar(inCh,inGain);
 			RecordBuf.ar(in, bufnum, loop: 0, doneAction:2);
 		}).add;
 
@@ -2035,9 +2188,9 @@ buildMarrs = {
 		// level meter
 
 		SynthDef(\inMeterA, {
-			arg inCh = 0;
+			arg inCh = 0, inGain=1.0;
 			SendReply.kr(Impulse.kr(20), '/inAmp',
-				Amplitude.kr(SoundIn.ar(inCh), 0.01,0.2),
+				Amplitude.kr(SoundIn.ar(inCh, inGain), 0.01,0.2),
 				0)
 		}).add;
 
@@ -2096,7 +2249,7 @@ buildMarrs = {
 //----------------------
 
 		// meter levels - record in
-		meterSynthA = Synth(\inMeterA, [\inCh, inChMenuA.value]);
+		meterSynthA = Synth(\inMeterA, [\inCh, inChMenuA.value, \inGain, inputGainA.value.linlin(0, 1, -20, 20).dbamp]);
 
 
 		// meter levels  - mixer out
@@ -2228,7 +2381,7 @@ buildMarrs = {
 		.action_({|btn|
 			if(btn.value==1){
 				Dialog.savePanel({|path|
-					if(path.extension !="wav"){path = path ++ ".wav"};
+					if(PathName(path).extension !="wav"){path = path ++ ".wav"};
 
 					s.recorder.recHeaderFormat = "wav";
 					s.recorder.recSampleFormat = "float";
