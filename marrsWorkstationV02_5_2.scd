@@ -96,6 +96,10 @@ DONE
 
 - added in a gain dail for the record synth
 
+- 2026_07_27
+   - added a lag time on the image synths
+  - added a rhythm wobble on image sequencer
+
  * TODO
 
 
@@ -231,6 +235,7 @@ buildMarrs = {
 		var imageSynthModes;
 
 		var imageSynthDefs, imageSynthTrig;
+		var imageLagTimes, imageScanWobble;
 
 
 		var latchPulseWidths, latchNHarms, latchOscMenus, latchPWLabels, latchNHarmLabels, latchFormFreqs, latchBwFreqs, latchFormFreqLabels, latchBwFreqLabels, latchCoarseA;
@@ -430,6 +435,8 @@ buildMarrs = {
 		imageR_Datas = Array.newClear(6);
 		imageG_Datas = Array.newClear(6);
 		imageB_Datas = Array.newClear(6);
+		imageLagTimes = Array.newClear(6);
+		imageScanWobble = Array.newClear(6);
 
 		imageSynthModes = Array.newClear(6);
 
@@ -1130,6 +1137,31 @@ buildMarrs = {
 			.align_(\center);
 
 
+				// lag time slider
+			imageLagTimes[i] = Slider(imageControlViews[i], Rect(rangerXpos+120, 81, 300, 20))
+			.action_({|sl|
+				if(synthsStart[i].notNil){
+					synthsStart[i].set(\lagTime, sl.value.linexp(0.001,1, 0.001, 2))
+				}
+			})
+			.value_(0.001);
+			StaticText(imageControlViews[i], Rect(rangerXpos+10, 81, 100, 20))
+			.string_("portamento")
+			.background_(Color.grey(0.6, 0.6))
+			.align_(\center);
+
+
+			// image scan wobble
+			imageScanWobble[i] = Knob(imageControlViews[i], Rect(rangerXpos+420, 100, 40, 40))
+			.value_(0);
+			StaticText(imageControlViews[i], Rect(rangerXpos+310, 120, 100, 16))
+			.string_("wobble")
+			.background_(Color.grey(0.6, 0.6))
+			.align_(\center);
+
+
+
+
 			// image synth A Controls
 
 
@@ -1212,6 +1244,8 @@ buildMarrs = {
 			.background_(Color.green(0.9,0.9))
 			.align_(\center)
 			.font_("Monaco", 50);
+
+
 
 
 			// distortion type menu
@@ -1662,7 +1696,7 @@ buildMarrs = {
 
 
 			//reverb send knob
-			reverbSendBackgrounds[i]=CompositeView(subwins[i], Rect(120, 100, 100, 40))
+			reverbSendBackgrounds[i]=CompositeView(subwins[i], Rect(120, 103, 100, 40))
 			.background_(Color.cyan(0.4));
 
 			verbSends[i] = Knob(reverbSendBackgrounds[i],Rect(5, 5, 30, 30))
@@ -1675,7 +1709,7 @@ buildMarrs = {
 
 
 			//delay send knob
-			delaySendBackgrounds[i] =CompositeView(subwins[i], Rect(230, 100, 100, 40))
+			delaySendBackgrounds[i] =CompositeView(subwins[i], Rect(230, 103, 100, 40))
 			.background_(Color.cyan(0.4));
 
 
@@ -1813,7 +1847,8 @@ buildMarrs = {
 											var freqR = imageR_Datas[i][px].max(0.001).linexp(0.001,1,80, 4000);
 											var freqG = imageG_Datas[i][px].max(0.001).linexp(0.001,1,80, 4000);
 											var freqB = imageB_Datas[i][px].max(0.001).linexp(0.001,1,80, 4000);
-											var speed = imageScanSpeeds[i].value.linlin(0, 1, 0.5, 0.01);
+											var speed = imageScanSpeeds[i].value.linlin(0, 1, 3, 0.01);
+											var wobble = imageScanWobble[i].value.linlin(0, 1, 0, 0.5);
 
 											{
 												var args = [
@@ -1833,6 +1868,7 @@ buildMarrs = {
 													\delaySend, delaySends[i].value,
 													\out,         outSels[i].value * 2,
 													\monBus, monBusses[i],
+													\lagTime, imageLagTimes[i].value.linexp(0.001, 1, 0.001, 2),
 												];
 												if(imageSynthTrig[mode],{
 													//triggered: a fresh synth every pixel (frees itself)
@@ -1847,7 +1883,8 @@ buildMarrs = {
 													});
 												});
 											}.defer;
-											speed.wait;
+
+											rrand(speed*(1-wobble), speed*(1+wobble)).wait;
 										});
 										log.("Scan Complete");
 									}).play(AppClock);
@@ -2038,10 +2075,10 @@ buildMarrs = {
 		// image Synth A
 
 		SynthDef(\imageSineA, {
-			arg out=0, freq = 440, tune=0,sinAmp=0.3, cut=5000,q=1, filtVol=1,imageAmp=0.3, distortType=0, filterType=0, imagePan=0.0, gate=1, verbSend=0,delaySend=0, monBus=0;
+			arg out=0, freq = 440, tune=0,sinAmp=0.3, cut=5000,q=1, filtVol=1,imageAmp=0.3, distortType=0, filterType=0, imagePan=0.0, gate=1, verbSend=0,delaySend=0, monBus=0, lagTime=0;
 			var sig, env, wetVerb, wetDelay;
 			env = EnvGen.kr(Env.asr(1,1,1),gate, doneAction: 2);
-			sig = SinOsc.ar(freq+tune,0,  sinAmp);
+			sig = SinOsc.ar(Lag.kr(freq+tune,lagTime),0,  sinAmp);
 
 			// distort select
 			sig = Select.ar(distortType,[
@@ -2071,10 +2108,10 @@ buildMarrs = {
 		// image RGB Sine
 
 		SynthDef(\imageSineRGBA, {
-			arg out=0, freqR=220, freqG=330, freqB=440,tune=0,sinAmp=0.3, distortType=0,filterType=0, filtVol=1,cut=5000,q=1, imageAmp=0.3,gate=1,verbSend=0,delaySend=0, monBus=0;
+			arg out=0, freqR=220, freqG=330, freqB=440,tune=0,sinAmp=0.3, distortType=0,filterType=0, filtVol=1,cut=5000,q=1, imageAmp=0.3,gate=1,verbSend=0,delaySend=0, monBus=0, lagTime=0;
 			var  sig, env, wetVerb, wetDelay;
 			env = EnvGen.kr(Env.asr(1,1,1),gate,doneAction:2);
-			sig = Pan2.ar(SinOsc.ar([freqR,freqG,freqB]+tune, 0, sinAmp), [-0.8, 0.0, 0.8]);
+			sig = Pan2.ar(SinOsc.ar(Lag.kr([freqR,freqG,freqB]+tune,lagTime), 0, sinAmp), [-0.8, 0.0, 0.8]);
 			// distort type
 			sig = Select.ar(distortType,[
 				sig,
@@ -2145,10 +2182,10 @@ buildMarrs = {
 
 
 		SynthDef(\imageSawA, {
-			arg out=0, freqR=220, freqG=330, freqB=440, tune = 0, sinAmp=0.3, cut=5000, q=1, filtVol=1, imageAmp=0.3,imagePan=0, distortType=0, filterType=0, gate=1, verbSend=0, delaySend=0, monBus=0;
+			arg out=0, freqR=220, freqG=330, freqB=440, tune = 0, sinAmp=0.3, cut=5000, q=1, filtVol=1, imageAmp=0.3,imagePan=0, distortType=0, filterType=0, gate=1, verbSend=0, delaySend=0, monBus=0, lagTime=0;
 			var sig, env, wetDelay, wetVerb;
 			env = EnvGen.kr(Env.asr(1, 1, 1),gate, doneAction: 2);
-			sig = Pan2.ar(Saw.ar([freqR,freqG,freqB]+tune, sinAmp), [-0.8, 0.0, 0.8]);
+			sig = Pan2.ar(Saw.ar(Lag.kr([freqR,freqG,freqB]+tune, lagTime), sinAmp), [-0.8, 0.0, 0.8]);
 			// distort select
 			sig = Select.ar(distortType,[
 				sig,
@@ -2174,10 +2211,10 @@ buildMarrs = {
 		}).add;
 
 		SynthDef(\imageSquareA, {
-			arg out=0, freqR=220, freqG=330, freqB=440, tune = 0, sinAmp=0.3, cut=5000, q=1, filtVol=1, imageAmp=0.3,imagePan=0, distortType=0, filterType=0, gate=1, verbSend=0, delaySend=0, monBus=0;
+			arg out=0, freqR=220, freqG=330, freqB=440, tune = 0, sinAmp=0.3, cut=5000, q=1, filtVol=1, imageAmp=0.3,imagePan=0, distortType=0, filterType=0, gate=1, verbSend=0, delaySend=0, monBus=0, lagTime=0;
 			var sig, env, wetDelay, wetVerb;
 			env = EnvGen.kr(Env.asr(1, 1, 1),gate, doneAction: 2);
-			sig = Pan2.ar(Pulse.ar([freqR,freqG,freqB]+tune, 0.5, sinAmp),[-0.8, 0.0, 0.8]);
+			sig = Pan2.ar(Pulse.ar(Lag.kr([freqR,freqG,freqB]+tune, lagTime), 0.5, sinAmp),[-0.8, 0.0, 0.8]);
 			// distort select
 			sig = Select.ar(distortType,[
 				sig,
