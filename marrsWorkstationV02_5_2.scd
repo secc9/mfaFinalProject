@@ -1848,7 +1848,7 @@ buildMarrs = {
 											var freqG = imageG_Datas[i][px].max(0.001).linexp(0.001,1,80, 4000);
 											var freqB = imageB_Datas[i][px].max(0.001).linexp(0.001,1,80, 4000);
 											var speed = imageScanSpeeds[i].value.linlin(0, 1, 3, 0.01);
-											var wobble = imageScanWobble[i].value.linlin(0, 1, 0, 0.5);
+											var wobble = imageScanWobble[i].value.linlin(0, 1, 0, 2.5);
 
 											{
 												var args = [
