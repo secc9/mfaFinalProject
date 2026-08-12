@@ -99,6 +99,7 @@ DONE
 - 2026_07_27
    - added a lag time on the image synths
   - added a rhythm wobble on image sequencer
+-
 
  * TODO
 
@@ -2516,6 +2517,8 @@ buildMarrs = {
 		StaticText(delayView, Rect(16, 260, 35, 30))
 		.string_("delay time")
 		.align_(\center);
+
+
 
 
 		decayTime = Slider(delayView, Rect(63, 60, 40, 200))
