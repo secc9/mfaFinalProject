@@ -100,6 +100,7 @@ DONE
    - added a lag time on the image synths
   - added a rhythm wobble on image sequencer
 -
+-
 
  * TODO
 
