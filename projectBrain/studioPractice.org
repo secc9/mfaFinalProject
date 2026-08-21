@@ -1066,7 +1066,6 @@ I really need to get moving on some things but I just can't bring myself to do i
 
     - At first glance, nostalgia is a longing for a place, but actually it is a yearning for a different time - the time of our childhood,  the slower rhythms of our dreams. - Boym - XV
 
-
     - Modern nostalgia is a mourning for the impossibility of mythical return, for the loss of an enchanted world with clear borders and values; it could
       be  secular expression of a spiritual longing, a nostalgia for an absolute, a home that is both physical and spiritual, the edenic unity of time and space before entry into history. - Boym pg 8
 
@@ -1158,7 +1157,36 @@ I really need to get moving on some things but I just can't bring myself to do i
     - 
     - 
     - 
-    
+
+      
+      - For the longest time I was always looking backwards to some point in my life, wondering how my life could have been different if the outcome of the event was different. I longed for my father not to have died unexpectedly from Bowel Cancer when I was 5. If I would have grown up with a father would my outcomes be different?? Would my mother have drunk? Would I have drunk? Would I have AuDHD? Probably, as it seems my mother also has it and from the stories I'm told about my father then I think he definitly had it. Would I have made all these mistakes? Maybe, but maybe not. If he would still be alive would I have had all the experiences I have had? I certainly don't think so. Maybe I would still be living in the same village, working in the same trade my father finally settled in. It's highly possible that I wouldn't have gone further than that. But, maybe with a more solid familial background, my experience at school would have been much better. Many I wouldn't have been taking LSD at 14 years old??
+      - I think the larger problem is that I'm still trapped there. Trapped in these places which had large impacts on my life. I'm mentally trapped in all of thesee places. I think that actually visiting these places now, sober, and spending time there has allowed me to work through the pent up feelings of anger and resentment I had towards these places, people, things. Alcoholism is a prime place for resentment to live and fester. I was/a, and alcocolic from around the age of 18. I've always been an addict. Possibly born an addict. This is something  I cannot change, but I can change me. I have spent many years drinking on my past. Which is still affecting me into the now. On one hand I am aware that nostalgia, in the wrong hands, can be a dangerous thing and, on the other, that it is also a dangerous thing. For me, my nostalgia is alwasy looking back "mourning for the impossibility of mythical return" - Boym - introductin XV. This is my nostalgia. Maybe if that thing nec=ver happened my present would be better? Or, maybe, I would be a different person. Completely different from who I am today.......
+
+
+
+      
+*** 2026_08_20 - Monday
+
+- [ ] add in images links to daily work
+- [ ] look at project template
+- [ ] start figuing out making a video documentation
+- [ ] WHAT DO I NEED TO SUBMIT???
+- [ ] [[https://learn.gold.ac.uk/mod/coursework/view.php?id=1797731][Final Project and VIVA: FINAL PROJECT IN COMPUTATIONAL ARTS]]
+
+- [ ] SUBMIT HERE ->> [[https://learn.gold.ac.uk/mod/coursework/view.php?id=1807949][SUBMIT]]
+
+  - [ ] What to submit here:
+
+  - [ ] ALL your project files, assets, software project files and/or code files, with READMEs. You can submit git repos or publicly accessible zip files if your project zip file sizes exceed VLE upload limits. 
+  PDF of your project documentation using the attached template. This MUST be submitted on this page, no online documents will be accepted. 
+  Fill out this form to indicate what you contributed to the collective effort of the show for your Student Participation grade (5%). 
+
+  - [ ] If you have queries about the assessment itself, please contact your Module Lead.
+
+  - [ ] If you need help with the submission process, check the Student Help area in learn.gold (under 'Student links' at the top of the page).
+
+    + [ ] 
+- 
 
 * ;;-------------------------------------------------------------------------
 

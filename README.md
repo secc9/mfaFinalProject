@@ -17,6 +17,7 @@ I want to sonically and pictorally document the places where I have signifiant m
 
 The computational side of this is a way for me to present, remix and change the sounds of my past to try and make sense of it and to push me out into the future.
 
-To do this I will be making a granular synthesizer/ loop playing  workstation which will be my tool for this purpose
+To do this I will be making a granular synthesizer/ loop playing  workstation which will be my tool for this purpose. 
+
 
 
