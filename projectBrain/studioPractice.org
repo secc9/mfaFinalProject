@@ -9,8 +9,6 @@
 
 
 
-
-
 //----------------------------------------------------------------------------------------------------------------------------
 * Final Project MFA Computational Arts
 
@@ -746,7 +744,7 @@ The focus of this work in progress is to provide a current snapshot of my life. 
 - [ ] 
 - 
 
-
+  
 *** 2026_06_11 - Thursday
 - WIP2
 
@@ -756,7 +754,7 @@ The focus of this work in progress is to provide a current snapshot of my life. 
 - tired. Annoyed. Didn't want to be there.
 -
 
-
+  
 *** 2026_06_15 - Monday
 - time to continue on the mworkstatin
 - continued work on the Image synth
@@ -912,7 +910,7 @@ frameworks around memory, space and sound."
 - Ghosts of My Life is a sound installation that questions nostalgia, imagined memory, personal trauma, undiagnosed disabilities and addiction. Working within Mark Fisher's framework of hauntology, it it questions my own lost futures and unresolved pasts in the texture of recorded sound. Field recordings made at specific locations — gathered through a psychogeographic practice that binds memory to place — are processed with personal software and routed through hacked cassette players. The distortions made with these stand in for the way trauma disrupts the felt experience of time. Unable to  reconstruct memory faithfully, I attempt to hijack my memories by reinventing them.
 
   
-- Ghosts of My Life is a sound installation that questions nostalgia, imagined memory, personal trauma, undiagnosed disabilities, depression and addiction. Working within the frameworks of hauntology, mempory and nostalgia it interrogates my own lost futures and unresolved pasts in the texture of recorded sound. Field recordings made at specific sites from my history — childhood homes, schoolyards, a crematorium — are gathered through a psychogeographic practice that binds memory to place — are processed with personal software and routed through hacked cassette players. Building my own tools, in open-source software, continues my  working-class line of inherited craft whilst simutaniously refusing the walled garden. The distortions this produces stand in for the way trauma disrupts the felt experience of time. Unable to reconstruct memory faithfully, I attempt to hijack my own memories by reinventing them.
+- Ghosts of My Life is a sound installation that questions nostalgia, imagined memory, personal trauma, undiagnosed disabilities, depression and addiction. Working within the frameworks of hauntology, memory and nostalgia it interrogates my own lost futures and unresolved pasts in the texture of recorded sound. Field recordings made at specific sites from my history — childhood homes, schoolyards, a crematorium — are gathered through a psychogeographic practice that binds memory to place — are processed with personal software and routed through hacked cassette players. Building my own tools, in open-source software, continues my  working-class line of inherited craft whilst simutaniously refusing the walled garden. The distortions this produces stand in for the way trauma disrupts the felt experience of time. Unable to reconstruct memory faithfully, I attempt to hijack my own memories by reinventing them.
   
 
 *** 2026_06_29 - Monday
@@ -1022,7 +1020,7 @@ I really need to get moving on some things but I just can't bring myself to do i
 - Saisho walkman seems fine after removing the case..
   - a nice IC chip for hacking into
 
-
+    
 *** 2026_08_03 Monday
 - things to do
   - [-] bend the IC on the Saisho walkman
