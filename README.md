@@ -21,3 +21,5 @@ To do this I will be making a granular synthesizer/ loop playing  workstation wh
 
 
 
+Follow daily org file [here](https://github.com/secc9/mfaFinalProject/blob/main/projectBrain/studioPractice.org "Daily Org File")
+
