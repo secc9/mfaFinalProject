@@ -1043,7 +1043,7 @@ I really need to get moving on some things but I just can't bring myself to do i
   - a nice IC chip for hacking into
 
     
-*** 2026_08_03 Monday
+§*** 2026_08_03 Monday
 - things to do
   - [-] bend the IC on the Saisho walkman
     - [-] on thePB-0071D IC
@@ -1068,6 +1068,20 @@ I really need to get moving on some things but I just can't bring myself to do i
   - Still feeling like "Fuck it. Who cares???!! I certanly don't anymore."
 - 
 
+
+
+*** 2026_08_05 - Wednesday
+
+- FieldWork in Guildford
+  
+- [[file:/documentationImages/IMG_4145.jpeg]]
+- York Road bedsit
+- [[file:/documentationImages/IMG_4152.jpeg]]
+- ACM/Rodboro Buildings
+- [[file:/documentationImages/IMG_4151.jpeg]]
+- The Drummond
+- [[file:/documentationImages/IMG_4153.jpeg]]
+- Tom and Ben's Flat
 
 
 
