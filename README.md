@@ -5,7 +5,7 @@ The Ghosts of my Life.
 
 An MFA Computational Arts documentation store.
 
-[Videodocumentationhere](https://vimeo.com/1224660871?share=copy&fl=sv&fe=ci "Video Documentation")
+[Video documentation here](https://vimeo.com/1224660871?share=copy&fl=sv&fe=ci "Video Documentation")
 
 Follow daily org file [here](https://github.com/secc9/mfaFinalProject/blob/main/projectBrain/studioPractice.org "Daily Org File")
 
